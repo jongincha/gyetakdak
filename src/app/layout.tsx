@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { Noto_Sans_KR, Black_Han_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import StickyMobileCta from "@/components/layout/StickyMobileCta";
 import { BRAND_NAME, BRAND_TAGLINE, SITE_URL } from "@/lib/constants";
 import { organizationJsonLd, restaurantJsonLd } from "@/lib/jsonld";
 
@@ -118,10 +115,7 @@ export default function RootLayout({
           </Script>
         )}
 
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <StickyMobileCta />
+        {children}
       </body>
     </html>
   );

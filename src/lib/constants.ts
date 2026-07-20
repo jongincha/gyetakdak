@@ -104,3 +104,52 @@ export const FAQ_ITEMS = [
 export const NATIONWIDE_STORE_COUNT = 87;
 export const AVG_MONTHLY_REVENUE = "4,280만원";
 export const YEARS_IN_BUSINESS = 6;
+
+export const SUCCESS_CASES = [
+  {
+    name: "성수점 이◯◯ 점주",
+    region: "서울 성동구",
+    openedAt: "2022년 8월 오픈",
+    quote: "약고추장 레시피 하나만 제대로 익혀도 오픈 첫 주부터 본점과 똑같은 맛이 나왔어요. 조리 경험이 없던 제게 가장 큰 자신감이었습니다.",
+    revenueGrowth: "오픈 3개월차 대비 월매출 62% 상승",
+  },
+  {
+    name: "홍대점 박◯◯ 점주",
+    region: "서울 마포구",
+    openedAt: "2023년 3월 오픈",
+    quote: "마라 메뉴 덕분에 20대 손님 재방문율이 눈에 띄게 늘었어요. 상권 특성을 미리 분석해준 본사 데이터가 정확했습니다.",
+    revenueGrowth: "1년차 평균 월매출 4,600만원",
+  },
+  {
+    name: "대전 둔산점 최◯◯ 점주",
+    region: "대전 서구",
+    openedAt: "2021년 11월 오픈",
+    quote: "본사 슈퍼바이저가 오픈 첫 주 내내 상주하면서 서비스 동선까지 잡아준 게 정말 큰 도움이 됐습니다.",
+    revenueGrowth: "투자금 회수기간 17개월",
+  },
+] as const;
+
+export const MONTHLY_REVENUE_TREND = [
+  { month: "1월", value: 3820 },
+  { month: "2월", value: 3650 },
+  { month: "3월", value: 4010 },
+  { month: "4월", value: 4180 },
+  { month: "5월", value: 4390 },
+  { month: "6월", value: 4520 },
+  { month: "7월", value: 4680 },
+  { month: "8월", value: 4590 },
+  { month: "9월", value: 4410 },
+  { month: "10월", value: 4460 },
+  { month: "11월", value: 4520 },
+  { month: "12월", value: 4820 },
+] as const;
+
+export const REGIONAL_STORES = [
+  { region: "서울", count: 28 },
+  { region: "경기·인천", count: 21 },
+  { region: "부산·경남", count: 12 },
+  { region: "대구·경북", count: 8 },
+  { region: "대전·충청", count: 9 },
+  { region: "광주·전라", count: 6 },
+  { region: "강원·제주", count: 3 },
+] as const;
