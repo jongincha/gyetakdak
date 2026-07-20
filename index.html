@@ -1,109 +1,539 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>계탉닭</title>
-  <style>
-    :root {
-      --hero-overlay: rgba(10, 12, 10, 0.35);
-      --text-on-hero: #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo",
-        "Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif;
-    }
-
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      min-height: 480px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero__video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .hero__overlay {
-      position: absolute;
-      inset: 0;
-      background: var(--hero-overlay);
-    }
-
-    .hero__content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      color: var(--text-on-hero);
-      padding: 0 24px;
-    }
-
-    .hero__title {
-      margin: 0 0 12px;
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: 700;
-      text-wrap: balance;
-    }
-
-    .hero__subtitle {
-      margin: 0;
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    /* 모션에 민감한 사용자를 위해 자동재생 비디오 대신 정지된 배경으로 대체 */
-    @media (prefers-reduced-motion: reduce) {
-      .hero__video {
-        display: none;
-      }
-      .hero {
-        background: #111;
-      }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>계탉닭 | 대한민국 닭갈비의 새로운 기준</title>
+<meta name="description" content="계탉닭 프랜차이즈 가맹 안내 — 원팩 시스템, 검증된 수익성, 본사 마케팅 지원까지. 지금 창업 상담을 예약하세요." />
+<meta property="og:title" content="계탉닭 | 대한민국 닭갈비의 새로운 기준" />
+<meta property="og:description" content="맛으로 줄 서고, 시스템으로 성공하다 — 계탉닭 프랜차이즈 창업 안내" />
+<meta property="og:type" content="website" />
+<!-- TODO: og:image 에 실제 대표 이미지 URL 추가 -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="hero">
-    <!-- poster="여기에 로딩 중 보여줄 정지 이미지 URL(선택)" 을 추가하면 첫 프레임이 뜨기 전 깜빡임을 줄일 수 있습니다 -->
-    <video
-      class="hero__video"
-      autoplay
-      muted
-      loop
-      playsinline
-      aria-hidden="true"
-    >
-      <source
-        src="https://res.cloudinary.com/hb5bdcuw/video/upload/v1784575118/center04_1_dvga4u.mp4"
-        type="video/mp4"
-      />
-    </video>
-    <div class="hero__overlay"></div>
 
-    <div class="hero__content">
-      <h1 class="hero__title">계탉닭</h1>
-      <p class="hero__subtitle">여기에 한 줄 소개 문구를 넣어주세요</p>
+<!-- ================= 상단 고정 네비 ================= -->
+<header class="topbar" id="topbar">
+  <a href="#hero" class="topbar__logo">계탉닭</a>
+  <nav class="topbar__nav">
+    <a href="#brand">브랜드</a>
+    <a href="#menu">메뉴</a>
+    <a href="#revenue">수익성</a>
+    <a href="#process">창업절차</a>
+  </nav>
+  <a href="#inquiry" class="btn btn--primary btn--sm">창업문의</a>
+</header>
+
+<!-- ================= 1. 메인 비주얼 ================= -->
+<section class="hero" id="hero">
+  <div class="hero__slides" data-carousel data-autoplay="4500">
+    <div class="hero__slide is-active" data-caption="마라 쫄탉갈비">
+      <video
+        class="hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+      >
+        <source
+          src="https://res.cloudinary.com/hb5bdcuw/video/upload/v1784575118/center04_1_dvga4u.mp4"
+          type="video/mp4"
+        />
+      </video>
     </div>
-  </header>
+    <div class="hero__slide" data-caption="고객들이 먹는 모습">
+      <div class="hero__ph hero__ph--2"><span>고객 시식 이미지 준비중</span></div>
+    </div>
+    <div class="hero__slide" data-caption="웨이팅">
+      <div class="hero__ph hero__ph--3"><span>웨이팅 이미지 준비중</span></div>
+    </div>
+    <div class="hero__slide" data-caption="매장 분위기">
+      <div class="hero__ph hero__ph--4"><span>매장 이미지 준비중</span></div>
+    </div>
+    <div class="hero__slide" data-caption="창업 홍보">
+      <div class="hero__ph hero__ph--5"><span>창업 홍보 이미지 준비중</span></div>
+    </div>
+  </div>
+  <div class="hero__scrim"></div>
 
-  <main>
-    <!-- 다음 섹션 콘텐츠 -->
-  </main>
+  <div class="hero__content">
+    <p class="eyebrow">PREMIUM DAKGALBI FRANCHISE</p>
+    <h1 class="hero__title">대한민국 닭갈비의<br />새로운 기준</h1>
+    <p class="hero__tagline">맛으로 줄 서고, 시스템으로 성공하다</p>
+    <div class="cta-row">
+      <a href="#inquiry" class="btn btn--primary">창업문의</a>
+      <a href="#brand" class="btn btn--ghost">브랜드소개</a>
+    </div>
+  </div>
+
+  <div class="hero__dots" role="tablist" aria-label="메인 슬라이드"></div>
+</section>
+
+<!-- ================= 유튜브 홍보영상 + 소개 ================= -->
+<section class="intro reveal">
+  <div class="intro__video">
+    <!-- TODO: 아래 YOUTUBE_VIDEO_ID 를 실제 홍보영상 ID로 교체 -->
+    <div class="intro__video-frame">
+      <iframe
+        src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
+        title="계탉닭 홍보영상"
+        loading="lazy"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+  <p class="intro__copy">
+    한방의 깊이, 약고추장의 매력, 그리고 새로운 한입.<br />
+    닭갈비를 더욱 깊게 만들고 먹는 방식까지 새롭게 바꾼<br />
+    프리미엄 닭갈비 브랜드 <strong>계탉닭</strong>
+  </p>
+</section>
+
+<!-- ================= 2. 브랜드 소개 ================= -->
+<section class="section section--brand" id="brand">
+  <div class="section__head reveal">
+    <p class="eyebrow">BRAND</p>
+    <h2>계탉닭만의 차별화</h2>
+    <p class="section__sub">국내 자체 공장에서 마라 · 고추장 · 간장을 직접 제조합니다</p>
+  </div>
+
+  <div class="brand-grid">
+    <div class="brand-media reveal">
+      <div class="ph ph--wide"><span>자체 공장 이미지 준비중</span></div>
+    </div>
+    <ul class="brand-points reveal">
+      <li>
+        <strong>신선함 2배</strong>
+        <span>본사 직영 공장에서 매일 소분 제조해 유통 단계를 줄였습니다</span>
+      </li>
+      <li>
+        <strong>품질 균일</strong>
+        <span>레시피 표준화로 어느 매장에서 먹어도 동일한 맛을 보장합니다</span>
+      </li>
+      <li>
+        <strong>원팩 시스템</strong>
+        <span>소스·재료를 1인분 단위로 소분해 초보자도 실수 없이 조리합니다</span>
+      </li>
+    </ul>
+  </div>
+  <div class="cta-inline"><a href="#inquiry" class="btn btn--primary">창업문의</a></div>
+</section>
+
+<!-- ================= 3. 대표 메뉴 ================= -->
+<section class="section section--menu" id="menu">
+  <div class="section__head reveal">
+    <p class="eyebrow">SIGNATURE MENU</p>
+    <h2>대표 메뉴</h2>
+  </div>
+
+  <div class="menu-grid" data-carousel-mobile>
+    <article class="menu-card reveal">
+      <div class="ph ph--menu"><span>마라 쫄탉갈비 이미지</span></div>
+      <div class="menu-card__body">
+        <p class="menu-card__eyebrow">SNS를 뒤흔든 바로 그 비주얼</p>
+        <h3>마라 쫄탉갈비</h3>
+        <p>알싸한 마라와 육즙 가득 닭갈비의 역대급 만남. 입안 가득 퍼지는 중독성 갑(甲).</p>
+      </div>
+    </article>
+
+    <article class="menu-card reveal">
+      <div class="ph ph--menu"><span>한방 간장 철판 쫄탉갈비 이미지</span></div>
+      <div class="menu-card__body">
+        <p class="menu-card__eyebrow">4시간 동안 정성으로 우려낸</p>
+        <h3>한방 간장 철판 쫄탉갈비</h3>
+        <p>한방 약재와 특제 맛간장의 황금 블렌딩. 환상적인 단짠의 조화, 깊은 풍미.</p>
+      </div>
+    </article>
+
+    <article class="menu-card reveal">
+      <div class="ph ph--menu"><span>약고추장 철판 쫄탉갈비 이미지</span></div>
+      <div class="menu-card__body">
+        <p class="menu-card__eyebrow">인위적인 설탕은 빼고</p>
+        <h3>약고추장 철판 쫄탉갈비</h3>
+        <p>궁중 수라상의 전통, 천연 과일의 자연스러운 단맛과 약고추장의 매콤함.</p>
+      </div>
+    </article>
+  </div>
+  <p class="menu-note">닭갈비의 새로운 기준을 계탉닭이 제시합니다</p>
+</section>
+
+<!-- ================= 4. 수익성 ================= -->
+<section class="section section--revenue" id="revenue">
+  <div class="section__head reveal">
+    <p class="eyebrow">REVENUE</p>
+    <h2>본점 실제 매출</h2>
+    <p class="section__sub">아래 수치는 예시 데이터입니다. 실제 공개 시 정보공개서 기준 데이터로 교체하세요.</p>
+  </div>
+
+  <div class="revenue-chart reveal">
+    <canvas id="revenueChart" height="120" aria-label="월별 매출 및 순이익 그래프" role="img"></canvas>
+  </div>
+
+  <div class="table-wrap reveal">
+    <table class="data-table">
+      <thead>
+        <tr><th>월매출</th><th>순이익</th><th>객단가</th><th>회전율</th><th>테이블 수</th><th>평수</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="월매출">9,800만원</td>
+          <td data-label="순이익">2,900만원</td>
+          <td data-label="객단가">18,000원</td>
+          <td data-label="회전율">3.2회</td>
+          <td data-label="테이블 수">18개</td>
+          <td data-label="평수">45평</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="revenue-media reveal">
+    <div class="ph ph--wide"><span>본점 정면 이미지 준비중</span></div>
+    <div class="ph ph--wide"><span>본점 내부 이미지 준비중</span></div>
+    <div class="ph ph--wide"><span>손님 많은 시간대 이미지 준비중</span></div>
+  </div>
+
+  <p class="disclaimer reveal">
+    ※ 수익성은 실제 운영 데이터를 기반으로 작성되었으며, 투자비용·운영환경 등에 따라 달라질 수 있습니다.
+  </p>
+  <div class="cta-inline"><a href="#inquiry" class="btn btn--primary">창업문의</a></div>
+</section>
+
+<!-- ================= 5. 성공 소자본 창업 ================= -->
+<section class="section section--success" id="success-model">
+  <div class="section__head reveal">
+    <p class="eyebrow">SMALL CAPITAL, BIG SUCCESS</p>
+    <h2>성공 소자본 창업의 길</h2>
+  </div>
+
+  <div class="card-grid card-grid--3">
+    <div class="info-card reveal">
+      <h3>상생 창업</h3>
+      <p>눈앞의 가맹점 확대보다 미래 상권까지 고려한 넓은 영업권을 보장합니다. 점주는 오직 운영과 매출에 집중하세요.</p>
+    </div>
+    <div class="info-card reveal">
+      <h3>쉬운 운영</h3>
+      <p>원팩 시스템으로 초보자도 바로 시작할 수 있습니다. 혼자서도, 여러 매장 다점포 운영도 가능합니다.</p>
+    </div>
+    <div class="info-card reveal">
+      <h3>가맹점과 상생</h3>
+      <p>물류·인테리어·창업비의 거품을 제거해 점주와 함께 성장하는 구조를 만듭니다.</p>
+    </div>
+  </div>
+  <div class="cta-inline"><a href="#inquiry" class="btn btn--primary">창업문의</a></div>
+</section>
+
+<!-- ================= 6. SNS 후기 ================= -->
+<section class="section section--reviews">
+  <div class="section__head reveal">
+    <p class="eyebrow">CUSTOMER VOICE</p>
+    <h2>SNS 후기</h2>
+  </div>
+
+  <div class="reviews-track" data-marquee>
+    <div class="review-card">
+      <p class="review-card__source">Instagram</p>
+      <div class="ph ph--square"><span>후기 캡처</span></div>
+      <p class="review-card__text">"마라 국물에 밥까지 볶아 먹었어요, 웨이팅 각오하고 가세요"</p>
+    </div>
+    <div class="review-card">
+      <p class="review-card__source">네이버 리뷰</p>
+      <div class="ph ph--square"><span>후기 캡처</span></div>
+      <p class="review-card__text">"약고추장 진짜 자연스러운 단맛, 아이도 잘 먹었어요"</p>
+    </div>
+    <div class="review-card">
+      <p class="review-card__source">블로그</p>
+      <div class="ph ph--square"><span>후기 캡처</span></div>
+      <p class="review-card__text">"한방 간장맛 처음 먹어보는 조합인데 계속 생각나요"</p>
+    </div>
+    <div class="review-card">
+      <p class="review-card__source">Google 리뷰</p>
+      <div class="ph ph--square"><span>후기 캡처</span></div>
+      <p class="review-card__text">"Best dakgalbi in town, worth the wait"</p>
+    </div>
+    <!-- 무한 루프를 위한 복제본 -->
+    <div class="review-card" aria-hidden="true">
+      <p class="review-card__source">Instagram</p>
+      <div class="ph ph--square"><span>후기 캡처</span></div>
+      <p class="review-card__text">"마라 국물에 밥까지 볶아 먹었어요, 웨이팅 각오하고 가세요"</p>
+    </div>
+    <div class="review-card" aria-hidden="true">
+      <p class="review-card__source">네이버 리뷰</p>
+      <div class="ph ph--square"><span>후기 캡처</span></div>
+      <p class="review-card__text">"약고추장 진짜 자연스러운 단맛, 아이도 잘 먹었어요"</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. 외국인 관광객 전략 ================= -->
+<section class="section section--tourist">
+  <div class="section__head reveal">
+    <p class="eyebrow">GLOBAL STRATEGY</p>
+    <h2>대한민국 내수의 한계를 넘다</h2>
+  </div>
+
+  <div class="flow reveal">
+    <span>국내시장 포화</span><span class="flow__arrow">→</span>
+    <span>외국인 관광객 타겟</span><span class="flow__arrow">→</span>
+    <span class="flow__highlight">폭발적인 매출</span>
+  </div>
+
+  <div class="tourist-chart reveal">
+    <canvas id="touristChart" height="110" aria-label="방한 외국인 관광객 추이" role="img"></canvas>
+    <p class="chart-note">2025년 약 1,894만명 → 2026년 약 2,000만명 예상 (예시 수치, 최신 통계로 교체 권장)</p>
+  </div>
+
+  <div class="flow flow--wrap reveal">
+    <span>성수동</span><span class="flow__arrow">→</span>
+    <span>홍대</span><span class="flow__arrow">→</span>
+    <span>K뷰티</span><span class="flow__arrow">→</span>
+    <span class="flow__highlight">계탉닭 방문</span><span class="flow__arrow">→</span>
+    <span>SNS 인증</span>
+  </div>
+
+  <div class="card-grid card-grid--3 reveal">
+    <div class="info-card">
+      <h3>글로벌 바이럴 채널</h3>
+      <p>CreateTrip · 샤오홍슈 · Instagram을 통한 본사 글로벌 마케팅을 진행합니다.</p>
+    </div>
+    <div class="info-card">
+      <h3>메인 홍보대사</h3>
+      <p>신정환 홍보대사와 해외 인플루언서 협업으로 바이럴 콘텐츠를 제작합니다.</p>
+    </div>
+    <div class="info-card">
+      <h3>외국인 응대 매뉴얼</h3>
+      <p>다국어 메뉴판·안내 시스템으로 외국인 고객 응대 부담을 줄입니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. Operation System ================= -->
+<section class="section section--operation">
+  <div class="section__head reveal">
+    <p class="eyebrow">OPERATION SYSTEM</p>
+    <h2>맛은 강하게, 운영은 간결하게</h2>
+  </div>
+
+  <div class="operation-grid">
+    <div class="operation-media reveal">
+      <div class="ph ph--tall"><span>원팩 시스템 쇼츠 영상 자리</span></div>
+      <!-- TODO: 원팩 시스템 소개 쇼츠 임베드로 교체 -->
+    </div>
+    <ul class="operation-list reveal">
+      <li><strong>초보 가능</strong><span>조리 경험이 없어도 매뉴얼만으로 운영 가능합니다</span></li>
+      <li><strong>빠른 조리</strong><span>원팩 소분으로 평균 조리 시간을 단축합니다</span></li>
+      <li><strong>일정한 맛</strong><span>표준화된 레시피로 어느 매장이든 동일한 맛을 냅니다</span></li>
+      <li><strong>쉬운 교육</strong><span>본사 교육 프로그램으로 빠른 오픈 준비가 가능합니다</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 9. 성공사례 ================= -->
+<section class="section section--cases">
+  <div class="section__head reveal">
+    <p class="eyebrow">SUCCESS STORY</p>
+    <h2>성공사례</h2>
+  </div>
+
+  <div class="cases-track" data-carousel data-autoplay="5000">
+    <article class="case-card is-active">
+      <p class="case-card__before">기존 업종: 일반 고깃집 → 계탉닭 전환</p>
+      <dl class="case-card__stats">
+        <div><dt>평수</dt><dd>32평</dd></div>
+        <div><dt>테이블</dt><dd>14개</dd></div>
+        <div><dt>층수</dt><dd>1층</dd></div>
+        <div><dt>월매출</dt><dd>7,200만원</dd></div>
+        <div><dt>매출 상승률</dt><dd>+165%</dd></div>
+      </dl>
+    </article>
+    <article class="case-card">
+      <p class="case-card__before">기존 업종: 분식점 → 계탉닭 전환</p>
+      <dl class="case-card__stats">
+        <div><dt>평수</dt><dd>28평</dd></div>
+        <div><dt>테이블</dt><dd>11개</dd></div>
+        <div><dt>층수</dt><dd>2층</dd></div>
+        <div><dt>월매출</dt><dd>6,400만원</dd></div>
+        <div><dt>매출 상승률</dt><dd>+140%</dd></div>
+      </dl>
+    </article>
+  </div>
+
+  <a class="interview-card reveal" href="https://www.youtube.com/" target="_blank" rel="noopener">
+    <div class="ph ph--wide"><span>점주 인터뷰 유튜브 썸네일 (클릭 시 새 창)</span></div>
+    <span class="interview-card__label">▶ 점주 인터뷰 보러가기</span>
+  </a>
+  <p class="hint">※ 위 성공사례 수치는 예시입니다. 실제 매장 데이터와 점주 동의 하에 교체해 주세요.</p>
+</section>
+
+<!-- ================= 10. 마케팅 시스템 ================= -->
+<section class="section section--marketing">
+  <div class="section__head reveal">
+    <p class="eyebrow">MARKETING SYSTEM</p>
+    <h2>오픈만 시키는 프랜차이즈가 아닙니다</h2>
+  </div>
+
+  <div class="marketing-grid reveal">
+    <div class="marketing-chip">SNS 광고</div>
+    <div class="marketing-chip">릴스</div>
+    <div class="marketing-chip">유튜브</div>
+    <div class="marketing-chip">블로그</div>
+    <div class="marketing-chip">파워링크</div>
+    <div class="marketing-chip">쇼츠</div>
+  </div>
+  <p class="section__sub reveal">본사가 마케팅을 기획·집행하고, 점주는 합리적인 실비 수준으로 운영에 참여합니다.</p>
+</section>
+
+<!-- ================= 11. 전국 매장 ================= -->
+<section class="section section--map" id="stores">
+  <div class="section__head reveal">
+    <p class="eyebrow">STORE LOCATIONS</p>
+    <h2>전국 매장</h2>
+  </div>
+  <div class="map-embed reveal">
+    <!-- TODO: 카카오맵/네이버지도 API 키 발급 후 아래 자리에 지도 SDK 삽입 -->
+    <div class="ph ph--wide">
+      <span>매장 지도 — 가맹점 확보 후 공개 예정<br />(카카오맵 또는 네이버 지도 API 연동 자리)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12. 창업 절차 ================= -->
+<section class="section section--process" id="process">
+  <div class="section__head reveal">
+    <p class="eyebrow">PROCESS</p>
+    <h2>창업 절차</h2>
+  </div>
+
+  <ol class="steps reveal">
+    <li><span class="steps__num">1</span><span class="steps__label">상담</span></li>
+    <li><span class="steps__num">2</span><span class="steps__label">상권 분석</span></li>
+    <li><span class="steps__num">3</span><span class="steps__label">계약</span></li>
+    <li><span class="steps__num">4</span><span class="steps__label">교육</span></li>
+    <li><span class="steps__num">5</span><span class="steps__label">인테리어</span></li>
+    <li><span class="steps__num">6</span><span class="steps__label">오픈</span></li>
+  </ol>
+  <div class="cta-inline"><a href="#inquiry" class="btn btn--primary">창업문의</a></div>
+</section>
+
+<!-- ================= 13. 개설 비용 ================= -->
+<section class="section section--cost">
+  <div class="section__head reveal">
+    <p class="eyebrow">OPENING COST</p>
+    <h2>개설 비용</h2>
+    <p class="section__sub">아래 금액은 예시이며, 정식 정보공개서의 확정 금액으로 교체해야 합니다.</p>
+  </div>
+
+  <div class="table-wrap reveal">
+    <table class="data-table data-table--cost">
+      <thead><tr><th>항목</th><th>금액</th></tr></thead>
+      <tbody>
+        <tr><td>가맹비</td><td>10,000,000원</td></tr>
+        <tr><td>교육비</td><td>3,000,000원</td></tr>
+        <tr><td>인테리어 (평당)</td><td>2,200,000원</td></tr>
+        <tr><td>주방기기</td><td>18,000,000원</td></tr>
+        <tr><td>간판</td><td>4,500,000원</td></tr>
+        <tr><td>기타 (홍보물 등)</td><td>2,000,000원</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>합계 (35평 기준 예시)</td><td>115,500,000원 내외</td></tr>
+      </tfoot>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 14. 창업 문의 ================= -->
+<section class="section section--inquiry" id="inquiry">
+  <div class="section__head reveal">
+    <p class="eyebrow">START YOUR BUSINESS</p>
+    <h2>지금, 계탉닭과 함께 시작하세요</h2>
+    <p class="section__sub">상담 신청 후 담당자가 1~2일 내로 연락드립니다</p>
+  </div>
+
+  <!--
+    TODO(백엔드 필요): 이 폼은 현재 프론트엔드만 구현되어 있습니다.
+    실제 서비스에서는 action 엔드포인트(예: /api/inquiry)를 만들어
+    DB 저장 + 관리자 알림 이메일 발송을 연결해야 submit이 동작합니다.
+  -->
+  <form class="inquiry-form reveal" id="inquiryForm">
+    <div class="field">
+      <label for="f-name">고객명</label>
+      <input id="f-name" name="name" type="text" required />
+    </div>
+    <div class="field">
+      <label for="f-phone">연락처</label>
+      <input id="f-phone" name="phone" type="tel" required placeholder="010-0000-0000" />
+    </div>
+    <div class="field">
+      <label for="f-email">이메일</label>
+      <input id="f-email" name="email" type="email" required />
+    </div>
+    <div class="field">
+      <label for="f-region">창업지역</label>
+      <input id="f-region" name="region" type="text" placeholder="예: 서울 강남구" />
+    </div>
+    <div class="field">
+      <span class="field__legend">점포 보유 여부</span>
+      <div class="radio-row">
+        <label><input type="radio" name="hasStore" value="yes" /> 있음</label>
+        <label><input type="radio" name="hasStore" value="no" checked /> 없음</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="f-budget">예상 창업비용</label>
+      <input id="f-budget" name="budget" type="text" placeholder="예: 1억~1.5억" />
+    </div>
+    <div class="field field--full">
+      <span class="field__legend">유입경로</span>
+      <div class="checkbox-grid">
+        <label><input type="checkbox" name="source" value="facebook" /> 페이스북</label>
+        <label><input type="checkbox" name="source" value="instagram" /> 인스타그램</label>
+        <label><input type="checkbox" name="source" value="youtube" /> 유튜브</label>
+        <label><input type="checkbox" name="source" value="naver-powerlink" /> 네이버 파워링크</label>
+        <label><input type="checkbox" name="source" value="blog" /> 블로그</label>
+        <label><input type="checkbox" name="source" value="myfranchise" /> 마이프차</label>
+        <label><input type="checkbox" name="source" value="tiktok" /> 틱톡</label>
+        <label><input type="checkbox" name="source" value="apeunika" /> 아프니깐사장</label>
+        <label><input type="checkbox" name="source" value="google" /> 구글검색</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn--primary btn--block">창업 문의하기</button>
+    <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<!-- ================= Footer ================= -->
+<footer class="footer">
+  <div class="footer__brand">계탉닭</div>
+  <dl class="footer__info">
+    <div><dt>대표자</dt><dd>홍길동</dd></div>
+    <div><dt>사업자번호</dt><dd>000-00-00000</dd></div>
+    <div><dt>주소</dt><dd>서울특별시 ○○구 ○○로 00</dd></div>
+    <div><dt>전화번호</dt><dd>02-0000-0000</dd></div>
+    <div><dt>이메일</dt><dd>contact@gyetakdak.example</dd></div>
+  </dl>
+  <div class="footer__links">
+    <a href="#">개인정보처리방침</a>
+    <a href="#">이용약관</a>
+  </div>
+  <p class="footer__copy">© <span id="year"></span> 계탉닭. All rights reserved.</p>
+  <!-- TODO: 실제 사업자 정보, 정책 페이지 링크로 교체 -->
+</footer>
+
+<!-- ================= 플로팅 CTA ================= -->
+<div class="floating-cta" aria-label="빠른 문의">
+  <a href="tel:0200000000" class="floating-cta__btn" aria-label="전화상담"><span>☎</span></a>
+  <a href="https://pf.kakao.com/" target="_blank" rel="noopener" class="floating-cta__btn" aria-label="카카오톡 상담"><span>💬</span></a>
+  <a href="#inquiry" class="floating-cta__btn floating-cta__btn--primary" aria-label="창업문의"><span>📝</span></a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="script.js"></script>
 </body>
 </html>
