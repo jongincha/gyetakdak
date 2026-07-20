@@ -154,16 +154,55 @@ function chartBaseOptions() {
 }
 
 // ---------- 창업 문의 폼 ----------
-// NOTE: 백엔드 엔드포인트가 없어 현재는 제출 시 브라우저에서만 확인 메시지를 표시합니다.
-// 실제 서비스 연동 시 fetch('/api/inquiry', { method: 'POST', body: ... }) 형태로 교체하세요.
+// 구글 Apps Script 웹 앱(구글 시트 저장용)으로 문의 내용을 전송합니다.
+// 2단계에서 발급받은 본인의 Apps Script 웹 앱 URL로 교체하세요.
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz0DgXSYvnHRx86hYWRci84gtFsiOCR5A1SNV9z_8qDzUv2akVN0l9aDUOraQDLXWH-2A/exec';
+
 function initInquiryForm() {
   const form = document.getElementById('inquiryForm');
   const status = document.getElementById('formStatus');
+  const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
   if (!form || !status) return;
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    status.textContent = '문의가 접수되었습니다. 담당자가 곧 연락드리겠습니다. (임시 확인 메시지 — 실제 접수를 위해서는 서버 연동이 필요합니다)';
-    form.reset();
+
+    const sources = Array.from(form.querySelectorAll('input[name="source"]:checked')).map((el) => el.value);
+    const formData = {
+      name: document.getElementById('f-name').value,
+      phone: document.getElementById('f-phone').value,
+      email: document.getElementById('f-email').value,
+      region: document.getElementById('f-region').value,
+      hasStore: (form.querySelector('input[name="hasStore"]:checked') || {}).value || '',
+      budget: document.getElementById('f-budget').value,
+      source: sources.join(', '),
+    };
+
+    submitBtn.disabled = true;
+    status.textContent = '전송 중…';
+
+    // Apps Script는 CORS preflight(OPTIONS)를 지원하지 않으므로
+    // Content-Type을 text/plain으로 보내 preflight 자체가 발생하지 않게 합니다.
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result === 'success') {
+          status.textContent = '창업 문의가 접수되었습니다. 담당자가 1~2일 내로 연락드리겠습니다.';
+          form.reset();
+        } else {
+          status.textContent = '접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+        }
+      })
+      .catch((error) => {
+        console.error('Inquiry submit error:', error);
+        status.textContent = '전송에 실패했습니다. 네트워크 상태를 확인하고 다시 시도해 주세요.';
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+      });
   });
 }
