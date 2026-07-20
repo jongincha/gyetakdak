@@ -28,6 +28,11 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   background: var(--black);
@@ -79,6 +84,7 @@ img, canvas { max-width: 100%; }
   max-width: none;
   padding: 96px 0;
   border-top: 1px solid var(--border);
+  overflow-x: hidden;
 }
 .section--reviews .section__head,
 .section--marketing .section__head,
