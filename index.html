@@ -595,26 +595,35 @@
     <div class="field">
       <span class="field__legend">점포 보유 여부</span>
       <div class="radio-row">
-        <label><input type="radio" name="hasStore" value="yes" /> 있음</label>
-        <label><input type="radio" name="hasStore" value="no" checked /> 없음</label>
+        <label><input type="radio" name="hasStore" value="있음" /> 있음</label>
+        <label><input type="radio" name="hasStore" value="없음" checked /> 없음</label>
+        <label><input type="radio" name="hasStore" value="점포물색중" /> 점포 물색 중</label>
       </div>
     </div>
     <div class="field">
       <label for="f-budget">예상 창업비용</label>
-      <input id="f-budget" name="budget" type="text" placeholder="예: 1억~1.5억" />
+      <select id="f-budget" name="budget" required>
+        <option value="">선택해주세요</option>
+        <option value="5천만원 이하">5천만원 이하</option>
+        <option value="5천만원 ~ 1억원">5천만원 ~ 1억원</option>
+        <option value="1억원 ~ 1.5억원">1억원 ~ 1.5억원</option>
+        <option value="1.5억원 이상">1.5억원 이상</option>
+      </select>
     </div>
     <div class="field field--full">
-      <span class="field__legend">유입경로</span>
+      <span class="field__legend">유입경로 (중복 선택 가능, 필수)</span>
       <div class="checkbox-grid">
-        <label><input type="checkbox" name="source" value="facebook" /> 페이스북</label>
-        <label><input type="checkbox" name="source" value="instagram" /> 인스타그램</label>
-        <label><input type="checkbox" name="source" value="youtube" /> 유튜브</label>
-        <label><input type="checkbox" name="source" value="naver-powerlink" /> 네이버 파워링크</label>
-        <label><input type="checkbox" name="source" value="blog" /> 블로그</label>
-        <label><input type="checkbox" name="source" value="myfranchise" /> 마이프차</label>
-        <label><input type="checkbox" name="source" value="tiktok" /> 틱톡</label>
-        <label><input type="checkbox" name="source" value="apeunika" /> 아프니깐사장</label>
-        <label><input type="checkbox" name="source" value="google" /> 구글검색</label>
+        <label><input type="checkbox" name="source" value="페이스북" /> 페이스북</label>
+        <label><input type="checkbox" name="source" value="인스타그램" /> 인스타그램</label>
+        <label><input type="checkbox" name="source" value="유튜브" /> 유튜브</label>
+        <label><input type="checkbox" name="source" value="네이버파워링크" /> 네이버 파워링크</label>
+        <label><input type="checkbox" name="source" value="네이버검색" /> 네이버검색</label>
+        <label><input type="checkbox" name="source" value="블로그" /> 블로그</label>
+        <label><input type="checkbox" name="source" value="마이프차" /> 마이프차</label>
+        <label><input type="checkbox" name="source" value="틱톡" /> 틱톡</label>
+        <label><input type="checkbox" name="source" value="아프니깐사장" /> 아프니깐사장</label>
+        <label><input type="checkbox" name="source" value="구글검색" /> 구글검색</label>
+        <label><input type="checkbox" name="source" value="기타" /> 기타</label>
       </div>
     </div>
     <div class="field field--full">

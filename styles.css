@@ -748,7 +748,8 @@ img, canvas { max-width: 100%; }
 }
 .field input[type="text"],
 .field input[type="tel"],
-.field input[type="email"] {
+.field input[type="email"],
+.field select {
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -756,7 +757,8 @@ img, canvas { max-width: 100%; }
   color: var(--text);
   font-size: 0.96rem;
 }
-.field input:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.field input:focus-visible,
+.field select:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
 .radio-row, .checkbox-grid {
   display: flex;
   flex-wrap: wrap;

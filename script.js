@@ -173,7 +173,7 @@ function chartBaseOptions() {
 // ---------- 창업 문의 폼 ----------
 // 구글 Apps Script 웹 앱(구글 시트 저장용)으로 문의 내용을 전송합니다.
 // 2단계에서 발급받은 본인의 Apps Script 웹 앱 URL로 교체하세요.
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz0DgXSYvnHRx86hYWRci84gtFsiOCR5A1SNV9z_8qDzUv2akVN0l9aDUOraQDLXWH-2A/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw5YRTT2pAMbH20I8hJjIcinXLCcgkhlzQC1pV-q-00aZ-JMImXlIbDezUDp11ZnsHXXw/exec';
 
 function initInquiryForm() {
   const form = document.getElementById('inquiryForm');
@@ -190,17 +190,23 @@ function initInquiryForm() {
       status.textContent = '개인정보 수집·이용에 동의하셔야 문의를 접수할 수 있습니다.';
       return;
     }
-    status.classList.remove('is-error');
 
     const sources = Array.from(form.querySelectorAll('input[name="source"]:checked')).map((el) => el.value);
+    if (sources.length === 0) {
+      status.classList.add('is-error');
+      status.textContent = '유입경로를 최소 하나 이상 선택해 주세요.';
+      return;
+    }
+    status.classList.remove('is-error');
+
     const formData = {
       name: document.getElementById('f-name').value,
       phone: document.getElementById('f-phone').value,
       email: document.getElementById('f-email').value,
-      region: document.getElementById('f-region').value,
-      hasStore: (form.querySelector('input[name="hasStore"]:checked') || {}).value || '',
+      location: document.getElementById('f-region').value,
+      storeExist: (form.querySelector('input[name="hasStore"]:checked') || {}).value || '',
       budget: document.getElementById('f-budget').value,
-      source: sources.join(', '),
+      channel: sources.join(', '),
     };
 
     submitBtn.disabled = true;
