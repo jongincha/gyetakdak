@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initTopbar();
   initReveal();
   initCarousels();
+  initGallerySliders();
+  initVideoModal();
+  initScrollSpy();
+  initBackToTop();
   initCharts();
   initInquiryForm();
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -84,6 +88,116 @@ function initCarousels() {
     root.addEventListener('mouseleave', () => {
       timer = setInterval(() => goTo(index + 1), interval);
     });
+  });
+}
+
+// ---------- 사진 갤러리 슬라이더 (화살표 + 도트) ----------
+function initGallerySliders() {
+  document.querySelectorAll('[data-gallery]').forEach((root) => {
+    const slides = Array.from(root.querySelectorAll('.gallery-slider__slide'));
+    if (slides.length < 2) return;
+
+    let index = Math.max(0, slides.findIndex((s) => s.classList.contains('is-active')));
+    const dotsWrap = root.querySelector('.gallery-slider__dots');
+    let dots = [];
+
+    if (dotsWrap) {
+      dotsWrap.innerHTML = '';
+      slides.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('aria-label', `사진 ${i + 1}`);
+        btn.className = i === index ? 'is-active' : '';
+        btn.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(btn);
+      });
+      dots = Array.from(dotsWrap.children);
+    }
+
+    function goTo(next) {
+      slides[index].classList.remove('is-active');
+      if (dots[index]) dots[index].classList.remove('is-active');
+      index = (next + slides.length) % slides.length;
+      slides[index].classList.add('is-active');
+      if (dots[index]) dots[index].classList.add('is-active');
+    }
+
+    const prevBtn = root.querySelector('.gallery-slider__arrow--prev');
+    const nextBtn = root.querySelector('.gallery-slider__arrow--next');
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(index - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(index + 1));
+  });
+}
+
+// ---------- 유튜브 재생 모달 ----------
+function initVideoModal() {
+  const modal = document.getElementById('videoModal');
+  const frame = document.getElementById('videoModalFrame');
+  if (!modal || !frame) return;
+
+  function openModal(videoId) {
+    frame.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="영상 재생" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    frame.innerHTML = ''; // iframe 제거로 재생 정지
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-video-trigger]').forEach((trigger) => {
+    trigger.addEventListener('click', () => openModal(trigger.dataset.videoId));
+  });
+
+  modal.querySelectorAll('[data-video-close]').forEach((el) => {
+    el.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+}
+
+// ---------- 스크롤에 따른 상단 네비 활성 표시 ----------
+function initScrollSpy() {
+  const navLinks = Array.from(document.querySelectorAll('.topbar__nav a[href^="#"]'));
+  if (!navLinks.length) return;
+
+  const sections = navLinks
+    .map((a) => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+  if (!sections.length) return;
+
+  if (!('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = `#${entry.target.id}`;
+        navLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === id));
+      });
+    },
+    { rootMargin: '-40% 0px -55% 0px' }
+  );
+  sections.forEach((s) => observer.observe(s));
+}
+
+// ---------- 맨 위로 버튼 ----------
+function initBackToTop() {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+
+  const onScroll = () => btn.classList.toggle('is-visible', window.scrollY > window.innerHeight);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
