@@ -78,16 +78,13 @@
 <!-- ================= 유튜브 홍보영상 + 소개 ================= -->
 <section class="intro reveal">
   <div class="intro__video">
-    <!-- TODO: 아래 YOUTUBE_VIDEO_ID 를 실제 홍보영상 ID로 교체 -->
-    <div class="intro__video-frame">
-      <iframe
-        src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
-        title="계탉닭 홍보영상"
-        loading="lazy"
-        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-    </div>
+    <!-- TODO: data-video-id 를 실제 홍보영상 유튜브 ID로 교체 -->
+    <button type="button" class="video-thumb" data-video-trigger data-video-id="YOUTUBE_VIDEO_ID" aria-label="계탉닭 홍보영상 재생">
+      <div class="intro__video-frame">
+        <div class="ph ph--wide"><span>홍보영상 썸네일 준비중</span></div>
+        <span class="video-thumb__play" aria-hidden="true">▶</span>
+      </div>
+    </button>
   </div>
   <p class="intro__copy">
     한방의 깊이, 약고추장의 매력, 그리고 새로운 한입.<br />
@@ -105,10 +102,10 @@
   </div>
 
   <div class="brand-grid">
-    <div class="brand-media reveal">
+    <div class="brand-media reveal reveal--left">
       <div class="ph ph--wide"><span>자체 공장 이미지 준비중</span></div>
     </div>
-    <ul class="brand-points reveal">
+    <ul class="brand-points reveal reveal--right">
       <li>
         <strong>신선함 2배</strong>
         <span>본사 직영 공장에서 매일 소분 제조해 유통 단계를 줄였습니다</span>
@@ -134,7 +131,7 @@
   </div>
 
   <div class="menu-grid" data-carousel-mobile>
-    <article class="menu-card reveal">
+    <article class="menu-card reveal reveal--zoom">
       <div class="ph ph--menu"><span>마라 쫄탉갈비 이미지</span></div>
       <div class="menu-card__body">
         <p class="menu-card__eyebrow">SNS를 뒤흔든 바로 그 비주얼</p>
@@ -143,7 +140,7 @@
       </div>
     </article>
 
-    <article class="menu-card reveal">
+    <article class="menu-card reveal reveal--zoom reveal-delay-1">
       <div class="ph ph--menu"><span>한방 간장 철판 쫄탉갈비 이미지</span></div>
       <div class="menu-card__body">
         <p class="menu-card__eyebrow">4시간 동안 정성으로 우려낸</p>
@@ -152,7 +149,7 @@
       </div>
     </article>
 
-    <article class="menu-card reveal">
+    <article class="menu-card reveal reveal--zoom reveal-delay-2">
       <div class="ph ph--menu"><span>약고추장 철판 쫄탉갈비 이미지</span></div>
       <div class="menu-card__body">
         <p class="menu-card__eyebrow">인위적인 설탕은 빼고</p>
@@ -310,10 +307,21 @@
     </div>
   </div>
 
-  <div class="revenue-media reveal" style="margin-top: 40px;">
-    <div class="ph ph--wide"><span>본점 정면 이미지 준비중</span></div>
-    <div class="ph ph--wide"><span>본점 내부 이미지 준비중</span></div>
-    <div class="ph ph--wide"><span>손님 많은 시간대 이미지 준비중</span></div>
+  <div class="gallery-slider reveal" style="margin-top: 40px;" data-gallery>
+    <div class="gallery-slider__track">
+      <div class="gallery-slider__slide is-active">
+        <div class="ph ph--wide"><span>본점 정면 이미지 준비중</span></div>
+      </div>
+      <div class="gallery-slider__slide">
+        <div class="ph ph--wide"><span>본점 내부 이미지 준비중</span></div>
+      </div>
+      <div class="gallery-slider__slide">
+        <div class="ph ph--wide"><span>손님 많은 시간대 이미지 준비중</span></div>
+      </div>
+    </div>
+    <button type="button" class="gallery-slider__arrow gallery-slider__arrow--prev" aria-label="이전 사진">◀</button>
+    <button type="button" class="gallery-slider__arrow gallery-slider__arrow--next" aria-label="다음 사진">▶</button>
+    <div class="gallery-slider__dots" role="tablist" aria-label="본점 사진"></div>
   </div>
 
   <p class="disclaimer reveal" style="margin-top: 32px;">
@@ -330,15 +338,15 @@
   </div>
 
   <div class="card-grid card-grid--3">
-    <div class="info-card reveal">
+    <div class="info-card reveal reveal--left">
       <h3>상생 창업</h3>
       <p>눈앞의 가맹점 확대보다 미래 상권까지 고려한 넓은 영업권을 보장합니다. 점주는 오직 운영과 매출에 집중하세요.</p>
     </div>
-    <div class="info-card reveal">
+    <div class="info-card reveal reveal--zoom reveal-delay-1">
       <h3>쉬운 운영</h3>
       <p>원팩 시스템으로 초보자도 바로 시작할 수 있습니다. 혼자서도, 여러 매장 다점포 운영도 가능합니다.</p>
     </div>
-    <div class="info-card reveal">
+    <div class="info-card reveal reveal--right reveal-delay-2">
       <h3>가맹점과 상생</h3>
       <p>물류·인테리어·창업비의 거품을 제거해 점주와 함께 성장하는 구조를 만듭니다.</p>
     </div>
@@ -481,10 +489,11 @@
     </article>
   </div>
 
-  <a class="interview-card reveal" href="https://www.youtube.com/" target="_blank" rel="noopener">
-    <div class="ph ph--wide"><span>점주 인터뷰 유튜브 썸네일 (클릭 시 새 창)</span></div>
+  <!-- TODO: data-video-id 를 실제 점주 인터뷰 유튜브 ID로 교체 -->
+  <button type="button" class="interview-card reveal" data-video-trigger data-video-id="INTERVIEW_VIDEO_ID">
+    <div class="ph ph--wide"><span>점주 인터뷰 유튜브 썸네일</span></div>
     <span class="interview-card__label">▶ 점주 인터뷰 보러가기</span>
-  </a>
+  </button>
   <p class="hint">※ 위 성공사례 수치는 예시입니다. 실제 매장 데이터와 점주 동의 하에 교체해 주세요.</p>
 </section>
 
@@ -662,6 +671,17 @@
   <a href="tel:0200000000" class="floating-cta__btn" aria-label="전화상담"><span>☎</span></a>
   <a href="https://pf.kakao.com/" target="_blank" rel="noopener" class="floating-cta__btn" aria-label="카카오톡 상담"><span>💬</span></a>
   <a href="#inquiry" class="floating-cta__btn floating-cta__btn--primary" aria-label="창업문의"><span>📝</span></a>
+</div>
+
+<button type="button" class="back-to-top" id="backToTop" aria-label="맨 위로">▲</button>
+
+<!-- ================= 유튜브 재생 모달 ================= -->
+<div class="video-modal" id="videoModal" aria-hidden="true">
+  <div class="video-modal__backdrop" data-video-close></div>
+  <div class="video-modal__dialog">
+    <button type="button" class="video-modal__close" data-video-close aria-label="닫기">✕</button>
+    <div class="video-modal__frame" id="videoModalFrame"></div>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
