@@ -173,7 +173,7 @@ function chartBaseOptions() {
 // ---------- 창업 문의 폼 ----------
 // 구글 Apps Script 웹 앱(구글 시트 저장용)으로 문의 내용을 전송합니다.
 // 2단계에서 발급받은 본인의 Apps Script 웹 앱 URL로 교체하세요.
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRO3IUEXqSADM6XobgNeLPURki4dmZkWFNUyD5EAuqCn-QQpPAa1ROTYiMvcv6publ/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw8kSQQLZYhs3QH6x5t4fal8PmG0X_Eo3J-VkL1dm2sWTldIbraOMc5UX6iHzBuBAy13Q/exec';
 
 function initInquiryForm() {
   const form = document.getElementById('inquiryForm');
@@ -212,19 +212,24 @@ function initInquiryForm() {
     submitBtn.disabled = true;
     status.textContent = '전송 중…';
 
-    // 이 Apps Script 배포는 CORS 응답 헤더를 보내지 않으므로 mode: 'no-cors'로 전송합니다.
-    // 요청 자체(및 시트 저장)는 정상 처리되지만, 응답 내용은 브라우저에서 읽을 수 없어
-    // (opaque response) 성공 여부를 응답으로 판단하지 않고 네트워크 오류 여부로만 판단합니다.
+    // 이 Apps Script 배포는 CORS 응답 헤더를 정상적으로 보내므로 응답을 읽어
+    // data.result 값으로 성공/실패를 판단합니다. (Content-Type을 text/plain으로
+    // 보내 CORS preflight(OPTIONS) 자체가 발생하지 않게 합니다.)
     fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(formData),
     })
-      .then(() => {
-        status.classList.remove('is-error');
-        status.textContent = '창업 문의가 접수되었습니다. 담당자가 1~2일 내로 연락드리겠습니다.';
-        form.reset();
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result === 'success') {
+          status.classList.remove('is-error');
+          status.textContent = '창업 문의가 접수되었습니다. 담당자가 1~2일 내로 연락드리겠습니다.';
+          form.reset();
+        } else {
+          status.classList.add('is-error');
+          status.textContent = '접수 중 오류가 발생했습니다' + (data.error ? `: ${data.error}` : '. 잠시 후 다시 시도해 주세요.');
+        }
       })
       .catch((error) => {
         console.error('Inquiry submit error:', error);
