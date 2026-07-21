@@ -1,28 +1,28 @@
 /* ==========================================================================
-   계탉닭 프랜차이즈 홈페이지 — 블랙 · 레드 · 골드 프리미엄 톤
+   계탉닭 프랜차이즈 홈페이지 — 크림 · 브라운 · 골드 프리미엄 톤
    ========================================================================== */
 
 :root {
-  --black: #0c0c0d;
-  --black-raised: #17171a;
-  --black-card: #1e1e22;
-  --border: #2c2c31;
+  --bg: #f3e7ce;
+  --bg-raised: #fbf4e6;
+  --bg-card: #f7eedd;
+  --border: #d8c39a;
 
-  --red: #c8213c;
-  --red-dark: #7c1226;
-  --red-glow: rgba(200, 33, 60, 0.35);
+  --red: #9c3b2a;
+  --red-dark: #6e2a1d;
+  --red-glow: rgba(156, 59, 42, 0.22);
 
-  --gold: #c9a227;
-  --gold-light: #e6c765;
+  --gold: #b8892e;
+  --gold-ink: #7a5215;
 
-  --text: #f2efe9;
-  --text-soft: #b9b6b0;
-  --text-faint: #817e79;
+  --text: #2e2013;
+  --text-soft: #6b5636;
+  --text-faint: #9c8563;
 
   --radius: 14px;
   --container: 1180px;
 
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -35,7 +35,7 @@ html, body {
 
 body {
   margin: 0;
-  background: var(--black);
+  background: var(--bg);
   color: var(--text);
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
     "Malgun Gothic", sans-serif;
@@ -111,7 +111,7 @@ img, canvas { max-width: 100%; }
   display: inline-block;
   font-size: 0.75rem;
   letter-spacing: 0.16em;
-  color: var(--gold-light);
+  color: var(--gold-ink);
   text-transform: uppercase;
   margin: 0;
 }
@@ -155,13 +155,13 @@ img, canvas { max-width: 100%; }
 .btn--primary:hover { transform: translateY(-2px); }
 .btn--ghost {
   background: transparent;
-  border-color: rgba(242, 239, 233, 0.4);
+  border-color: rgba(46, 32, 19, 0.3);
   color: var(--text);
 }
-.btn--ghost:hover { border-color: var(--gold-light); color: var(--gold-light); }
+.btn--ghost:hover { border-color: var(--gold); color: var(--gold-ink); }
 .btn--sm { padding: 9px 18px; font-size: 0.86rem; }
 .btn--block { width: 100%; }
-.btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+.btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
 .cta-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
@@ -175,7 +175,7 @@ img, canvas { max-width: 100%; }
   font-size: 0.9rem;
   border: 1px dashed var(--border);
   border-radius: var(--radius);
-  background: repeating-linear-gradient(135deg, var(--black-raised) 0 12px, var(--black-card) 12px 24px);
+  background: repeating-linear-gradient(135deg, var(--bg-raised) 0 12px, #efe1bf 12px 24px);
   padding: 24px;
 }
 .ph--wide { aspect-ratio: 16 / 9; }
@@ -193,13 +193,13 @@ img, canvas { max-width: 100%; }
   justify-content: space-between;
   gap: 16px;
   padding: 14px 24px;
-  background: rgba(12, 12, 13, 0.7);
+  background: rgba(243, 231, 206, 0.75);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 .topbar.is-scrolled {
-  background: rgba(12, 12, 13, 0.92);
+  background: rgba(243, 231, 206, 0.95);
   border-bottom-color: var(--border);
 }
 .topbar__logo {
@@ -207,7 +207,7 @@ img, canvas { max-width: 100%; }
   font-weight: 900;
   font-size: 1.25rem;
   letter-spacing: 0.02em;
-  color: var(--gold-light);
+  color: var(--gold-ink);
 }
 .topbar__nav { display: flex; gap: 22px; }
 .topbar__nav a { font-size: 0.92rem; color: var(--text-soft); }
@@ -247,36 +247,48 @@ img, canvas { max-width: 100%; }
   object-fit: cover;
   object-position: center;
 }
-.hero__ph--1 { background: repeating-linear-gradient(135deg, #1a0f10 0 14px, #240f13 14px 28px); }
-.hero__ph--2 { background: repeating-linear-gradient(135deg, #14100a 0 14px, #1d160d 14px 28px); }
-.hero__ph--3 { background: repeating-linear-gradient(135deg, #101012 0 14px, #17171a 14px 28px); }
-.hero__ph--4 { background: repeating-linear-gradient(135deg, #12100a 0 14px, #1b170e 14px 28px); }
-.hero__ph--5 { background: repeating-linear-gradient(135deg, #180d10 0 14px, #220f16 14px 28px); }
+.hero__ph--1 { background: repeating-linear-gradient(135deg, #e7d6ad 0 14px, #ddc596 14px 28px); }
+.hero__ph--2 { background: repeating-linear-gradient(135deg, #e7d6ad 0 14px, #ddc596 14px 28px); }
+.hero__ph--3 { background: repeating-linear-gradient(135deg, #e2d3ae 0 14px, #d6c294 14px 28px); }
+.hero__ph--4 { background: repeating-linear-gradient(135deg, #e7d6ad 0 14px, #ddc596 14px 28px); }
+.hero__ph--5 { background: repeating-linear-gradient(135deg, #e2ceac 0 14px, #d5be92 14px 28px); }
 
 .hero__scrim {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(12,12,13,0.55) 0%, rgba(12,12,13,0.35) 40%, rgba(12,12,13,0.85) 100%);
+    linear-gradient(180deg, rgba(30, 20, 12, 0.35) 0%, rgba(30, 20, 12, 0.12) 35%, rgba(30, 20, 12, 0.55) 100%);
 }
 
+/* 히어로 위 텍스트는 영상(어두운 배경) 위에 얹히므로 이 영역만 별도로
+   밝은 잉크를 사용합니다. 1시 방향(우상단)에 작게 배치. */
 .hero__content {
-  position: relative;
+  position: absolute;
   z-index: 1;
-  text-align: center;
-  padding: 0 24px;
-  max-width: 780px;
+  top: 64px;
+  right: 32px;
+  max-width: 300px;
+  text-align: right;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: rgba(20, 14, 8, 0.32);
+  backdrop-filter: blur(2px);
+}
+.hero__content .eyebrow {
+  color: #e9cf8f;
+  font-size: 0.62rem;
 }
 .hero__title {
-  font-size: clamp(2.1rem, 6vw, 3.6rem);
-  line-height: 1.25;
-  margin: 14px 0 16px;
+  font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+  line-height: 1.35;
+  margin: 8px 0 6px;
   color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
 }
 .hero__tagline {
-  color: var(--gold-light);
-  font-size: clamp(1rem, 2.2vw, 1.3rem);
-  margin: 0 0 32px;
+  color: #f1e4c4;
+  font-size: clamp(0.68rem, 1vw, 0.78rem);
+  margin: 0;
   letter-spacing: 0.01em;
 }
 
@@ -293,11 +305,11 @@ img, canvas { max-width: 100%; }
   width: 8px; height: 8px;
   border-radius: 50%;
   border: none;
-  background: rgba(242, 239, 233, 0.35);
+  background: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   padding: 0;
 }
-.hero__dots button.is-active { background: var(--gold-light); width: 22px; border-radius: 5px; }
+.hero__dots button.is-active { background: #e9cf8f; width: 22px; border-radius: 5px; }
 
 /* ---------- 유튜브 소개 ---------- */
 .intro {
@@ -327,7 +339,7 @@ img, canvas { max-width: 100%; }
   max-width: 46ch;
   margin: 0 auto;
 }
-.intro__copy strong { color: var(--gold-light); }
+.intro__copy strong { color: var(--gold-ink); }
 
 /* ---------- 2. 브랜드 ---------- */
 .brand-grid {
@@ -338,7 +350,7 @@ img, canvas { max-width: 100%; }
 }
 .brand-points { display: grid; gap: 22px; }
 .brand-points li { display: grid; gap: 4px; }
-.brand-points strong { color: var(--gold-light); font-size: 1.05rem; }
+.brand-points strong { color: var(--gold-ink); font-size: 1.05rem; }
 .brand-points span { color: var(--text-soft); }
 @media (max-width: 800px) {
   .brand-grid { grid-template-columns: 1fr; }
@@ -351,14 +363,14 @@ img, canvas { max-width: 100%; }
   gap: 24px;
 }
 .menu-card {
-  background: var(--black-raised);
+  background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
 }
 .menu-card__body { padding: 22px; }
 .menu-card__eyebrow {
-  color: var(--gold-light);
+  color: var(--gold-ink);
   font-size: 0.82rem;
   margin: 0 0 6px;
 }
@@ -379,18 +391,111 @@ img, canvas { max-width: 100%; }
 }
 
 /* ---------- 4. 수익성 ---------- */
-.revenue-chart {
-  background: var(--black-raised);
+.month-block + .month-block {
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px dashed var(--border);
+}
+.month-block__title {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 8px 20px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+.stat-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.stat-tile {
+  background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 24px;
-  margin-bottom: 32px;
+  padding: 20px;
+  text-align: center;
 }
+.stat-tile__label { color: var(--text-soft); font-size: 0.85rem; margin: 0 0 8px; }
+.stat-tile__value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--red);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+@media (max-width: 700px) {
+  .stat-tiles { grid-template-columns: 1fr; }
+}
+
+.revenue-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+@media (max-width: 900px) {
+  .revenue-layout { grid-template-columns: 1fr; }
+}
+
+.calendar-wrap { overflow-x: auto; }
+.calendar-grid {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.calendar-grid th {
+  background: var(--bg-card);
+  color: var(--gold-ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--border);
+}
+.calendar-grid td {
+  vertical-align: top;
+  padding: 6px 6px 10px;
+  border: 1px solid var(--border);
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+.calendar-grid td.is-empty { background: rgba(0, 0, 0, 0.02); }
+.calendar-grid td.is-top3 { background: rgba(156, 59, 42, 0.08); }
+.calendar-grid .day-num {
+  display: block;
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.86rem;
+  margin-bottom: 3px;
+}
+.calendar-grid td.is-top3 .day-num { color: var(--red); }
+
+.revenue-chart {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.revenue-chart__note {
+  color: var(--text-faint);
+  font-size: 0.82rem;
+  margin: 12px 0 0;
+}
+
 .table-wrap { overflow-x: auto; margin-bottom: 32px; }
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 560px;
+  min-width: 480px;
 }
 .data-table th, .data-table td {
   padding: 14px 16px;
@@ -399,14 +504,14 @@ img, canvas { max-width: 100%; }
   font-variant-numeric: tabular-nums;
 }
 .data-table th {
-  color: var(--gold-light);
+  color: var(--gold-ink);
   font-weight: 600;
   font-size: 0.86rem;
   letter-spacing: 0.03em;
 }
 .data-table tfoot td {
   font-weight: 700;
-  color: var(--gold-light);
+  color: var(--gold-ink);
   border-bottom: none;
   border-top: 2px solid var(--border);
 }
@@ -432,12 +537,12 @@ img, canvas { max-width: 100%; }
 @media (max-width: 860px) { .card-grid--3 { grid-template-columns: 1fr; } }
 
 .info-card {
-  background: var(--black-raised);
+  background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 26px;
 }
-.info-card h3 { font-size: 1.08rem; color: var(--gold-light); margin-bottom: 10px; }
+.info-card h3 { font-size: 1.08rem; color: var(--gold-ink); margin-bottom: 10px; }
 .info-card p { color: var(--text-soft); margin: 0; }
 
 /* ---------- 6. SNS 후기 (마퀴) ---------- */
@@ -459,13 +564,13 @@ img, canvas { max-width: 100%; }
 .review-card {
   width: 260px;
   flex: none;
-  background: var(--black-raised);
+  background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 18px;
 }
 .review-card__source {
-  color: var(--gold-light);
+  color: var(--gold-ink);
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -483,7 +588,7 @@ img, canvas { max-width: 100%; }
   margin-bottom: 36px;
 }
 .flow span:not(.flow__arrow) {
-  background: var(--black-raised);
+  background: var(--bg-raised);
   border: 1px solid var(--border);
   padding: 8px 16px;
   border-radius: 999px;
@@ -491,10 +596,10 @@ img, canvas { max-width: 100%; }
 .flow__arrow { color: var(--text-faint); }
 .flow__highlight {
   border-color: var(--gold) !important;
-  color: var(--gold-light);
+  color: var(--gold-ink);
 }
 .tourist-chart {
-  background: var(--black-raised);
+  background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px;
@@ -511,7 +616,7 @@ img, canvas { max-width: 100%; }
 }
 .operation-list { display: grid; gap: 20px; }
 .operation-list li { display: grid; gap: 4px; }
-.operation-list strong { color: var(--gold-light); }
+.operation-list strong { color: var(--gold-ink); }
 .operation-list span { color: var(--text-soft); }
 @media (max-width: 800px) {
   .operation-grid { grid-template-columns: 1fr; }
@@ -521,13 +626,13 @@ img, canvas { max-width: 100%; }
 .cases-track { position: relative; min-height: 220px; }
 .case-card {
   display: none;
-  background: var(--black-raised);
+  background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 28px;
 }
 .case-card.is-active { display: block; }
-.case-card__before { color: var(--gold-light); margin: 0 0 18px; }
+.case-card__before { color: var(--gold-ink); margin: 0 0 18px; }
 .case-card__stats {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -547,7 +652,8 @@ img, canvas { max-width: 100%; }
 .interview-card__label {
   position: absolute;
   left: 20px; bottom: 20px;
-  background: rgba(12,12,13,0.75);
+  background: rgba(46, 32, 19, 0.82);
+  color: #fff;
   padding: 10px 18px;
   border-radius: 999px;
   font-weight: 700;
@@ -564,9 +670,9 @@ img, canvas { max-width: 100%; }
   gap: 12px;
 }
 .marketing-chip {
-  background: var(--black-raised);
+  background: var(--bg-raised);
   border: 1px solid var(--gold);
-  color: var(--gold-light);
+  color: var(--gold-ink);
   padding: 10px 20px;
   border-radius: 999px;
   font-size: 0.92rem;
@@ -583,7 +689,7 @@ img, canvas { max-width: 100%; }
 }
 .steps li {
   flex: 1 1 140px;
-  background: var(--black-raised);
+  background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px 16px;
@@ -604,13 +710,27 @@ img, canvas { max-width: 100%; }
 
 /* ---------- 13. 개설 비용 ---------- */
 .data-table--cost td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.cost-note {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  color: var(--red-dark);
+  font-weight: 600;
+  margin-top: 20px;
+}
+.cost-fineprint {
+  color: var(--text-faint);
+  font-size: 0.82rem;
+  margin-top: 14px;
+}
 
 /* ---------- 14. 창업 문의 ---------- */
 .inquiry-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  background: var(--black-raised);
+  background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 32px;
@@ -621,17 +741,22 @@ img, canvas { max-width: 100%; }
   font-size: 0.86rem;
   color: var(--text-soft);
 }
+.field__desc {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin: -4px 0 0;
+}
 .field input[type="text"],
 .field input[type="tel"],
 .field input[type="email"] {
-  background: var(--black);
+  background: #fff;
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px 14px;
   color: var(--text);
   font-size: 0.96rem;
 }
-.field input:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 1px; }
+.field input:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
 .radio-row, .checkbox-grid {
   display: flex;
   flex-wrap: wrap;
@@ -640,7 +765,8 @@ img, canvas { max-width: 100%; }
   font-size: 0.9rem;
 }
 .checkbox-grid label, .radio-row label { display: flex; align-items: center; gap: 6px; }
-.form-status { grid-column: 1 / -1; min-height: 1.4em; color: var(--gold-light); margin: 0; }
+.form-status { grid-column: 1 / -1; min-height: 1.4em; color: var(--gold-ink); margin: 0; }
+.form-status.is-error { color: var(--red); }
 @media (max-width: 700px) {
   .inquiry-form { grid-template-columns: 1fr; padding: 22px; }
 }
@@ -656,7 +782,7 @@ img, canvas { max-width: 100%; }
 .footer__brand {
   font-family: "Noto Serif KR", serif;
   font-size: 1.3rem;
-  color: var(--gold-light);
+  color: var(--gold-ink);
   margin-bottom: 18px;
 }
 .footer__info {
@@ -688,10 +814,10 @@ img, canvas { max-width: 100%; }
   justify-content: center;
   width: 52px; height: 52px;
   border-radius: 50%;
-  background: var(--black-card);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   font-size: 1.3rem;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  box-shadow: 0 6px 18px rgba(46, 32, 19, 0.18);
 }
 .floating-cta__btn--primary {
   background: linear-gradient(135deg, var(--red), var(--red-dark));

@@ -67,13 +67,9 @@
   <div class="hero__scrim"></div>
 
   <div class="hero__content">
-    <p class="eyebrow">PREMIUM DAKGALBI FRANCHISE</p>
-    <h1 class="hero__title">대한민국 닭갈비의<br />새로운 기준</h1>
+    <p class="eyebrow">PREMIUM DAKGALBI</p>
+    <h1 class="hero__title">대한민국 닭갈비의 새로운 기준</h1>
     <p class="hero__tagline">맛으로 줄 서고, 시스템으로 성공하다</p>
-    <div class="cta-row">
-      <a href="#inquiry" class="btn btn--primary">창업문의</a>
-      <a href="#brand" class="btn btn--ghost">브랜드소개</a>
-    </div>
   </div>
 
   <div class="hero__dots" role="tablist" aria-label="메인 슬라이드"></div>
@@ -172,40 +168,156 @@
 <section class="section section--revenue" id="revenue">
   <div class="section__head reveal">
     <p class="eyebrow">REVENUE</p>
-    <h2>본점 실제 매출</h2>
-    <p class="section__sub">아래 수치는 예시 데이터입니다. 실제 공개 시 정보공개서 기준 데이터로 교체하세요.</p>
+    <h2>매출로 확인하는 본점의 운영 반응</h2>
+    <p class="section__sub">계탉닭 본점은 오픈 초기임에도 3, 4월 간 1억 원 이상의 매출을 기록하며 브랜드 반응과 운영 가능성을 실제 데이터로 보여주고 있습니다.</p>
   </div>
 
-  <div class="revenue-chart reveal">
-    <canvas id="revenueChart" height="120" aria-label="월별 매출 및 순이익 그래프" role="img"></canvas>
+  <!-- 3월 -->
+  <div class="month-block reveal">
+    <span class="month-block__title">3월 실제 매출 지표</span>
+    <div class="stat-tiles">
+      <div class="stat-tile"><p class="stat-tile__label">3월 총매출</p><p class="stat-tile__value">120,669,500원</p></div>
+      <div class="stat-tile"><p class="stat-tile__label">총 결제건수</p><p class="stat-tile__value">2,155건</p></div>
+      <div class="stat-tile"><p class="stat-tile__label">평균 객단가</p><p class="stat-tile__value">55,995원</p></div>
+    </div>
+
+    <div class="revenue-layout">
+      <div class="calendar-wrap">
+        <table class="calendar-grid">
+          <thead><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="day-num">1</span>4,066,000</td>
+              <td><span class="day-num">2</span>2,418,000</td>
+              <td><span class="day-num">3</span>2,120,000</td>
+              <td><span class="day-num">4</span>2,511,000</td>
+              <td><span class="day-num">5</span>1,878,000</td>
+              <td><span class="day-num">6</span>3,046,000</td>
+              <td><span class="day-num">7</span>4,518,000</td>
+            </tr>
+            <tr>
+              <td><span class="day-num">8</span>4,877,000</td>
+              <td><span class="day-num">9</span>3,404,000</td>
+              <td><span class="day-num">10</span>3,796,000</td>
+              <td><span class="day-num">11</span>3,415,000</td>
+              <td><span class="day-num">12</span>3,185,000</td>
+              <td><span class="day-num">13</span>3,976,500</td>
+              <td><span class="day-num">14</span>4,869,000</td>
+            </tr>
+            <tr>
+              <td><span class="day-num">15</span>5,123,000</td>
+              <td><span class="day-num">16</span>4,331,000</td>
+              <td><span class="day-num">17</span>3,633,000</td>
+              <td><span class="day-num">18</span>3,637,000</td>
+              <td><span class="day-num">19</span>3,340,000</td>
+              <td><span class="day-num">20</span>3,634,000</td>
+              <td class="is-top3"><span class="day-num">21</span>5,720,000</td>
+            </tr>
+            <tr>
+              <td class="is-top3"><span class="day-num">22</span>5,635,000</td>
+              <td><span class="day-num">23</span>3,949,000</td>
+              <td><span class="day-num">24</span>3,565,000</td>
+              <td><span class="day-num">25</span>3,717,000</td>
+              <td><span class="day-num">26</span>3,333,000</td>
+              <td><span class="day-num">27</span>3,870,000</td>
+              <td><span class="day-num">28</span>5,535,000</td>
+            </tr>
+            <tr>
+              <td class="is-top3"><span class="day-num">29</span>5,603,000</td>
+              <td><span class="day-num">30</span>3,897,000</td>
+              <td><span class="day-num">31</span>4,068,000</td>
+              <td class="is-empty"></td>
+              <td class="is-empty"></td>
+              <td class="is-empty"></td>
+              <td class="is-empty"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="revenue-chart">
+        <canvas id="revenueChartMarch" height="200" aria-label="3월 일별 매출 추이" role="img"></canvas>
+        <p class="revenue-chart__note">매출 상위 3일: 3/21(토) 5,720,000원 · 3/22(일) 5,635,000원 · 3/29(일) 5,603,000원 — 주말과 특정일을 중심으로 높은 매출 흐름을 보입니다.</p>
+      </div>
+    </div>
   </div>
 
-  <div class="table-wrap reveal">
-    <table class="data-table">
-      <thead>
-        <tr><th>월매출</th><th>순이익</th><th>객단가</th><th>회전율</th><th>테이블 수</th><th>평수</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="월매출">9,800만원</td>
-          <td data-label="순이익">2,900만원</td>
-          <td data-label="객단가">18,000원</td>
-          <td data-label="회전율">3.2회</td>
-          <td data-label="테이블 수">18개</td>
-          <td data-label="평수">45평</td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- 4월 -->
+  <div class="month-block reveal">
+    <span class="month-block__title">4월 실제 매출 지표</span>
+    <div class="stat-tiles">
+      <div class="stat-tile"><p class="stat-tile__label">4월 총매출</p><p class="stat-tile__value">117,511,500원</p></div>
+      <div class="stat-tile"><p class="stat-tile__label">총 결제건수</p><p class="stat-tile__value">2,031건</p></div>
+      <div class="stat-tile"><p class="stat-tile__label">평균 객단가</p><p class="stat-tile__value">57,858원</p></div>
+    </div>
+
+    <div class="revenue-layout">
+      <div class="calendar-wrap">
+        <table class="calendar-grid">
+          <thead><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="is-empty"></td>
+              <td class="is-empty"></td>
+              <td class="is-empty"></td>
+              <td><span class="day-num">1</span>3,319,500</td>
+              <td><span class="day-num">2</span>3,864,000</td>
+              <td><span class="day-num">3</span>4,153,500</td>
+              <td class="is-top3"><span class="day-num">4</span>5,822,500</td>
+            </tr>
+            <tr>
+              <td><span class="day-num">5</span>5,308,500</td>
+              <td><span class="day-num">6</span>3,487,000</td>
+              <td><span class="day-num">7</span>3,663,500</td>
+              <td><span class="day-num">8</span>3,537,000</td>
+              <td><span class="day-num">9</span>2,927,000</td>
+              <td><span class="day-num">10</span>3,160,000</td>
+              <td class="is-top3"><span class="day-num">11</span>5,717,500</td>
+            </tr>
+            <tr>
+              <td><span class="day-num">12</span>5,010,500</td>
+              <td><span class="day-num">13</span>3,468,500</td>
+              <td><span class="day-num">14</span>3,428,500</td>
+              <td><span class="day-num">15</span>3,810,500</td>
+              <td><span class="day-num">16</span>3,123,000</td>
+              <td><span class="day-num">17</span>3,653,500</td>
+              <td class="is-top3"><span class="day-num">18</span>5,948,000</td>
+            </tr>
+            <tr>
+              <td><span class="day-num">19</span>5,295,500</td>
+              <td><span class="day-num">20</span>2,879,000</td>
+              <td><span class="day-num">21</span>3,051,500</td>
+              <td><span class="day-num">22</span>2,534,000</td>
+              <td><span class="day-num">23</span>3,761,000</td>
+              <td><span class="day-num">24</span>4,130,500</td>
+              <td><span class="day-num">25</span>5,031,000</td>
+            </tr>
+            <tr>
+              <td><span class="day-num">26</span>4,485,000</td>
+              <td><span class="day-num">27</span>3,065,000</td>
+              <td><span class="day-num">28</span>3,117,500</td>
+              <td><span class="day-num">29</span>2,692,500</td>
+              <td><span class="day-num">30</span>4,066,500</td>
+              <td class="is-empty"></td>
+              <td class="is-empty"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="revenue-chart">
+        <canvas id="revenueChartApril" height="200" aria-label="4월 일별 매출 추이" role="img"></canvas>
+        <p class="revenue-chart__note">매출 상위 3일: 4/4(토) 5,822,500원 · 4/11(토) 5,717,500원 · 4/18(토) 5,948,000원 — 주말과 특정일을 중심으로 높은 매출 흐름을 보입니다.</p>
+      </div>
+    </div>
   </div>
 
-  <div class="revenue-media reveal">
+  <div class="revenue-media reveal" style="margin-top: 40px;">
     <div class="ph ph--wide"><span>본점 정면 이미지 준비중</span></div>
     <div class="ph ph--wide"><span>본점 내부 이미지 준비중</span></div>
     <div class="ph ph--wide"><span>손님 많은 시간대 이미지 준비중</span></div>
   </div>
 
-  <p class="disclaimer reveal">
-    ※ 수익성은 실제 운영 데이터를 기반으로 작성되었으며, 투자비용·운영환경 등에 따라 달라질 수 있습니다.
+  <p class="disclaimer reveal" style="margin-top: 32px;">
+    ※ 본 자료는 계탉닭 본점의 2026년 3~4월 실제 매출 데이터를 기준으로 구성되었습니다. 투자비용·운영환경 등에 따라 매장별 매출은 달라질 수 있습니다.
   </p>
   <div class="cta-inline"><a href="#inquiry" class="btn btn--primary">창업문의</a></div>
 </section>
@@ -426,30 +538,28 @@
   <div class="cta-inline"><a href="#inquiry" class="btn btn--primary">창업문의</a></div>
 </section>
 
-<!-- ================= 13. 개설 비용 ================= -->
+<!-- ================= 13. 가맹 기본 비용 ================= -->
 <section class="section section--cost">
   <div class="section__head reveal">
-    <p class="eyebrow">OPENING COST</p>
-    <h2>개설 비용</h2>
-    <p class="section__sub">아래 금액은 예시이며, 정식 정보공개서의 확정 금액으로 교체해야 합니다.</p>
+    <p class="eyebrow">FRANCHISE FEE</p>
+    <h2>가맹 관련 자료</h2>
+    <p class="section__sub">가맹 검토 자료를 통해 창업 조건과 비용 구조를 보다 현실적으로 확인할 수 있습니다. (본 비용은 브랜드 가입을 위한 기본 항목입니다)</p>
   </div>
 
   <div class="table-wrap reveal">
     <table class="data-table data-table--cost">
-      <thead><tr><th>항목</th><th>금액</th></tr></thead>
+      <thead><tr><th>구분</th><th>내용</th><th>금액</th></tr></thead>
       <tbody>
-        <tr><td>가맹비</td><td>10,000,000원</td></tr>
-        <tr><td>교육비</td><td>3,000,000원</td></tr>
-        <tr><td>인테리어 (평당)</td><td>2,200,000원</td></tr>
-        <tr><td>주방기기</td><td>18,000,000원</td></tr>
-        <tr><td>간판</td><td>4,500,000원</td></tr>
-        <tr><td>기타 (홍보물 등)</td><td>2,000,000원</td></tr>
+        <tr><td>가맹비</td><td>계탉닭 브랜드 가맹비</td><td>3,300,000원</td></tr>
+        <tr><td>교육비</td><td>개점 전 최초 교육비</td><td>7,700,000원</td></tr>
+        <tr><td>보증금</td><td>계약 이행 보증금 (VAT 별도)</td><td>5,000,000원</td></tr>
+        <tr><td>로열티</td><td>매출 대비 월 정산</td><td>5%</td></tr>
       </tbody>
-      <tfoot>
-        <tr><td>합계 (35평 기준 예시)</td><td>115,500,000원 내외</td></tr>
-      </tfoot>
     </table>
   </div>
+
+  <p class="cost-note reveal">인테리어 및 설비 등 상세한 내용은 상담을 통하여 문의 부탁드립니다.</p>
+  <p class="cost-fineprint reveal">※ 평수 및 상권, 매장 구조에 따라 비용은 변동될 수 있습니다.</p>
 </section>
 
 <!-- ================= 14. 창업 문의 ================= -->
@@ -505,6 +615,14 @@
         <label><input type="checkbox" name="source" value="tiktok" /> 틱톡</label>
         <label><input type="checkbox" name="source" value="apeunika" /> 아프니깐사장</label>
         <label><input type="checkbox" name="source" value="google" /> 구글검색</label>
+      </div>
+    </div>
+    <div class="field field--full">
+      <span class="field__legend">개인정보 수집·이용 동의 (필수)</span>
+      <p class="field__desc">문의 접수 및 상담을 위해 이름, 연락처, 이메일 등을 수집하며, 상담 목적 외에는 사용하지 않습니다.</p>
+      <div class="radio-row">
+        <label><input type="radio" name="privacyConsent" value="yes" /> 예</label>
+        <label><input type="radio" name="privacyConsent" value="no" /> 아니오</label>
       </div>
     </div>
     <button type="submit" class="btn btn--primary btn--block">창업 문의하기</button>
