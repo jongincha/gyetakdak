@@ -275,35 +275,36 @@ img, canvas { max-width: 100%; }
 }
 
 /* 히어로 위 텍스트는 영상(어두운 배경) 위에 얹히므로 이 영역만 별도로
-   밝은 잉크를 사용합니다. 1시 방향(우상단)에 작게 배치. */
+   밝은 잉크를 사용합니다. 1시 방향(우상단) 구석에 작게 배치, 배경 박스 없이
+   text-shadow만으로 가독성을 확보합니다. */
 .hero__content {
   position: absolute;
   z-index: 1;
-  top: 64px;
-  right: 32px;
-  max-width: 300px;
+  top: 80px;
+  right: 12px;
+  max-width: 280px;
   text-align: right;
-  padding: 14px 18px;
-  border-radius: 10px;
-  background: rgba(20, 14, 8, 0.32);
-  backdrop-filter: blur(2px);
 }
 .hero__content .eyebrow {
   color: #e9cf8f;
   font-size: 0.62rem;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.55);
 }
 .hero__title {
-  font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+  font-family: "Gamja Flower", "Noto Serif KR", serif;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
   line-height: 1.35;
   margin: 8px 0 6px;
   color: #fff;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 .hero__tagline {
   color: #f1e4c4;
   font-size: clamp(0.68rem, 1vw, 0.78rem);
   margin: 0;
   letter-spacing: 0.01em;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.55);
 }
 
 .hero__dots {
