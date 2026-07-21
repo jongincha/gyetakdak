@@ -459,8 +459,9 @@ img, canvas { max-width: 100%; }
 .calendar-wrap { overflow-x: auto; }
 .calendar-grid {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
-  min-width: 480px;
+  min-width: 280px;
   background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -476,11 +477,13 @@ img, canvas { max-width: 100%; }
 }
 .calendar-grid td {
   vertical-align: top;
-  padding: 6px 6px 10px;
+  padding: 6px 4px 10px;
   border: 1px solid var(--border);
   font-size: 0.7rem;
   color: var(--text-faint);
   font-variant-numeric: tabular-nums;
+  text-align: center;
+  overflow-wrap: break-word;
 }
 .calendar-grid td.is-empty { background: rgba(0, 0, 0, 0.02); }
 .calendar-grid td.is-top3 { background: rgba(156, 59, 42, 0.08); }
@@ -492,6 +495,16 @@ img, canvas { max-width: 100%; }
   margin-bottom: 3px;
 }
 .calendar-grid td.is-top3 .day-num { color: var(--red); }
+.calendar-unit {
+  font-size: 0.76rem;
+  color: var(--text-faint);
+  margin: 8px 2px 0;
+}
+@media (max-width: 420px) {
+  .calendar-grid th { font-size: 0.66rem; padding: 6px 2px; }
+  .calendar-grid td { font-size: 0.62rem; padding: 4px 2px 8px; }
+  .calendar-grid .day-num { font-size: 0.74rem; }
+}
 
 .revenue-chart {
   background: var(--bg-raised);
