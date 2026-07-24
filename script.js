@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCarousels();
   initGallerySliders();
   initVideoModal();
+  initPhotoModal();
   initBackgroundVideoMotion();
   initScrollSpy();
   initBackToTop();
@@ -170,6 +171,57 @@ function initVideoModal() {
   });
 
   modal.querySelectorAll('[data-video-close]').forEach((el) => {
+    el.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+}
+
+// ---------- 메뉴 카드 클릭 시 사진 확대 모달 ----------
+function initPhotoModal() {
+  const modal = document.getElementById('photoModal');
+  const img = document.getElementById('photoModalImg');
+  const caption = document.getElementById('photoModalCaption');
+  if (!modal || !img || !caption) return;
+
+  let lastFocused = null;
+
+  function openModal(src, title) {
+    lastFocused = document.activeElement;
+    img.src = src;
+    img.alt = title;
+    caption.textContent = title;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    modal.querySelector('.photo-modal__close').focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-photo-trigger]').forEach((card) => {
+    const cardImg = card.querySelector('img');
+    const title = card.querySelector('.menu-photo-card__title')?.textContent.trim() || '';
+    if (!cardImg) return;
+
+    const open = () => openModal(cardImg.currentSrc || cardImg.src, title);
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open();
+      }
+    });
+  });
+
+  modal.querySelectorAll('[data-photo-close]').forEach((el) => {
     el.addEventListener('click', closeModal);
   });
 
