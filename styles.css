@@ -121,20 +121,21 @@ img, canvas { max-width: 100%; }
 /* 스크롤 등장 효과 */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(34px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 /* 방향성 변형: 좌/우/줌에서 등장 */
-.reveal--left { transform: translateX(-32px); }
+.reveal--left { transform: translateX(-42px); }
 .reveal--left.is-visible { transform: translateX(0); }
-.reveal--right { transform: translateX(32px); }
+.reveal--right { transform: translateX(42px); }
 .reveal--right.is-visible { transform: translateX(0); }
-.reveal--zoom { transform: scale(0.94); }
-.reveal--zoom.is-visible { transform: scale(1); }
+.reveal--zoom { transform: translateY(20px) scale(0.92); }
+.reveal--zoom.is-visible { transform: translateY(0) scale(1); }
 /* 순차 등장(스태거) 지연 */
 .reveal-delay-1.is-visible { transition-delay: 0.1s; }
 .reveal-delay-2.is-visible { transition-delay: 0.2s; }
