@@ -19,7 +19,11 @@
 
 <!-- ================= 상단 고정 네비 ================= -->
 <header class="topbar" id="topbar">
-  <a href="#hero" class="topbar__logo">계탉닭</a>
+  <!-- TODO: 아이콘 자리는 실제 계탉닭 로고(닭 일러스트) 이미지 파일로 교체 -->
+  <a href="#hero" class="topbar__logo">
+    <span class="topbar__logo-icon" aria-hidden="true">🐔</span>
+    <span class="topbar__logo-text">계탉닭</span>
+  </a>
   <nav class="topbar__nav">
     <a href="#brand">브랜드</a>
     <a href="#menu">메뉴</a>
@@ -728,12 +732,26 @@
 
 <!-- ================= 플로팅 CTA ================= -->
 <div class="floating-cta" aria-label="빠른 문의">
-  <a href="tel:0200000000" class="floating-cta__btn" aria-label="전화상담"><span>☎</span></a>
-  <a href="https://pf.kakao.com/" target="_blank" rel="noopener" class="floating-cta__btn" aria-label="카카오톡 상담"><span>💬</span></a>
-  <a href="#inquiry" class="floating-cta__btn floating-cta__btn--primary" aria-label="창업문의"><span>📝</span></a>
+  <!-- 전화·카카오톡 상담 버튼은 우선 숨김 처리 (필요 시 floating-cta__btn--hidden 클래스만 제거) -->
+  <a href="tel:0200000000" class="floating-cta__btn floating-cta__btn--hidden" aria-label="전화상담"><span>☎</span></a>
+  <a href="https://pf.kakao.com/" target="_blank" rel="noopener" class="floating-cta__btn floating-cta__btn--hidden" aria-label="카카오톡 상담"><span>💬</span></a>
+  <!-- TODO: 아이콘 자리는 실제 계탉닭 로고(닭 일러스트) 이미지 파일로 교체 -->
+  <button type="button" class="back-to-top" id="backToTop" aria-label="맨 위로">
+    <span class="back-to-top__arrow" aria-hidden="true">︿</span>
+    <span class="back-to-top__label">누르면<br />올라가요</span>
+    <span class="back-to-top__icon" aria-hidden="true">🐔</span>
+  </button>
+  <a href="#inquiry" class="floating-cta__btn floating-cta__btn--primary" aria-label="창업문의">
+    <svg class="floating-cta__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="4" y="2" width="16" height="20" rx="2" fill="#fff" />
+      <rect x="7" y="6.2" width="10" height="1.6" rx="0.8" fill="#7248B9" />
+      <rect x="7" y="10.2" width="10" height="1.6" rx="0.8" fill="#7248B9" />
+      <rect x="7" y="14.2" width="6" height="1.6" rx="0.8" fill="#7248B9" />
+      <circle cx="15.5" cy="15" r="2.7" fill="#7248B9" />
+      <path d="M14.2 15l0.9 0.9 1.7-1.9" stroke="#fff" stroke-width="0.9" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </a>
 </div>
-
-<button type="button" class="back-to-top" id="backToTop" aria-label="맨 위로">▲</button>
 
 <!-- ================= 유튜브 재생 모달 ================= -->
 <div class="video-modal" id="videoModal" aria-hidden="true">

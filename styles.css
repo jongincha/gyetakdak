@@ -308,11 +308,20 @@ img, canvas { max-width: 100%; }
   border-bottom-color: var(--border);
 }
 .topbar__logo {
-  font-family: "Noto Serif KR", serif;
-  font-weight: 900;
-  font-size: 1.25rem;
-  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   color: var(--gold-ink);
+}
+.topbar__logo-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.topbar__logo-text {
+  font-family: "Gamja Flower", "Noto Serif KR", serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
 }
 .topbar__nav { display: flex; gap: 22px; }
 .topbar__nav a { font-size: 0.92rem; color: var(--text-soft); }
@@ -1091,6 +1100,7 @@ img, canvas { max-width: 100%; }
   z-index: 40;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 .floating-cta__btn {
@@ -1108,20 +1118,21 @@ img, canvas { max-width: 100%; }
   background: linear-gradient(135deg, var(--red), var(--red-dark));
   border-color: transparent;
 }
+/* 전화·카카오톡 상담 버튼 임시 숨김 */
+.floating-cta__btn--hidden { display: none; }
 
-/* ---------- 맨 위로 버튼 ---------- */
+/* ---------- 맨 위로 버튼 (누르면 올라가요) ---------- */
 .back-to-top {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
   z-index: 40;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 74px;
+  padding: 8px 6px 10px;
+  border-radius: 18px;
   border: 1px solid var(--border);
   background: var(--bg-card);
-  color: var(--gold-ink);
-  font-size: 1rem;
   box-shadow: 0 6px 18px rgba(46, 32, 19, 0.18);
   cursor: pointer;
   opacity: 0;
@@ -1133,6 +1144,31 @@ img, canvas { max-width: 100%; }
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+.back-to-top__arrow {
+  color: var(--red);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.back-to-top__label {
+  font-size: 0.62rem;
+  line-height: 1.25;
+  color: var(--text-soft);
+  text-align: center;
+  white-space: nowrap;
+}
+.back-to-top__icon {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  font-size: 1.2rem;
 }
 
 /* ---------- 사진 갤러리 슬라이더 ---------- */
