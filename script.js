@@ -109,7 +109,9 @@ function initStaggerReveal() {
         }
       });
     },
-    { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
+    // 화면 하단에 살짝 걸치기만 해도 바로 나타나던 문제를 막기 위해, 요소가
+    // 뷰포트 아래쪽 35% 안까지 들어와야(=조금 더 스크롤을 내려야) 트리거되게 함
+    { rootMargin: '0px 0px -35% 0px', threshold: 0.15 }
   );
   groups.forEach((group) => observer.observe(group));
 }

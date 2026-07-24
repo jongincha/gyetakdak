@@ -196,13 +196,13 @@ img, canvas { max-width: 100%; }
 /* ---------- 문단/문장이 위에서 아래로 순차적으로 페이드인되는 효과 ---------- */
 /* script.js의 initStaggerReveal()이 .stagger-group의 직계 자식마다
    .stagger-line 클래스와 순차 transition-delay(0.18s 간격)를 부여하고,
-   그룹이 스크롤로 화면에 들어오면 .is-visible을 붙여 위→아래 순서로
-   Fade-in Up 되도록 합니다. word-break: keep-all로 모바일에서도 한글
-   단어 중간이 어색하게 끊기지 않도록 합니다. */
+   그룹이 뷰포트 안쪽으로 충분히 스크롤되어 들어오면 .is-visible을 붙여
+   위→아래 순서로 0.25s 만에 Fade-in Up 되도록 합니다. word-break:
+   keep-all로 모바일에서도 한글 단어 중간이 어색하게 끊기지 않도록 합니다. */
 .stagger-line {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
   word-break: keep-all;
   overflow-wrap: break-word;
   will-change: opacity, transform;
