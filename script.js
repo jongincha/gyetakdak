@@ -427,7 +427,7 @@ function renderTouristChart(reduceMotion) {
 function chartBaseOptions(reduceMotion) {
   return {
     responsive: true,
-    animation: reduceMotion ? false : { duration: 800, easing: 'easeOutQuart' },
+    animation: reduceMotion ? false : { duration: 1500, easing: 'easeOutQuart' },
     plugins: {
       legend: { labels: { color: '#6b5636' } },
     },
