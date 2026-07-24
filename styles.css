@@ -365,6 +365,155 @@ img, canvas { max-width: 100%; }
 }
 .intro__copy strong { color: var(--gold-ink); }
 
+/* ---------- 또띠아 / 월남쌈 자동 슬라이드 쇼케이스 ---------- */
+.wrap-showcase {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px 96px;
+}
+.wrap-showcase__inner {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+  padding: 40px clamp(20px, 5vw, 56px) 48px;
+  overflow: hidden;
+}
+.wrap-showcase__tabs {
+  display: inline-flex;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.wrap-showcase__tab {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-soft);
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.wrap-showcase__tab.is-active {
+  background: var(--text);
+  border-color: var(--text);
+  color: #f7eedd;
+}
+.wrap-showcase__stage {
+  position: relative;
+  min-height: 420px;
+}
+.wrap-showcase__slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 48px;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+  pointer-events: none;
+}
+.wrap-showcase__slide.is-active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.wrap-showcase__media {
+  position: relative;
+  border-radius: var(--radius);
+}
+.wrap-showcase__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: block;
+}
+.wrap-showcase__veggies {
+  position: absolute;
+  inset: -30px;
+  pointer-events: none;
+}
+.veggie {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 10px 22px rgba(46, 32, 19, 0.18);
+  animation: veggie-float 5s ease-in-out infinite;
+}
+.veggie--red { top: 4%; left: 6%; background: radial-gradient(circle at 35% 30%, #e8577a, #9c3b2a); animation-delay: 0s; }
+.veggie--green { top: -2%; right: 14%; background: radial-gradient(circle at 35% 30%, #b6d98a, #6f9c4a); animation-delay: 0.6s; }
+.veggie--purple { top: 32%; left: -6%; background: radial-gradient(circle at 35% 30%, #b48fd6, #6a4a94); animation-delay: 1.2s; }
+.veggie--orange { top: 20%; right: -4%; width: 48px; height: 48px; background: radial-gradient(circle at 35% 30%, #f3b45c, #c97a1f); animation-delay: 1.8s; }
+.veggie--herb { top: 60%; left: 0%; width: 48px; height: 48px; background: radial-gradient(circle at 35% 30%, #7fae6a, #3c5c30); animation-delay: 2.4s; }
+.veggie--white { bottom: 4%; right: 18%; width: 44px; height: 44px; background: radial-gradient(circle at 35% 30%, #f4ece0, #cbb994); animation-delay: 3s; }
+.veggie--sprout { bottom: -6%; left: 22%; width: 44px; height: 44px; background: radial-gradient(circle at 35% 30%, #9ccf7a, #4f8a3d); animation-delay: 3.6s; }
+
+@keyframes veggie-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(6deg); }
+}
+
+.wrap-showcase__copy {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px 30px;
+  color: var(--text-soft);
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+
+.wrap-showcase__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+.wrap-showcase__dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border);
+  cursor: pointer;
+  padding: 0;
+}
+.wrap-showcase__dots button.is-active {
+  background: var(--gold);
+  width: 22px;
+  border-radius: 5px;
+}
+
+.wrap-showcase__headline {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+@media (max-width: 800px) {
+  .wrap-showcase__slide { grid-template-columns: 1fr; gap: 28px; }
+  .wrap-showcase__stage { min-height: 660px; }
+  .veggie { width: 44px; height: 44px; }
+}
+@media (max-width: 480px) {
+  .wrap-showcase__stage { min-height: 700px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .veggie { animation: none; }
+}
+
 /* ---------- 2. 브랜드 ---------- */
 .brand-grid {
   display: grid;

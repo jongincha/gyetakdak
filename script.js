@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initGallerySliders();
   initVideoModal();
   initBackgroundVideoMotion();
+  initWrapShowcase();
   initScrollSpy();
   initBackToTop();
   initCharts();
@@ -16,25 +17,81 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('year').textContent = new Date().getFullYear();
 });
 
-// ---------- 배경 영상: 동작 최소화(prefers-reduced-motion) 사용자는 정지 화면으로 ----------
-// 영상 자체를 숨기지 않고(레이아웃 유지), 자동 반복 재생만 멈춥니다.
+// ---------- 배경 영상: 항상 자동재생 유지 ----------
+// 브라우저 자동재생 정책, 탭 전환 등으로 일시정지될 경우를 대비해 재생 상태를 계속 보정합니다.
 function initBackgroundVideoMotion() {
   const videos = document.querySelectorAll('.hero__video, .intro__video-el');
   if (!videos.length) return;
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const applyMotionPreference = () => {
-    videos.forEach((video) => {
-      if (reduceMotion.matches) {
-        video.pause();
-      } else if (video.paused) {
-        video.play().catch(() => {});
-      }
-    });
-  };
+  videos.forEach((video) => {
+    const tryPlay = () => video.play().catch(() => {});
+    tryPlay();
+    video.addEventListener('loadeddata', tryPlay);
+    video.addEventListener('canplay', tryPlay);
+    video.addEventListener('pause', tryPlay);
+  });
+}
 
-  applyMotionPreference();
-  reduceMotion.addEventListener('change', applyMotionPreference);
+// ---------- 또띠아 / 월남쌈 자동 슬라이드 쇼케이스 ----------
+function initWrapShowcase() {
+  const root = document.querySelector('.wrap-showcase');
+  if (!root) return;
+
+  const tabs = Array.from(root.querySelectorAll('.wrap-showcase__tab'));
+  const slides = Array.from(root.querySelectorAll('.wrap-showcase__slide'));
+  const dotsWrap = root.querySelector('[data-wrap-dots]');
+  if (slides.length < 2) return;
+
+  let index = Math.max(0, slides.findIndex((s) => s.classList.contains('is-active')));
+  const AUTOPLAY_MS = 4500;
+
+  dotsWrap.innerHTML = '';
+  const dotButtons = slides.map((_, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.setAttribute('aria-label', `${i + 1}번째 조합 보기`);
+    if (i === index) btn.classList.add('is-active');
+    btn.addEventListener('click', () => {
+      goTo(i);
+      restartTimer();
+    });
+    dotsWrap.appendChild(btn);
+    return btn;
+  });
+
+  function setActive(next) {
+    slides[index].classList.remove('is-active');
+    tabs[index]?.classList.remove('is-active');
+    tabs[index]?.setAttribute('aria-selected', 'false');
+    dotButtons[index]?.classList.remove('is-active');
+
+    index = next;
+
+    slides[index].classList.add('is-active');
+    tabs[index]?.classList.add('is-active');
+    tabs[index]?.setAttribute('aria-selected', 'true');
+    dotButtons[index]?.classList.add('is-active');
+  }
+
+  function goTo(next) {
+    setActive((next + slides.length) % slides.length);
+  }
+
+  let timer = setInterval(() => goTo(index + 1), AUTOPLAY_MS);
+  function restartTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(index + 1), AUTOPLAY_MS);
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      goTo(i);
+      restartTimer();
+    });
+  });
+
+  root.addEventListener('mouseenter', () => clearInterval(timer));
+  root.addEventListener('mouseleave', restartTimer);
 }
 
 // ---------- 상단바: 스크롤 시 배경 진하게 ----------
