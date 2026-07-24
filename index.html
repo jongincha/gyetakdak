@@ -425,37 +425,39 @@
     <h2>SNS 후기</h2>
   </div>
 
-  <div class="reviews-track" data-marquee>
-    <div class="review-card">
-      <p class="review-card__source">Instagram</p>
-      <div class="ph ph--square"><span>후기 캡처</span></div>
-      <p class="review-card__text">"마라 국물에 밥까지 볶아 먹었어요, 웨이팅 각오하고 가세요"</p>
+  <!-- 부채꼴로 펼쳐지는 후기 카드 캐러셀. 카드 이미지는 실제 후기 캡처가
+       준비되기 전까지 자리표시(.ph)로 대체되어 있습니다. -->
+  <div class="fan-section">
+    <div class="fan-layout" id="reviewFan">
+      <div class="fan-card">
+        <div class="ph ph--square"><span>후기 캡처</span></div>
+        <p class="fan-card__source">Instagram</p>
+        <p class="fan-card__text">"마라 국물에 밥까지 볶아 먹었어요, 웨이팅 각오하고 가세요"</p>
+      </div>
+      <div class="fan-card">
+        <div class="ph ph--square"><span>후기 캡처</span></div>
+        <p class="fan-card__source">네이버 리뷰</p>
+        <p class="fan-card__text">"약고추장 진짜 자연스러운 단맛, 아이도 잘 먹었어요"</p>
+      </div>
+      <div class="fan-card">
+        <div class="ph ph--square"><span>후기 캡처</span></div>
+        <p class="fan-card__source">블로그</p>
+        <p class="fan-card__text">"한방 간장맛 처음 먹어보는 조합인데 계속 생각나요"</p>
+      </div>
+      <div class="fan-card">
+        <div class="ph ph--square"><span>후기 캡처</span></div>
+        <p class="fan-card__source">Google 리뷰</p>
+        <p class="fan-card__text">"Best dakgalbi in town, worth the wait"</p>
+      </div>
     </div>
-    <div class="review-card">
-      <p class="review-card__source">네이버 리뷰</p>
-      <div class="ph ph--square"><span>후기 캡처</span></div>
-      <p class="review-card__text">"약고추장 진짜 자연스러운 단맛, 아이도 잘 먹었어요"</p>
-    </div>
-    <div class="review-card">
-      <p class="review-card__source">블로그</p>
-      <div class="ph ph--square"><span>후기 캡처</span></div>
-      <p class="review-card__text">"한방 간장맛 처음 먹어보는 조합인데 계속 생각나요"</p>
-    </div>
-    <div class="review-card">
-      <p class="review-card__source">Google 리뷰</p>
-      <div class="ph ph--square"><span>후기 캡처</span></div>
-      <p class="review-card__text">"Best dakgalbi in town, worth the wait"</p>
-    </div>
-    <!-- 무한 루프를 위한 복제본 -->
-    <div class="review-card" aria-hidden="true">
-      <p class="review-card__source">Instagram</p>
-      <div class="ph ph--square"><span>후기 캡처</span></div>
-      <p class="review-card__text">"마라 국물에 밥까지 볶아 먹었어요, 웨이팅 각오하고 가세요"</p>
-    </div>
-    <div class="review-card" aria-hidden="true">
-      <p class="review-card__source">네이버 리뷰</p>
-      <div class="ph ph--square"><span>후기 캡처</span></div>
-      <p class="review-card__text">"약고추장 진짜 자연스러운 단맛, 아이도 잘 먹었어요"</p>
+    <div class="fan-nav" id="reviewFanNav" hidden>
+      <button type="button" class="fan-nav__arrow" data-fan-prev aria-label="이전 후기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+      </button>
+      <div class="fan-nav__dots" id="reviewFanDots"></div>
+      <button type="button" class="fan-nav__arrow" data-fan-next aria-label="다음 후기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -775,6 +777,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
