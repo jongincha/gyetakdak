@@ -174,6 +174,19 @@ function initFactoryGallery() {
   let index = Math.max(0, slides.findIndex((s) => s.classList.contains('is-active')));
   const AUTOPLAY_MS = Number(root.dataset.autoplay) || 4000;
 
+  const thumbsWrap = root.querySelector('.factory-gallery__thumbs');
+
+  // 썸네일이 화면 밖에 있으면 가로로만 스크롤해서 보여줍니다.
+  // scrollIntoView는 세로축(문서 전체) 스크롤까지 건드려 모바일에서
+  // 페이지가 튀는 원인이 되므로 쓰지 않습니다.
+  function scrollThumbIntoView(thumb) {
+    if (!thumbsWrap || !thumb) return;
+    const wrapRect = thumbsWrap.getBoundingClientRect();
+    const thumbRect = thumb.getBoundingClientRect();
+    const offset = thumbRect.left - wrapRect.left - wrapRect.width / 2 + thumbRect.width / 2;
+    thumbsWrap.scrollBy({ left: offset, behavior: 'smooth' });
+  }
+
   function setActive(next) {
     slides[index].classList.remove('is-active');
     thumbs[index]?.classList.remove('is-active');
@@ -184,7 +197,7 @@ function initFactoryGallery() {
     slides[index].classList.add('is-active');
     thumbs[index]?.classList.add('is-active');
     thumbs[index]?.setAttribute('aria-selected', 'true');
-    thumbs[index]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    scrollThumbIntoView(thumbs[index]);
   }
 
   function goTo(next) {
