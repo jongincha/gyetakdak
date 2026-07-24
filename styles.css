@@ -837,38 +837,100 @@ img, canvas { max-width: 100%; }
 .info-card h3 { font-size: 1.08rem; color: var(--gold-ink); margin-bottom: 10px; }
 .info-card p { color: var(--text-soft); margin: 0; }
 
-/* ---------- 6. SNS 후기 (마퀴) ---------- */
-.reviews-track {
+/* ---------- 6. SNS 후기 (부채꼴 카드 캐러셀) ---------- */
+/* script.js의 initReviewFanCarousel()이 GSAP으로 카드를 부채꼴로 배치하고,
+   호버 시 카드가 좌우로 밀리며 반응하는 인터랙션을 담당합니다. */
+.fan-section {
   display: flex;
-  gap: 20px;
-  width: max-content;
-  padding: 0 24px;
-  animation: marquee 28s linear infinite;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 8px 24px 0;
 }
-.reviews-track:hover { animation-play-state: paused; }
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+.fan-layout {
+  position: relative;
+  width: 100%;
+  max-width: 70rem;
+  height: 38rem;
 }
-@media (prefers-reduced-motion: reduce) {
-  .reviews-track { animation: none; overflow-x: auto; }
-}
-.review-card {
-  width: 260px;
-  flex: none;
-  background: var(--bg-raised);
+@media (max-width: 1023px) { .fan-layout { height: 34rem; } }
+@media (max-width: 767px)  { .fan-layout { height: 28rem; } }
+@media (max-width: 639px)  { .fan-layout { height: 26rem; } }
+@media (max-width: 479px)  { .fan-layout { height: 22rem; } }
+
+.fan-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 8.5rem;
+  height: 13.5rem;
+  margin-top: -6.75rem;
+  margin-left: -4.25rem;
+  background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
+  border-radius: 14px;
+  padding: 10px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(46, 32, 19, 0.25);
+  opacity: 0;
+  cursor: default;
 }
-.review-card__source {
+@media (max-width: 1023px) { .fan-card { width: 7.6rem; height: 12.1rem; margin-top: -6.05rem; margin-left: -3.8rem; } }
+@media (max-width: 767px)  { .fan-card { width: 6.3rem; height: 9.9rem;  margin-top: -4.95rem; margin-left: -3.15rem; } }
+@media (max-width: 639px)  { .fan-card { width: 5.8rem; height: 9.2rem;  margin-top: -4.6rem;  margin-left: -2.9rem; } }
+@media (max-width: 479px)  { .fan-card { width: 4.9rem; height: 7.8rem;  margin-top: -3.9rem;  margin-left: -2.45rem; padding: 7px; } }
+
+.fan-card .ph { flex: 1; padding: 8px; font-size: 0.6rem; border-radius: 8px; }
+.fan-card__source {
   color: var(--gold-ink);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  margin: 0 0 10px;
+  margin: 8px 0 2px;
 }
-.review-card__text { color: var(--text-soft); margin: 12px 0 0; font-size: 0.92rem; }
+.fan-card__text {
+  color: var(--text-soft);
+  margin: 0;
+  font-size: 0.66rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.fan-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+.fan-nav__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-soft);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(46, 32, 19, 0.15);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.fan-nav__arrow:hover { border-color: var(--gold); color: var(--gold-ink); }
+.fan-nav__dots { display: flex; align-items: center; gap: 8px; }
+.fan-nav__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.fan-nav__dot.is-active { background: var(--gold-ink); transform: scale(1.3); }
 
 /* ---------- 7. 외국인 관광객 전략 ---------- */
 .flow {
