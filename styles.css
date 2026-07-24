@@ -510,7 +510,7 @@ img, canvas { max-width: 100%; }
 .wrap-showcase__veggies {
   position: relative;
   flex: 1 1 auto;
-  min-height: 210px;
+  min-height: 260px;
 }
 .veggie {
   position: absolute;
@@ -529,14 +529,14 @@ img, canvas { max-width: 100%; }
   object-fit: cover;
   display: block;
 }
-.veggie:nth-child(1) { top: 2%; left: 6%; animation-delay: 0s; }
-.veggie:nth-child(2) { top: -4%; left: 40%; animation-delay: 0.5s; }
-.veggie:nth-child(3) { top: 6%; right: 2%; width: 52px; height: 52px; animation-delay: 1s; }
-.veggie:nth-child(4) { top: 36%; left: 0%; animation-delay: 1.5s; }
-.veggie:nth-child(5) { top: 32%; left: 32%; animation-delay: 2s; }
-.veggie:nth-child(6) { top: 28%; right: 16%; animation-delay: 2.5s; }
-.veggie:nth-child(7) { top: 66%; left: 16%; width: 52px; height: 52px; animation-delay: 3s; }
-.veggie:nth-child(8) { top: 70%; left: 48%; width: 48px; height: 48px; animation-delay: 3.5s; }
+.veggie:nth-child(1) { top: 4%; left: 24%; width: 64px; height: 64px; animation-delay: 0s; }
+.veggie:nth-child(2) { top: 2%; left: 52%; width: 64px; height: 64px; animation-delay: 0.5s; }
+.veggie:nth-child(3) { top: 18%; right: 0%; width: 60px; height: 60px; animation-delay: 1s; }
+.veggie:nth-child(4) { top: 24%; left: 0%; width: 54px; height: 54px; animation-delay: 1.5s; }
+.veggie:nth-child(5) { top: 40%; left: 34%; width: 62px; height: 62px; animation-delay: 2s; }
+.veggie:nth-child(6) { top: 32%; left: 68%; width: 60px; height: 60px; animation-delay: 2.5s; }
+.veggie:nth-child(7) { top: 58%; left: 12%; width: 54px; height: 54px; animation-delay: 3s; }
+.veggie:nth-child(8) { top: 68%; left: 36%; width: 52px; height: 52px; animation-delay: 3.5s; }
 
 @keyframes veggie-float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
