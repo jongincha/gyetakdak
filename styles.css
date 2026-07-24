@@ -38,6 +38,18 @@
   font-display: swap;
 }
 
+/* 배민 을지로체(BMEULJIRO) — 배달의민족(우아한형제들) 배포 무료 폰트, noonnu.cc
+   미러 CDN. 획마다 힘찬 시작과 붓의 날카로운 끝처리가 특징인 간판 캘리그라피
+   서체로, 섹션 타이틀에 역동적인 느낌을 주는 데 사용합니다.
+   로드 실패 시 'Noto Sans KR' → sans-serif 순으로 자동 대체됩니다. */
+@font-face {
+  font-family: 'BMEULJIRO';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BMEULJIRO.woff') format('woff');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -114,6 +126,15 @@ img, canvas { max-width: 100%; }
 .section__head h2 {
   font-size: clamp(1.6rem, 3vw, 2.3rem);
   margin: 6px 0 10px;
+  font-family: 'BMEULJIRO', 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+/* 매출/SNS 후기 타이틀만 붉은색으로 강조 */
+.section--revenue .section__head h2,
+.section--reviews .section__head h2 {
+  color: var(--red);
 }
 .section__sub {
   color: var(--text-soft);
@@ -170,6 +191,26 @@ img, canvas { max-width: 100%; }
   /* 영상 자체를 숨기지 않고, script.js에서 재생만 멈춰 정지 화면으로 보여줍니다. */
   .video-modal, .video-modal__dialog,
   .photo-modal, .photo-modal__dialog { transition: none; }
+}
+
+/* ---------- 스크롤 진행도에 따라 텍스트가 작았다가 커지는 효과 ---------- */
+/* script.js의 initScrollGrowText()가 스크롤 위치에 맞춰 --grow-scale/
+   --grow-opacity 값을 실시간으로 갱신합니다(트랜지션 없이 스크롤과 1:1로
+   맞물려 움직이도록 함). word-break: keep-all로 모바일에서도 한글 단어
+   중간이 어색하게 끊기지 않도록 합니다. */
+.scroll-grow {
+  opacity: var(--grow-opacity, 1);
+  transform: scale(var(--grow-scale, 1));
+  transform-origin: left center;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  will-change: transform, opacity;
+}
+.intro__copy.scroll-grow {
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-grow { opacity: 1; transform: none; }
 }
 
 /* 버튼 */
