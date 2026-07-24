@@ -12,6 +12,7 @@
   --red-dark: #6e2a1d;
   --red-glow: rgba(156, 59, 42, 0.22);
   --weekend-blue: #2f5f8a;
+  --top3-red: #d32f2f;
 
   --gold: #b8892e;
   --gold-ink: #7a5215;
@@ -24,6 +25,17 @@
   --container: 1180px;
 
   color-scheme: light;
+}
+
+/* 빛고을광주체(Bitgoeul Gwangju) — 광주광역시 배포 무료 폰트, noonnu.cc 미러 CDN.
+   이 폰트는 단일 굵기로만 배포되어 400~900 범위 전체를 같은 파일에 매핑합니다.
+   로드 실패 시 'Noto Sans KR' → sans-serif 순으로 자동 대체됩니다. */
+@font-face {
+  font-family: 'Bitgoeul';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/Bitgoeul_Bold.woff') format('woff');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 * { box-sizing: border-box; }
@@ -557,12 +569,12 @@ img, canvas { max-width: 100%; }
   border: 1px solid var(--border);
   font-size: 0.7rem;
   color: var(--text-faint);
+  font-family: 'Bitgoeul', 'Noto Sans KR', sans-serif;
   font-variant-numeric: tabular-nums;
   text-align: center;
   overflow-wrap: break-word;
 }
 .calendar-grid td.is-empty { background: rgba(0, 0, 0, 0.02); }
-.calendar-grid td.is-top3 { background: rgba(156, 59, 42, 0.08); }
 .calendar-grid .day-num {
   display: block;
   font-weight: 700;
@@ -570,12 +582,20 @@ img, canvas { max-width: 100%; }
   font-size: 0.86rem;
   margin-bottom: 3px;
 }
-.calendar-grid td.is-top3 .day-num { color: var(--red); }
 /* 일요일(첫 칸)은 빨간색, 토요일(마지막 칸)은 파란색으로 표시 */
 .calendar-grid th:first-child { color: var(--red); }
 .calendar-grid th:last-child { color: var(--weekend-blue); }
 .calendar-grid td:first-child .day-num { color: var(--red); }
 .calendar-grid td:last-child .day-num { color: var(--weekend-blue); }
+
+/* 매출 상위 3일: 요일 색상보다 우선해서 강조 표시 */
+.calendar-grid td.is-top3 {
+  background: rgba(211, 47, 47, 0.1);
+  border-color: var(--top3-red);
+  color: var(--top3-red);
+  font-weight: 700;
+}
+.calendar-grid td.is-top3 .day-num { color: var(--top3-red); }
 .calendar-unit {
   font-size: 0.76rem;
   color: var(--text-faint);
