@@ -193,6 +193,26 @@ img, canvas { max-width: 100%; }
   .photo-modal, .photo-modal__dialog { transition: none; }
 }
 
+/* ---------- 스크롤 진행도에 따라 텍스트가 작았다가 커지는 효과 ---------- */
+/* script.js의 initScrollGrowText()가 스크롤 위치에 맞춰 --grow-scale/
+   --grow-opacity 값을 실시간으로 갱신합니다(트랜지션 없이 스크롤과 1:1로
+   맞물려 움직이도록 함). word-break: keep-all로 모바일에서도 한글 단어
+   중간이 어색하게 끊기지 않도록 합니다. */
+.scroll-grow {
+  opacity: var(--grow-opacity, 1);
+  transform: scale(var(--grow-scale, 1));
+  transform-origin: left center;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  will-change: transform, opacity;
+}
+.intro__copy.scroll-grow {
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-grow { opacity: 1; transform: none; }
+}
+
 /* 버튼 */
 .btn {
   display: inline-flex;
