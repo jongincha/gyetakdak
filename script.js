@@ -8,12 +8,34 @@ document.addEventListener('DOMContentLoaded', () => {
   initCarousels();
   initGallerySliders();
   initVideoModal();
+  initBackgroundVideoMotion();
   initScrollSpy();
   initBackToTop();
   initCharts();
   initInquiryForm();
   document.getElementById('year').textContent = new Date().getFullYear();
 });
+
+// ---------- 배경 영상: 동작 최소화(prefers-reduced-motion) 사용자는 정지 화면으로 ----------
+// 영상 자체를 숨기지 않고(레이아웃 유지), 자동 반복 재생만 멈춥니다.
+function initBackgroundVideoMotion() {
+  const videos = document.querySelectorAll('.hero__video, .intro__video-el');
+  if (!videos.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const applyMotionPreference = () => {
+    videos.forEach((video) => {
+      if (reduceMotion.matches) {
+        video.pause();
+      } else if (video.paused) {
+        video.play().catch(() => {});
+      }
+    });
+  };
+
+  applyMotionPreference();
+  reduceMotion.addEventListener('change', applyMotionPreference);
+}
 
 // ---------- 상단바: 스크롤 시 배경 진하게 ----------
 function initTopbar() {
