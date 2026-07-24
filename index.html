@@ -78,13 +78,21 @@
 <!-- ================= 유튜브 홍보영상 + 소개 ================= -->
 <section class="intro reveal">
   <div class="intro__video">
-    <!-- TODO: data-video-id 를 실제 홍보영상 유튜브 ID로 교체 -->
-    <button type="button" class="video-thumb" data-video-trigger data-video-id="YOUTUBE_VIDEO_ID" aria-label="계탉닭 홍보영상 재생">
-      <div class="intro__video-frame">
-        <div class="ph ph--wide"><span>홍보영상 썸네일 준비중</span></div>
-        <span class="video-thumb__play" aria-hidden="true">▶</span>
-      </div>
-    </button>
+    <div class="intro__video-frame">
+      <video
+        class="hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+      >
+        <source
+          src="https://res.cloudinary.com/hb5bdcuw/video/upload/v1784884722/525423442342_dfcueb.mp4"
+          type="video/mp4"
+        />
+      </video>
+    </div>
   </div>
   <p class="intro__copy">
     한방의 깊이, 약고추장의 매력, 그리고 새로운 한입.<br />
