@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initReveal,
     initCarousels,
     initGallerySliders,
+    initFactoryGallery,
     initVideoModal,
     initPhotoModal,
     initBackgroundVideoMotion,
@@ -157,6 +158,93 @@ function initGallerySliders() {
     if (prevBtn) prevBtn.addEventListener('click', () => goTo(index - 1));
     if (nextBtn) nextBtn.addEventListener('click', () => goTo(index + 1));
   });
+}
+
+// ---------- 자체 공장 사진 슬라이드 갤러리 ----------
+// 메인 사진 + 하단 썸네일, 4초 자동 재생, 마우스 드래그/터치 스와이프로 전환.
+function initFactoryGallery() {
+  const root = document.querySelector('.factory-gallery');
+  if (!root) return;
+
+  const slides = Array.from(root.querySelectorAll('.factory-gallery__slide'));
+  const thumbs = Array.from(root.querySelectorAll('.factory-gallery__thumb'));
+  const stage = root.querySelector('.factory-gallery__stage');
+  if (slides.length < 2 || !stage) return;
+
+  let index = Math.max(0, slides.findIndex((s) => s.classList.contains('is-active')));
+  const AUTOPLAY_MS = Number(root.dataset.autoplay) || 4000;
+
+  function setActive(next) {
+    slides[index].classList.remove('is-active');
+    thumbs[index]?.classList.remove('is-active');
+    thumbs[index]?.setAttribute('aria-selected', 'false');
+
+    index = (next + slides.length) % slides.length;
+
+    slides[index].classList.add('is-active');
+    thumbs[index]?.classList.add('is-active');
+    thumbs[index]?.setAttribute('aria-selected', 'true');
+    thumbs[index]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+
+  function goTo(next) {
+    setActive(next);
+  }
+
+  let timer = setInterval(() => goTo(index + 1), AUTOPLAY_MS);
+  function restartTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(index + 1), AUTOPLAY_MS);
+  }
+
+  thumbs.forEach((thumb, i) => {
+    thumb.addEventListener('click', () => {
+      goTo(i);
+      restartTimer();
+    });
+  });
+
+  root.addEventListener('mouseenter', () => clearInterval(timer));
+  root.addEventListener('mouseleave', restartTimer);
+
+  // 터치 스와이프 / 마우스 드래그로 슬라이드 전환
+  const SWIPE_THRESHOLD = 40;
+  let dragStartX = 0;
+  let isDragging = false;
+
+  function handleDragEnd(endX) {
+    if (!isDragging) return;
+    isDragging = false;
+    const delta = endX - dragStartX;
+    if (delta > SWIPE_THRESHOLD) {
+      goTo(index - 1);
+      restartTimer();
+    } else if (delta < -SWIPE_THRESHOLD) {
+      goTo(index + 1);
+      restartTimer();
+    }
+  }
+
+  stage.addEventListener(
+    'touchstart',
+    (e) => {
+      dragStartX = e.touches[0].clientX;
+      isDragging = true;
+    },
+    { passive: true }
+  );
+  stage.addEventListener(
+    'touchend',
+    (e) => handleDragEnd(e.changedTouches[0].clientX),
+    { passive: true }
+  );
+
+  stage.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    dragStartX = e.clientX;
+    isDragging = true;
+  });
+  window.addEventListener('mouseup', (e) => handleDragEnd(e.clientX));
 }
 
 // ---------- 유튜브 재생 모달 ----------
