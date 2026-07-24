@@ -258,6 +258,45 @@ function initFactoryGallery() {
     isDragging = true;
   });
   window.addEventListener('mouseup', (e) => handleDragEnd(e.clientX));
+
+  // 하단 썸네일 줄: 마우스로 클릭+드래그해서 가로로 넘겨볼 수 있게 함
+  // (터치는 overflow-x: auto의 기본 스와이프 스크롤을 그대로 사용).
+  if (thumbsWrap) {
+    let thumbDragStartX = 0;
+    let thumbScrollStart = 0;
+    let thumbIsDragging = false;
+    let thumbDragMoved = false;
+
+    thumbsWrap.addEventListener('mousedown', (e) => {
+      thumbIsDragging = true;
+      thumbDragMoved = false;
+      thumbDragStartX = e.clientX;
+      thumbScrollStart = thumbsWrap.scrollLeft;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!thumbIsDragging) return;
+      const delta = e.clientX - thumbDragStartX;
+      if (Math.abs(delta) > 5) thumbDragMoved = true;
+      thumbsWrap.scrollLeft = thumbScrollStart - delta;
+    });
+
+    window.addEventListener('mouseup', () => {
+      thumbIsDragging = false;
+    });
+
+    // 드래그가 일어났다면 클릭(썸네일 선택)으로 처리하지 않도록 캡처 단계에서 막음
+    thumbsWrap.addEventListener(
+      'click',
+      (e) => {
+        if (thumbDragMoved) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+      },
+      true
+    );
+  }
 }
 
 // ---------- 유튜브 재생 모달 ----------
