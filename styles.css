@@ -446,6 +446,7 @@ img, canvas { max-width: 100%; }
   margin-bottom: 36px;
 }
 .wrap-showcase__tab {
+  display: inline-block;
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text-soft);
@@ -454,8 +455,6 @@ img, canvas { max-width: 100%; }
   font-weight: 600;
   font-size: 0.92rem;
   white-space: nowrap;
-  cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 .wrap-showcase__tab.is-active {
   background: var(--text);
@@ -591,27 +590,6 @@ img, canvas { max-width: 100%; }
   object-fit: cover;
   display: block;
   filter: none;
-}
-
-.wrap-showcase__dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 28px;
-}
-.wrap-showcase__dots button {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background: var(--border);
-  cursor: pointer;
-  padding: 0;
-}
-.wrap-showcase__dots button.is-active {
-  background: var(--gold);
-  width: 22px;
-  border-radius: 5px;
 }
 
 .wrap-showcase__headline {
