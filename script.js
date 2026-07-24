@@ -3,19 +3,31 @@
 // ========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  initTopbar();
-  initReveal();
-  initCarousels();
-  initGallerySliders();
-  initVideoModal();
-  initPhotoModal();
-  initBackgroundVideoMotion();
-  initScrollSpy();
-  initBackToTop();
-  initCharts();
-  initCountUp();
-  initInquiryForm();
-  document.getElementById('year').textContent = new Date().getFullYear();
+  // 각 기능을 개별적으로 초기화합니다. 하나가 실패해도(예: 외부 스크립트 로딩 지연)
+  // 나머지 기능이 함께 멈추지 않도록 실행 단위를 분리합니다.
+  [
+    initTopbar,
+    initReveal,
+    initCarousels,
+    initGallerySliders,
+    initVideoModal,
+    initPhotoModal,
+    initBackgroundVideoMotion,
+    initScrollSpy,
+    initBackToTop,
+    initCharts,
+    initCountUp,
+    initInquiryForm,
+  ].forEach((fn) => {
+    try {
+      fn();
+    } catch (err) {
+      console.error(`[계탉닭] ${fn.name} 초기화 중 오류:`, err);
+    }
+  });
+
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
 // ---------- 배경 영상: 항상 자동재생 유지 ----------
@@ -323,8 +335,16 @@ function initCountUp() {
 
 // ---------- 차트 (Chart.js) ----------
 // 3월/4월 매출은 계탉닭 본점의 실제 일별 매출 데이터입니다 (2026.03 / 2026.04).
-function initCharts() {
-  if (typeof Chart === 'undefined') return;
+// CDN 로딩이 늦어질 수 있으므로, Chart가 아직 없으면 잠시 후 다시 시도합니다.
+function initCharts(retriesLeft = 10) {
+  if (typeof Chart === 'undefined') {
+    if (retriesLeft <= 0) {
+      console.error('[계탉닭] Chart.js를 불러오지 못해 매출/관광객 차트를 표시할 수 없습니다.');
+      return;
+    }
+    setTimeout(() => initCharts(retriesLeft - 1), 300);
+    return;
+  }
 
   const marchDaily = [
     4066000, 2418000, 2120000, 2511000, 1878000, 3046000, 4518000,
@@ -370,7 +390,7 @@ function initCharts() {
         }
       });
     },
-    { threshold: 0.3 }
+    { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
   );
 
   chartJobs.forEach((job) => {
