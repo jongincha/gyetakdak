@@ -292,30 +292,42 @@ function initCharts() {
   ];
   const aprilTop3 = [3, 10, 17]; // 4/4, 4/11, 4/18 (0-indexed)
 
-  renderDailyRevenueChart('revenueChartMarch', marchDaily, marchTop3);
-  renderDailyRevenueChart('revenueChartApril', aprilDaily, aprilTop3);
+  // 스크롤로 화면에 들어올 때 막대가 아래에서 위로 자라나는 효과가 보이도록,
+  // 차트는 페이지 로드 시 바로 그리지 않고 각 캔버스가 실제로 보일 때 생성합니다.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const touristEl = document.getElementById('touristChart');
-  if (touristEl) {
-    new Chart(touristEl, {
-      type: 'bar',
-      data: {
-        labels: ['2022', '2023', '2024', '2025', '2026(예상)'],
-        datasets: [
-          {
-            label: '방한 외국인 관광객 (만명, 예시)',
-            data: [320, 1100, 1650, 1894, 2000],
-            backgroundColor: '#c9a227',
-            borderRadius: 6,
-          },
-        ],
-      },
-      options: chartBaseOptions(),
-    });
+  const chartJobs = [
+    { id: 'revenueChartMarch', render: () => renderDailyRevenueChart('revenueChartMarch', marchDaily, marchTop3, reduceMotion) },
+    { id: 'revenueChartApril', render: () => renderDailyRevenueChart('revenueChartApril', aprilDaily, aprilTop3, reduceMotion) },
+    { id: 'touristChart', render: () => renderTouristChart(reduceMotion) },
+  ];
+
+  if (!('IntersectionObserver' in window)) {
+    chartJobs.forEach((job) => job.render());
+    return;
   }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const job = chartJobs.find((j) => j.id === entry.target.id);
+        if (job) {
+          job.render();
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  chartJobs.forEach((job) => {
+    const el = document.getElementById(job.id);
+    if (el) observer.observe(el);
+  });
 }
 
-function renderDailyRevenueChart(canvasId, dailyWon, top3Indexes) {
+function renderDailyRevenueChart(canvasId, dailyWon, top3Indexes, reduceMotion) {
   const el = document.getElementById(canvasId);
   if (!el) return;
 
@@ -335,13 +347,35 @@ function renderDailyRevenueChart(canvasId, dailyWon, top3Indexes) {
         },
       ],
     },
-    options: chartBaseOptions(),
+    options: chartBaseOptions(reduceMotion),
   });
 }
 
-function chartBaseOptions() {
+function renderTouristChart(reduceMotion) {
+  const touristEl = document.getElementById('touristChart');
+  if (!touristEl) return;
+
+  new Chart(touristEl, {
+    type: 'bar',
+    data: {
+      labels: ['2022', '2023', '2024', '2025', '2026(예상)'],
+      datasets: [
+        {
+          label: '방한 외국인 관광객 (만명, 예시)',
+          data: [320, 1100, 1650, 1894, 2000],
+          backgroundColor: '#c9a227',
+          borderRadius: 6,
+        },
+      ],
+    },
+    options: chartBaseOptions(reduceMotion),
+  });
+}
+
+function chartBaseOptions(reduceMotion) {
   return {
     responsive: true,
+    animation: reduceMotion ? false : { duration: 800, easing: 'easeOutQuart' },
     plugins: {
       legend: { labels: { color: '#6b5636' } },
     },
