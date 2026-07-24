@@ -50,6 +50,24 @@
   font-display: swap;
 }
 
+/* Y클로버체 — KT가 배포한 무료 상업용 폰트, noonnu.cc 미러 CDN.
+   제목(h1~h3)을 제외한 본문/설명 텍스트 전반의 기본 서체로 사용합니다.
+   로드 실패 시 Pretendard → 시스템 산세리프 순으로 자동 대체됩니다. */
+@font-face {
+  font-family: 'YClover';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/YClover-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'YClover';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/YClover-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -62,8 +80,8 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-    "Malgun Gothic", sans-serif;
+  font-family: 'YClover', Pretendard, -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
