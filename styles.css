@@ -11,6 +11,7 @@
   --red: #9c3b2a;
   --red-dark: #6e2a1d;
   --red-glow: rgba(156, 59, 42, 0.22);
+  --weekend-blue: #2f5f8a;
 
   --gold: #b8892e;
   --gold-ink: #7a5215;
@@ -570,6 +571,11 @@ img, canvas { max-width: 100%; }
   margin-bottom: 3px;
 }
 .calendar-grid td.is-top3 .day-num { color: var(--red); }
+/* 일요일(첫 칸)은 빨간색, 토요일(마지막 칸)은 파란색으로 표시 */
+.calendar-grid th:first-child { color: var(--red); }
+.calendar-grid th:last-child { color: var(--weekend-blue); }
+.calendar-grid td:first-child .day-num { color: var(--red); }
+.calendar-grid td:last-child .day-num { color: var(--weekend-blue); }
 .calendar-unit {
   font-size: 0.76rem;
   color: var(--text-faint);
