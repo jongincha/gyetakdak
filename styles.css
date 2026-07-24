@@ -193,24 +193,29 @@ img, canvas { max-width: 100%; }
   .photo-modal, .photo-modal__dialog { transition: none; }
 }
 
-/* ---------- 스크롤 진행도에 따라 텍스트가 작았다가 커지는 효과 ---------- */
-/* script.js의 initScrollGrowText()가 스크롤 위치에 맞춰 --grow-scale/
-   --grow-opacity 값을 실시간으로 갱신합니다(트랜지션 없이 스크롤과 1:1로
-   맞물려 움직이도록 함). word-break: keep-all로 모바일에서도 한글 단어
-   중간이 어색하게 끊기지 않도록 합니다. */
-.scroll-grow {
-  opacity: var(--grow-opacity, 1);
-  transform: scale(var(--grow-scale, 1));
-  transform-origin: left center;
+/* ---------- 문단/문장이 위에서 아래로 순차적으로 페이드인되는 효과 ---------- */
+/* script.js의 initStaggerReveal()이 .stagger-group의 직계 자식마다
+   .stagger-line 클래스와 순차 transition-delay(0.18s 간격)를 부여하고,
+   그룹이 스크롤로 화면에 들어오면 .is-visible을 붙여 위→아래 순서로
+   Fade-in Up 되도록 합니다. word-break: keep-all로 모바일에서도 한글
+   단어 중간이 어색하게 끊기지 않도록 합니다. */
+.stagger-line {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   word-break: keep-all;
   overflow-wrap: break-word;
-  will-change: transform, opacity;
+  will-change: opacity, transform;
 }
-.intro__copy.scroll-grow {
-  transform-origin: center;
+.intro__copy .stagger-line {
+  display: block;
+}
+.stagger-group.is-visible .stagger-line {
+  opacity: 1;
+  transform: translateY(0);
 }
 @media (prefers-reduced-motion: reduce) {
-  .scroll-grow { opacity: 1; transform: none; }
+  .stagger-line { opacity: 1; transform: none; transition: none; }
 }
 
 /* 버튼 */

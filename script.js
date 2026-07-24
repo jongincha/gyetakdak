@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   [
     initTopbar,
     initReveal,
-    initScrollGrowText,
+    initStaggerReveal,
     initCarousels,
     initGallerySliders,
     initFactoryGallery,
@@ -77,49 +77,41 @@ function initReveal() {
   targets.forEach((el) => observer.observe(el));
 }
 
-// ---------- 스크롤 진행도에 따라 텍스트가 작았다가 커지는 효과 ----------
-// 각 요소가 화면에 들어와서 중앙으로 이동하는 동안의 스크롤 진행도를 계산해
-// scale/opacity를 트랜지션 없이(스크롤과 1:1로) 실시간으로 갱신합니다.
-function initScrollGrowText() {
-  const targets = Array.from(document.querySelectorAll('.scroll-grow'));
-  if (!targets.length) return;
+// ---------- 문단/문장이 위에서 아래로 순차적으로 페이드인되는 효과 ----------
+// .stagger-group의 직계 자식(문장/줄)마다 순차 transition-delay를 부여한 뒤,
+// 그룹이 스크롤로 화면에 들어오면 한 번에 .is-visible을 붙여 위→아래
+// 순서대로 Fade-in Up 되도록 합니다.
+function initStaggerReveal() {
+  const groups = Array.from(document.querySelectorAll('.stagger-group'));
+  if (!groups.length) return;
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) return; // CSS의 reduced-motion 규칙이 scale(1)/opacity 1로 고정 처리함
+  const STEP_SECONDS = 0.18;
 
-  const MIN_SCALE = 0.8;
-  const MAX_SCALE = 1;
-
-  let ticking = false;
-
-  function update() {
-    ticking = false;
-    const viewportHeight = window.innerHeight;
-
-    targets.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      // 요소 상단이 화면 88% 지점에 들어올 때 진행도 0, 40% 지점을 지나면 진행도 1
-      const start = viewportHeight * 0.88;
-      const end = viewportHeight * 0.4;
-      const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
-
-      const scale = MIN_SCALE + (MAX_SCALE - MIN_SCALE) * progress;
-      const opacity = 0.35 + 0.65 * progress;
-
-      el.style.setProperty('--grow-scale', scale.toFixed(3));
-      el.style.setProperty('--grow-opacity', opacity.toFixed(3));
+  groups.forEach((group) => {
+    Array.from(group.children).forEach((line, i) => {
+      line.classList.add('stagger-line');
+      if (!reduceMotion) line.style.transitionDelay = `${(i * STEP_SECONDS).toFixed(2)}s`;
     });
+  });
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    groups.forEach((group) => group.classList.add('is-visible'));
+    return;
   }
 
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(update);
-  }
-
-  update();
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
+  );
+  groups.forEach((group) => observer.observe(group));
 }
 
 // ---------- 캐러셀 (히어로 슬라이드 / 성공사례) ----------
