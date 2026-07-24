@@ -119,6 +119,16 @@ img, canvas { max-width: 100%; }
   color: var(--text-soft);
   margin: 0;
 }
+/* max-width:none인 전체 폭 섹션(.section--marketing 등)에 바로 붙는 문단은
+   화면 가장자리에 글자가 붙어 잘려 보이지 않도록 자체 여백을 둠 */
+.section--reviews > .section__sub,
+.section--marketing > .section__sub,
+.section--map > .section__sub {
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 24px;
+}
 
 .eyebrow {
   display: inline-block;
@@ -388,8 +398,8 @@ img, canvas { max-width: 100%; }
   align-items: center;
 }
 .brand-media { min-width: 0; }
-.brand-points { display: grid; gap: 22px; }
-.brand-points li { display: grid; gap: 4px; }
+.brand-points { display: grid; gap: 22px; min-width: 0; }
+.brand-points li { display: grid; gap: 4px; min-width: 0; }
 .brand-points strong { color: var(--gold-ink); font-size: 1.05rem; }
 .brand-points span { color: var(--text-soft); }
 @media (max-width: 800px) {
