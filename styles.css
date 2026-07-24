@@ -38,6 +38,18 @@
   font-display: swap;
 }
 
+/* 배민 을지로체(BMEULJIRO) — 배달의민족(우아한형제들) 배포 무료 폰트, noonnu.cc
+   미러 CDN. 획마다 힘찬 시작과 붓의 날카로운 끝처리가 특징인 간판 캘리그라피
+   서체로, 섹션 타이틀에 역동적인 느낌을 주는 데 사용합니다.
+   로드 실패 시 'Noto Sans KR' → sans-serif 순으로 자동 대체됩니다. */
+@font-face {
+  font-family: 'BMEULJIRO';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BMEULJIRO.woff') format('woff');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -114,6 +126,15 @@ img, canvas { max-width: 100%; }
 .section__head h2 {
   font-size: clamp(1.6rem, 3vw, 2.3rem);
   margin: 6px 0 10px;
+  font-family: 'BMEULJIRO', 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+/* 매출/SNS 후기 타이틀만 붉은색으로 강조 */
+.section--revenue .section__head h2,
+.section--reviews .section__head h2 {
+  color: var(--red);
 }
 .section__sub {
   color: var(--text-soft);
