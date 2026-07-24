@@ -427,14 +427,16 @@ img, canvas { max-width: 100%; }
 }
 .factory-gallery__thumbs {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 6px;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   padding-bottom: 2px;
 }
 .factory-gallery__thumb {
   flex: 0 0 auto;
-  width: 60px;
-  height: 60px;
+  width: 20px;
+  height: 56px;
   border-radius: 8px;
   overflow: hidden;
   border: 2px solid transparent;
@@ -442,11 +444,15 @@ img, canvas { max-width: 100%; }
   background: none;
   cursor: pointer;
   opacity: 0.55;
-  transition: opacity 0.25s ease, border-color 0.25s ease;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, border-color 0.25s ease;
 }
 .factory-gallery__thumb.is-active {
+  width: 100px;
   opacity: 1;
   border-color: var(--gold);
+}
+@media (prefers-reduced-motion: reduce) {
+  .factory-gallery__thumb { transition: opacity 0.25s ease, border-color 0.25s ease; }
 }
 .factory-gallery__thumb img {
   width: 100%;
