@@ -143,7 +143,7 @@ img, canvas { max-width: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal--left, .reveal--right, .reveal--zoom { opacity: 1; transform: none; transition: none; }
-  .hero__video, .intro__video-el { display: none; }
+  /* 영상 자체를 숨기지 않고, script.js에서 재생만 멈춰 정지 화면으로 보여줍니다. */
 }
 
 /* 버튼 */
@@ -344,6 +344,7 @@ img, canvas { max-width: 100%; }
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border);
+  background: var(--text);
 }
 .intro__video-frame iframe {
   position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
@@ -353,7 +354,7 @@ img, canvas { max-width: 100%; }
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .intro__copy {
   font-size: 1.05rem;
