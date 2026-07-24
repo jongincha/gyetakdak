@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollSpy();
   initBackToTop();
   initCharts();
+  initCountUp();
   initInquiryForm();
   document.getElementById('year').textContent = new Date().getFullYear();
 });
@@ -267,6 +268,57 @@ function initBackToTop() {
   btn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+}
+
+// ---------- 통계 숫자 카운트업 애니메이션 ----------
+// 스크롤로 화면에 들어올 때, 낮은 숫자에서 실제 값까지 빠르게 올라가며 표시합니다.
+function initCountUp() {
+  const targets = document.querySelectorAll('.stat-tile__value[data-count-to]');
+  if (!targets.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function format(value, suffix) {
+    return `${Math.round(value).toLocaleString('ko-KR')}${suffix}`;
+  }
+
+  function animate(el) {
+    const to = Number(el.dataset.countTo);
+    const suffix = el.dataset.countSuffix || '';
+    if (reduceMotion || Number.isNaN(to)) {
+      el.textContent = format(to, suffix);
+      return;
+    }
+
+    const duration = 1100;
+    const start = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic: 처음엔 빠르게, 끝에서 서서히
+      el.textContent = format(to * eased, suffix);
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(animate);
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animate(entry.target);
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  targets.forEach((el) => observer.observe(el));
 }
 
 // ---------- 차트 (Chart.js) ----------
