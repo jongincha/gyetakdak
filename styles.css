@@ -435,7 +435,7 @@ img, canvas { max-width: 100%; }
 }
 .factory-gallery__thumb {
   flex: 0 0 auto;
-  width: 30px;
+  width: 46px;
   height: 84px;
   border-radius: 8px;
   overflow: hidden;
