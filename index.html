@@ -19,9 +19,8 @@
 
 <!-- ================= 상단 고정 네비 ================= -->
 <header class="topbar" id="topbar">
-  <!-- TODO: 아이콘 자리는 실제 계탉닭 로고(닭 일러스트) 이미지 파일로 교체 -->
   <a href="#hero" class="topbar__logo">
-    <span class="topbar__logo-icon" aria-hidden="true">🐔</span>
+    <img class="topbar__logo-icon" src="https://res.cloudinary.com/hb5bdcuw/image/upload/v1784890341/header_logo_02_ityowf.png" alt="계탉닭" loading="eager" />
     <span class="topbar__logo-text">계탉닭</span>
   </a>
   <nav class="topbar__nav">
@@ -449,6 +448,26 @@
         <p class="fan-card__source">Google 리뷰</p>
         <p class="fan-card__text">"Best dakgalbi in town, worth the wait"</p>
       </div>
+      <div class="fan-card">
+        <div class="ph ph--square"><span>후기 캡처</span></div>
+        <p class="fan-card__source">카카오맵 리뷰</p>
+        <p class="fan-card__text">"직원분들도 친절하고 고기 질이 확실히 다르네요"</p>
+      </div>
+      <div class="fan-card">
+        <div class="ph ph--square"><span>후기 캡처</span></div>
+        <p class="fan-card__source">배달의민족</p>
+        <p class="fan-card__text">"포장해도 맛이 안 변해서 자주 시켜먹어요"</p>
+      </div>
+      <div class="fan-card">
+        <div class="ph ph--square"><span>후기 캡처</span></div>
+        <p class="fan-card__source">유튜브 댓글</p>
+        <p class="fan-card__text">"영상 보고 갔는데 웨이팅 걸어서라도 먹을 맛"</p>
+      </div>
+      <div class="fan-card">
+        <div class="ph ph--square"><span>후기 캡처</span></div>
+        <p class="fan-card__source">트립어드바이저</p>
+        <p class="fan-card__text">"Unique flavor combination, highly recommend"</p>
+      </div>
     </div>
     <div class="fan-nav" id="reviewFanNav" hidden>
       <button type="button" class="fan-nav__arrow" data-fan-prev aria-label="이전 후기">
@@ -737,11 +756,10 @@
   <!-- 전화·카카오톡 상담 버튼은 우선 숨김 처리 (필요 시 floating-cta__btn--hidden 클래스만 제거) -->
   <a href="tel:0200000000" class="floating-cta__btn floating-cta__btn--hidden" aria-label="전화상담"><span>☎</span></a>
   <a href="https://pf.kakao.com/" target="_blank" rel="noopener" class="floating-cta__btn floating-cta__btn--hidden" aria-label="카카오톡 상담"><span>💬</span></a>
-  <!-- TODO: 아이콘 자리는 실제 계탉닭 로고(닭 일러스트) 이미지 파일로 교체 -->
   <button type="button" class="back-to-top" id="backToTop" aria-label="맨 위로">
     <span class="back-to-top__arrow" aria-hidden="true">︿</span>
     <span class="back-to-top__label">누르면<br />올라가요</span>
-    <span class="back-to-top__icon" aria-hidden="true">🐔</span>
+    <span class="back-to-top__icon"><img src="https://res.cloudinary.com/hb5bdcuw/image/upload/v1784890340/brand_logo_01_axhply.png" alt="" loading="lazy" /></span>
   </button>
   <a href="#inquiry" class="floating-cta__btn floating-cta__btn--primary" aria-label="창업문의">
     <svg class="floating-cta__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">

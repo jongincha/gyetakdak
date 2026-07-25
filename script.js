@@ -372,22 +372,30 @@ function initReviewFanCarousel(retriesLeft = 10) {
     { rot: 21, scale: 0.7756, x: 30, y: 7.3, zIndex: 1 },
   ];
 
+  // 아래 두 함수의 clamp() 범위는 styles.css의 .fan-card width / .fan-layout
+  // height에 쓰인 clamp() 값과 정확히 동일합니다. 카드 간격(FAN_POSITIONS의
+  // x/y)이 실제 카드 크기에 비례해서 늘어나고 줄어들어야, 뷰포트 폭이
+  // 바뀌어도 카드 사이가 벌어지거나 서로 뭉개지지 않고 자연스럽게 겹칩니다.
+  function getCardWidthPx(width) {
+    const minPx = 7 * 16; // 7rem
+    const maxPx = 12.5 * 16; // 12.5rem
+    return Math.min(Math.max(width * 0.15, minPx), maxPx);
+  }
+
   function getResponsiveMultiplier(width) {
-    if (width < 480) return 0.28;
-    if (width < 640) return 0.38;
-    if (width < 768) return 0.5;
-    if (width < 1024) return 0.75;
-    return 1.0;
+    const REFERENCE_WIDTH_PX = 192; // .fan-card width clamp()의 데스크톱 기준값
+    return getCardWidthPx(width) / REFERENCE_WIDTH_PX;
+  }
+
+  function getIdealLayoutHeightPx(width) {
+    const minPx = 24 * 16; // .fan-layout height clamp() 최소값
+    const maxPx = 46 * 16; // .fan-layout height clamp() 최대값
+    return Math.min(Math.max(width * 0.44, minPx), maxPx);
   }
 
   function getHeightMultiplier(width) {
-    let idealPx;
-    if (width < 480) idealPx = 22 * 16;
-    else if (width < 640) idealPx = 26 * 16;
-    else if (width < 768) idealPx = 28 * 16;
-    else if (width < 1024) idealPx = 34 * 16;
-    else idealPx = 38 * 16;
-    const available = window.innerHeight * 0.7;
+    const idealPx = getIdealLayoutHeightPx(width);
+    const available = window.innerHeight * 0.72;
     if (available >= idealPx) return 1;
     return available / idealPx;
   }

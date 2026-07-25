@@ -314,8 +314,9 @@ img, canvas { max-width: 100%; }
   color: var(--gold-ink);
 }
 .topbar__logo-icon {
-  font-size: 1.4rem;
-  line-height: 1;
+  height: 32px;
+  width: auto;
+  object-fit: contain;
 }
 .topbar__logo-text {
   font-family: "Gamja Flower", "Noto Serif KR", serif;
@@ -847,27 +848,26 @@ img, canvas { max-width: 100%; }
   width: 100%;
   padding: 8px 24px 0;
 }
+/* 카드 크기/컨테이너 높이 모두 vw 기반 clamp()로 뷰포트 폭에 맞춰 부드럽게
+   커지고 작아지도록 함 (특정 브레이크포인트에서 갑자기 튀는 현상 방지).
+   script.js의 getIdealLayoutHeightPx()/getResponsiveMultiplier()가 아래
+   clamp() 값과 같은 범위를 참조해 카드 간 간격이 항상 이 카드 크기에
+   비례하도록(=카드끼리 벌어지거나 겹침이 어색해지지 않도록) 맞춰져 있습니다. */
 .fan-layout {
   position: relative;
   width: 100%;
-  max-width: 70rem;
-  height: 38rem;
+  max-width: 82rem;
+  height: clamp(24rem, 44vw, 46rem);
 }
-@media (max-width: 1023px) { .fan-layout { height: 34rem; } }
-@media (max-width: 767px)  { .fan-layout { height: 28rem; } }
-@media (max-width: 639px)  { .fan-layout { height: 26rem; } }
-@media (max-width: 479px)  { .fan-layout { height: 22rem; } }
 
 .fan-card {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 0;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  width: 8.5rem;
-  height: 13.5rem;
-  margin-top: -6.75rem;
-  margin-left: -4.25rem;
+  width: clamp(7rem, 15vw, 12.5rem);
+  aspect-ratio: 5 / 8;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -877,10 +877,6 @@ img, canvas { max-width: 100%; }
   opacity: 0;
   cursor: default;
 }
-@media (max-width: 1023px) { .fan-card { width: 7.6rem; height: 12.1rem; margin-top: -6.05rem; margin-left: -3.8rem; } }
-@media (max-width: 767px)  { .fan-card { width: 6.3rem; height: 9.9rem;  margin-top: -4.95rem; margin-left: -3.15rem; } }
-@media (max-width: 639px)  { .fan-card { width: 5.8rem; height: 9.2rem;  margin-top: -4.6rem;  margin-left: -2.9rem; } }
-@media (max-width: 479px)  { .fan-card { width: 4.9rem; height: 7.8rem;  margin-top: -3.9rem;  margin-left: -2.45rem; padding: 7px; } }
 
 .fan-card .ph { flex: 1; padding: 8px; font-size: 0.6rem; border-radius: 8px; }
 .fan-card__source {
@@ -1225,12 +1221,13 @@ img, canvas { max-width: 100%; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--bg-raised);
-  border: 1px solid var(--border);
-  font-size: 1.2rem;
+  width: 38px;
+  height: 38px;
+}
+.back-to-top__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /* ---------- 사진 갤러리 슬라이더 ---------- */
