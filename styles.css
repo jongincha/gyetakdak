@@ -3,16 +3,19 @@
    ========================================================================== */
 
 :root {
-  --bg: #f3e7ce;
-  --bg-raised: #fbf4e6;
-  --bg-card: #f7eedd;
-  --border: #d8c39a;
+  /* "포레스트 그린 & 딥 버건디/레드" 팔레트 — 물빠진 베이지/카키 톤을
+     걷어내고 또렷한 레드/그린 대비로 F&B 브랜드의 식욕·신선함·신뢰감을
+     동시에 표현 */
+  --bg: #fafaf9;
+  --bg-raised: #ffffff;
+  --bg-card: #ffffff;
+  --border: #e5e2dc;
 
-  --red: #9c3b2a;
-  --red-dark: #6e2a1d;
-  --red-glow: rgba(156, 59, 42, 0.22);
+  --red: #dc2626;
+  --red-dark: #b91c1c;
+  --red-glow: rgba(220, 38, 38, 0.25);
   --weekend-blue: #2f5f8a;
-  --top3-red: #d32f2f;
+  --top3-red: #dc2626;
 
   --gold: #b8892e;
   --gold-ink: #7a5215;
@@ -22,12 +25,11 @@
   --text-faint: #9c8563;
 
   /* 섹션별 컬러 리듬(라이트/다크 교차)을 위한 팔레트 */
-  --vanilla: #fdfbf7;
-  --light-beige: #f4efea;
-  --deep-green: #1c2826;
-  --deep-charcoal: #2b2625;
-  --deep-red: #8b0000;
-  --terracotta: #a52a2a;
+  --vanilla: #fafaf9;
+  --light-beige: #f5f3ee;
+  --deep-green: #064e3b;
+  --deep-red: #b91c1c;
+  --terracotta: #dc2626;
   --light-gold: #e9cf8f;
 
   --radius: 14px;
@@ -153,7 +155,7 @@ img, canvas { max-width: 100%; }
 .section--reviews { background: var(--light-beige); }
 .section--tourist { background: var(--deep-green); border-top-color: rgba(255,255,255,0.12); }
 .section--operation { background: var(--vanilla); }
-.section--cases   { background: var(--deep-charcoal); border-top-color: rgba(255,255,255,0.12); }
+.section--cases   { background: var(--deep-red); border-top-color: rgba(255,255,255,0.14); }
 .section--marketing { background: var(--light-beige); }
 .section--map     { background: var(--vanilla); }
 .section--process { background: var(--light-beige); }
@@ -397,7 +399,7 @@ img, canvas { max-width: 100%; }
   font-size: 0.9rem;
   border: 1px dashed var(--border);
   border-radius: var(--radius);
-  background: repeating-linear-gradient(135deg, var(--bg-raised) 0 12px, #efe1bf 12px 24px);
+  background: repeating-linear-gradient(135deg, var(--bg-raised) 0 12px, var(--border) 12px 24px);
   padding: 24px;
 }
 .ph--wide { aspect-ratio: 16 / 9; }
@@ -415,13 +417,13 @@ img, canvas { max-width: 100%; }
   justify-content: space-between;
   gap: 16px;
   padding: 14px 24px;
-  background: rgba(243, 231, 206, 0.75);
+  background: rgba(250, 250, 249, 0.78);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 .topbar.is-scrolled {
-  background: rgba(243, 231, 206, 0.95);
+  background: rgba(250, 250, 249, 0.95);
   border-bottom-color: var(--border);
 }
 .topbar__logo {
@@ -868,7 +870,7 @@ img, canvas { max-width: 100%; }
 
 /* 매출 상위 3일: 요일 색상보다 우선해서 강조 표시 */
 .calendar-grid td.is-top3 {
-  background: rgba(211, 47, 47, 0.1);
+  background: rgba(220, 38, 38, 0.1);
   border-color: var(--top3-red);
   color: var(--top3-red);
   font-weight: 700;
@@ -1201,16 +1203,16 @@ img, canvas { max-width: 100%; }
 /* 배경색은 위쪽 섹션별 컬러 리듬 규칙(.section--cost)에서 지정. 버건디
    헤더로 가맹비용 표를 더 선명하게 강조 */
 .data-table--cost thead th {
-  background: #2b0c0c;
+  background: var(--red-dark);
   color: #fff;
   border-bottom: none;
 }
 .data-table--cost th,
-.data-table--cost td { border-bottom: 1px solid #e0e0e0; }
+.data-table--cost td { border-bottom: 1px solid var(--border); }
 .data-table--cost td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
 .cost-note {
-  background: #fff3e0;
-  border: 1px solid #ffe0b2;
+  background: rgba(220, 38, 38, 0.07);
+  border: 1px solid rgba(220, 38, 38, 0.22);
   border-radius: var(--radius);
   padding: 18px 20px;
   color: var(--top3-red);
@@ -1226,7 +1228,7 @@ img, canvas { max-width: 100%; }
 /* ---------- 14. 창업 문의 ---------- */
 /* 배경색(딥 레드)은 위쪽 섹션별 컬러 리듬 규칙(.section--inquiry)에서 지정.
    화이트 폼 카드를 얹어 가독성과 임팩트를 동시에 확보 */
-.section--inquiry .eyebrow { color: #ffe0b2; }
+.section--inquiry .eyebrow { color: var(--light-gold); }
 .section--inquiry .section__head h2 { color: #fff; }
 .section--inquiry .section__sub { color: rgba(255, 255, 255, 0.88); }
 .inquiry-form {
