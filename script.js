@@ -344,15 +344,42 @@ function initFactoryGallery() {
 // GSAP으로 카드를 부채꼴로 배치하고, 호버 시 카드가 좌우로 밀리며
 // 반응하는 인터랙션을 구현합니다. GSAP CDN 로딩이 늦어질 수 있으므로
 // initCharts()와 동일하게 재시도 방식으로 기다립니다.
+// 메인/미니 두 캐러셀 모두 동일한 로직을 쓰되, 카드 크기 기준(clamp() 범위)만
+// styles.css의 .fan-layout(--mini) / .fan-card(--mini 하위) 값과 맞춰 다르게 줍니다.
+const FAN_CAROUSEL_CONFIGS = [
+  {
+    containerId: 'reviewFan',
+    navId: 'reviewFanNav',
+    dotsId: 'reviewFanDots',
+    card: { minRem: 11, maxRem: 19, remOffset: 8.2, vwCoeff: 12 },
+    layout: { minRem: 24, maxRem: 38, remOffset: 19.1, vwCoeff: 21 },
+    spacingScale: 1,
+  },
+  {
+    containerId: 'reviewFanMini',
+    navId: null,
+    dotsId: null,
+    card: { minRem: 6, maxRem: 10.5, remOffset: 4.5, vwCoeff: 6.6 },
+    layout: { minRem: 13, maxRem: 21, remOffset: 10.5, vwCoeff: 11.5 },
+    // FAN_POSITIONS/getSlotConfig의 x·y 간격 상수는 메인 캐러셀의 카드
+    // 크기(최대 19rem) 기준으로 맞춰져 있어, 더 작은 미니 카드(최대
+    // 10.5rem)에 그대로 쓰면 카드끼리 벌어져 보입니다. 카드 최대 너비
+    // 비율만큼 간격도 함께 축소해 카드끼리 자연스럽게 겹치도록 함.
+    spacingScale: 10.5 / 19,
+  },
+];
+
 function initReviewFanCarousel(retriesLeft = 10) {
-  const container = document.getElementById('reviewFan');
-  if (!container) return;
+  const containers = FAN_CAROUSEL_CONFIGS.map((cfg) => document.getElementById(cfg.containerId)).filter(Boolean);
+  if (!containers.length) return;
 
   if (typeof gsap === 'undefined') {
     if (retriesLeft <= 0) {
       console.error('[계탉닭] GSAP 로딩 실패로 후기 카드를 정적으로 표시합니다.');
-      container.querySelectorAll('.fan-card').forEach((card) => {
-        card.style.opacity = '1';
+      containers.forEach((container) => {
+        container.querySelectorAll('.fan-card').forEach((card) => {
+          card.style.opacity = '1';
+        });
       });
       return;
     }
@@ -360,6 +387,13 @@ function initReviewFanCarousel(retriesLeft = 10) {
     return;
   }
 
+  FAN_CAROUSEL_CONFIGS.forEach((cfg) => {
+    const container = document.getElementById(cfg.containerId);
+    if (container) setupFanCarousel(container, cfg);
+  });
+}
+
+function setupFanCarousel(container, cfg) {
   const MAX_VISIBLE = 7;
   const HALF = 3;
   const FAN_POSITIONS = [
@@ -372,34 +406,35 @@ function initReviewFanCarousel(retriesLeft = 10) {
     { rot: 21, scale: 0.7756, x: 30, y: 7.3, zIndex: 1 },
   ];
 
-  // 아래 두 함수의 clamp() 범위는 styles.css의 .fan-card width / .fan-layout
-  // height에 쓰인 clamp() 값과 정확히 동일합니다. 카드 간격(FAN_POSITIONS의
-  // x/y)이 실제 카드 크기에 비례해서 늘어나고 줄어들어야, 뷰포트 폭이
-  // 바뀌어도 카드 사이가 벌어지거나 서로 뭉개지지 않고 자연스럽게 겹칩니다.
+  // 아래 두 함수의 clamp() 범위(cfg.card/cfg.layout)는 styles.css의 .fan-card
+  // width / .fan-layout height에 쓰인 clamp() 값과 정확히 동일합니다. 카드
+  // 간격(FAN_POSITIONS의 x/y)이 실제 카드 크기에 비례해서 늘어나고 줄어들어야,
+  // 뷰포트 폭이 바뀌어도 카드 사이가 벌어지거나 서로 뭉개지지 않고
+  // 자연스럽게 겹칩니다.
   function getCardWidthPx(width) {
-    const minPx = 11 * 16; // .fan-card width clamp() 최소값(11rem)
-    const maxPx = 19 * 16; // .fan-card width clamp() 최대값(19rem)
-    const preferred = 8.2 * 16 + width * 0.12; // clamp()의 "8.2rem + 12vw"와 동일
+    const minPx = cfg.card.minRem * 16;
+    const maxPx = cfg.card.maxRem * 16;
+    const preferred = cfg.card.remOffset * 16 + width * (cfg.card.vwCoeff / 100);
     return Math.min(Math.max(preferred, minPx), maxPx);
   }
 
   function getResponsiveMultiplier(width) {
-    const REFERENCE_WIDTH_PX = 19 * 16; // .fan-card width clamp() 최댓값 기준
-    return getCardWidthPx(width) / REFERENCE_WIDTH_PX;
+    const REFERENCE_WIDTH_PX = cfg.card.maxRem * 16;
+    return (getCardWidthPx(width) / REFERENCE_WIDTH_PX) * cfg.spacingScale;
   }
 
   function getIdealLayoutHeightPx(width) {
-    const minPx = 24 * 16; // .fan-layout height clamp() 최소값
-    const maxPx = 38 * 16; // .fan-layout height clamp() 최대값
-    const preferred = 19.1 * 16 + width * 0.21; // clamp()의 "19.1rem + 21vw"와 동일
+    const minPx = cfg.layout.minRem * 16;
+    const maxPx = cfg.layout.maxRem * 16;
+    const preferred = cfg.layout.remOffset * 16 + width * (cfg.layout.vwCoeff / 100);
     return Math.min(Math.max(preferred, minPx), maxPx);
   }
 
   function getHeightMultiplier(width) {
     const idealPx = getIdealLayoutHeightPx(width);
     const available = window.innerHeight * 0.72;
-    if (available >= idealPx) return 1;
-    return available / idealPx;
+    const shrink = available >= idealPx ? 1 : available / idealPx;
+    return shrink * cfg.spacingScale;
   }
 
   function getSlotConfig(totalCards, slot) {
@@ -422,8 +457,8 @@ function initReviewFanCarousel(retriesLeft = 10) {
   if (!totalCards) return;
 
   const needsPagination = totalCards > MAX_VISIBLE;
-  const navEl = document.getElementById('reviewFanNav');
-  const dotsEl = document.getElementById('reviewFanDots');
+  const navEl = cfg.navId ? document.getElementById(cfg.navId) : null;
+  const dotsEl = cfg.dotsId ? document.getElementById(cfg.dotsId) : null;
   const prevBtn = navEl ? navEl.querySelector('[data-fan-prev]') : null;
   const nextBtn = navEl ? navEl.querySelector('[data-fan-next]') : null;
 
