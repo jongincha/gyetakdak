@@ -199,11 +199,18 @@ img, canvas { max-width: 100%; }
 .section--cases .info-card p { color: rgba(253, 251, 247, 0.85); }
 .section--brand .brand-points strong { color: var(--light-gold); }
 .section--brand .brand-points span { color: rgba(253, 251, 247, 0.85); }
-.section--tourist .chart-note,
 .section--cases .hint {
   color: rgba(253, 251, 247, 0.7);
   border-left-color: var(--light-gold);
 }
+/* 다크 섹션 안에서도 자체 배경(흰색 카드/알약형 칩)을 가진 컴포넌트는
+   일반 라이트 모드와 같은 어두운 텍스트를 유지해야 합니다. 섹션
+   전체에 준 밝은 텍스트 색이 그대로 상속되면 흰 배경 위에 흰 글씨가
+   되어 안 보이는 문제가 생기기 때문입니다. (.chart-note는 흰색
+   .tourist-chart 패널 안에 있으므로 원래 색 그대로 둡니다) */
+.section--tourist .flow span:not(.flow__arrow) { color: var(--text-soft); }
+.section--tourist .flow__arrow { color: var(--text-faint); }
+.section--cases .case-card { color: var(--text); }
 .section--reviews .section__head,
 .section--marketing .section__head,
 .section--map .section__head,
