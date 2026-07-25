@@ -862,7 +862,11 @@ img, canvas { max-width: 100%; }
   height: clamp(24rem, 19.1rem + 21vw, 38rem);
   perspective: 1200px;
   transform-style: preserve-3d;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
 }
+.fan-layout.is-dragging { cursor: grabbing; }
 
 .fan-card {
   position: absolute;
@@ -881,7 +885,7 @@ img, canvas { max-width: 100%; }
   overflow: hidden;
   box-shadow: 0 20px 25px -5px rgba(46, 32, 19, 0.28), 0 8px 10px -6px rgba(46, 32, 19, 0.22);
   opacity: 0;
-  cursor: default;
+  cursor: pointer;
   transform-origin: center bottom;
 }
 
