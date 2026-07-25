@@ -638,8 +638,76 @@ function initReviewFanCarousel(retriesLeft = 10) {
     render();
   }
 
+  // 옆에 있는 카드를 클릭하면 그 카드가 바로 가운데로 오도록 이동
+  function goToIndex(targetIndex, dir) {
+    if (isAnimating || targetIndex === centerIndex) return;
+    isAnimating = true;
+    direction = dir;
+    centerIndex = targetIndex;
+    render();
+  }
+
   if (prevBtn) prevBtn.addEventListener('click', () => cycle('left'));
   if (nextBtn) nextBtn.addEventListener('click', () => cycle('right'));
+
+  // 카드 클릭 시 해당 카드를 가운데로 정렬 (드래그/스와이프 직후의 클릭은 무시)
+  container.addEventListener('click', (e) => {
+    if (cardDragMoved) {
+      cardDragMoved = false;
+      return;
+    }
+    if (isAnimating) return;
+    const cardEl = e.target.closest('.fan-card');
+    if (!cardEl) return;
+    const cardIndex = cardElements.indexOf(cardEl);
+    if (cardIndex === -1 || cardIndex === centerIndex) return;
+
+    const visibleMap = getVisibleMap(centerIndex);
+    const slot = visibleMap.get(cardIndex);
+    if (slot === undefined) return;
+    const centerSlot = needsPagination ? HALF : totalCards >> 1;
+    if (slot === centerSlot) return;
+    goToIndex(cardIndex, slot > centerSlot ? 'right' : 'left');
+  });
+
+  // 마우스 드래그 / 터치 스와이프로 카드 넘기기
+  let cardDragActive = false;
+  let cardDragMoved = false;
+  let cardDragStartX = 0;
+  const SWIPE_THRESHOLD = 40;
+  const DRAG_MOVE_THRESHOLD = 10;
+
+  function onCardDragStart(clientX) {
+    if (isAnimating || !needsPagination) return;
+    cardDragActive = true;
+    cardDragMoved = false;
+    cardDragStartX = clientX;
+    container.classList.add('is-dragging');
+  }
+  function onCardDragMove(clientX) {
+    if (!cardDragActive) return;
+    if (Math.abs(clientX - cardDragStartX) > DRAG_MOVE_THRESHOLD) cardDragMoved = true;
+  }
+  function onCardDragEnd(clientX) {
+    if (!cardDragActive) return;
+    cardDragActive = false;
+    container.classList.remove('is-dragging');
+    const deltaX = clientX - cardDragStartX;
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+      cycle(deltaX < 0 ? 'right' : 'left');
+    }
+  }
+
+  container.addEventListener('touchstart', (e) => onCardDragStart(e.touches[0].clientX), { passive: true });
+  container.addEventListener('touchmove', (e) => onCardDragMove(e.touches[0].clientX), { passive: true });
+  container.addEventListener('touchend', (e) => onCardDragEnd(e.changedTouches[0].clientX));
+
+  container.addEventListener('mousedown', (e) => {
+    onCardDragStart(e.clientX);
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', (e) => onCardDragMove(e.clientX));
+  window.addEventListener('mouseup', (e) => onCardDragEnd(e.clientX));
 
   render();
 }
