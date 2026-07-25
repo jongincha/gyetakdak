@@ -377,20 +377,22 @@ function initReviewFanCarousel(retriesLeft = 10) {
   // x/y)이 실제 카드 크기에 비례해서 늘어나고 줄어들어야, 뷰포트 폭이
   // 바뀌어도 카드 사이가 벌어지거나 서로 뭉개지지 않고 자연스럽게 겹칩니다.
   function getCardWidthPx(width) {
-    const minPx = 7 * 16; // 7rem
-    const maxPx = 12.5 * 16; // 12.5rem
-    return Math.min(Math.max(width * 0.15, minPx), maxPx);
+    const minPx = 11 * 16; // .fan-card width clamp() 최소값(11rem)
+    const maxPx = 19 * 16; // .fan-card width clamp() 최대값(19rem)
+    const preferred = 8.2 * 16 + width * 0.12; // clamp()의 "8.2rem + 12vw"와 동일
+    return Math.min(Math.max(preferred, minPx), maxPx);
   }
 
   function getResponsiveMultiplier(width) {
-    const REFERENCE_WIDTH_PX = 192; // .fan-card width clamp()의 데스크톱 기준값
+    const REFERENCE_WIDTH_PX = 19 * 16; // .fan-card width clamp() 최댓값 기준
     return getCardWidthPx(width) / REFERENCE_WIDTH_PX;
   }
 
   function getIdealLayoutHeightPx(width) {
     const minPx = 24 * 16; // .fan-layout height clamp() 최소값
-    const maxPx = 46 * 16; // .fan-layout height clamp() 최대값
-    return Math.min(Math.max(width * 0.44, minPx), maxPx);
+    const maxPx = 38 * 16; // .fan-layout height clamp() 최대값
+    const preferred = 19.1 * 16 + width * 0.21; // clamp()의 "19.1rem + 21vw"와 동일
+    return Math.min(Math.max(preferred, minPx), maxPx);
   }
 
   function getHeightMultiplier(width) {
