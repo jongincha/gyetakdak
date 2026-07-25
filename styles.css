@@ -934,18 +934,35 @@ img, canvas { max-width: 100%; }
   display: block;
 }
 
-/* SNS 후기 타이틀 옆의 미니 캐러셀. 아래 메인 캐러셀과 같은 비율(약 55%)로
-   축소한 clamp() 값을 써서 화면 크기에 따라 함께 자연스럽게 커지고
-   작아지도록 함. script.js에서 이 값과 동일한 배율 기준으로 카드
-   간격을 계산합니다. */
-.fan-layout--mini {
-  max-width: 26rem;
-  height: clamp(13rem, 10.5rem + 11.5vw, 21rem);
+/* SNS 후기 타이틀 옆의 미니 후기 사진 2장. 부채꼴 캐러셀은 카드가
+   2장뿐이면 배치가 한쪽으로 치우쳐 어색해서, 사진이 크고 또렷하게
+   보이도록 단순한 나란히 배치로 구성함. */
+.mini-review-photos {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
 }
-.fan-layout--mini .fan-card {
-  width: clamp(6rem, 4.5rem + 6.6vw, 10.5rem);
-  border-radius: 0.9rem;
-  box-shadow: 0 12px 18px -4px rgba(46, 32, 19, 0.26), 0 5px 8px -4px rgba(46, 32, 19, 0.2);
+.mini-review-photos__item {
+  width: clamp(9rem, 12vw, 13.5rem);
+  aspect-ratio: 3 / 4;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 28px rgba(46, 32, 19, 0.24);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.mini-review-photos__item:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 22px 36px rgba(46, 32, 19, 0.3);
+}
+.mini-review-photos__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+@media (max-width: 480px) {
+  .mini-review-photos__item { width: clamp(7.5rem, 34vw, 10rem); }
 }
 
 .fan-nav {
