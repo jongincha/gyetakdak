@@ -120,8 +120,7 @@ img, canvas { max-width: 100%; }
 .section--operation,
 .section--cases,
 .section--process,
-.section--cost,
-.section--inquiry { border-top: 1px solid var(--border); }
+.section--cost { border-top: 1px solid var(--border); }
 
 .section--reviews,
 .section--marketing,
@@ -131,9 +130,15 @@ img, canvas { max-width: 100%; }
   border-top: 1px solid var(--border);
   overflow-x: hidden;
 }
+.section--inquiry {
+  max-width: none;
+  padding: 96px 0;
+  overflow-x: hidden;
+}
 .section--reviews .section__head,
 .section--marketing .section__head,
-.section--map .section__head {
+.section--map .section__head,
+.section--inquiry .section__head {
   max-width: var(--container);
   margin: 0 auto 48px;
   padding: 0 24px;
@@ -408,7 +413,8 @@ img, canvas { max-width: 100%; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(30, 20, 12, 0.35) 0%, rgba(30, 20, 12, 0.12) 35%, rgba(30, 20, 12, 0.55) 100%);
+    linear-gradient(180deg, rgba(18, 18, 18, 0.45) 0%, rgba(18, 18, 18, 0.15) 35%, rgba(18, 18, 18, 0.62) 100%);
+  backdrop-filter: blur(1px);
 }
 
 /* 히어로 위 텍스트는 영상(어두운 배경) 위에 얹히므로 이 영역만 별도로
@@ -423,7 +429,7 @@ img, canvas { max-width: 100%; }
   text-align: right;
 }
 .hero__content .eyebrow {
-  color: #e9cf8f;
+  color: #ffab40;
   font-size: 0.62rem;
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.55);
 }
@@ -1104,13 +1110,22 @@ img, canvas { max-width: 100%; }
 .steps__label { display: block; font-weight: 600; }
 
 /* ---------- 13. 개설 비용 ---------- */
+/* 크림 화이트 배경 + 버건디 헤더로 가맹비용 표를 더 선명하게 강조 */
+.section--cost { background: #f9f8f3; }
+.data-table--cost thead th {
+  background: #2b0c0c;
+  color: #fff;
+  border-bottom: none;
+}
+.data-table--cost th,
+.data-table--cost td { border-bottom: 1px solid #e0e0e0; }
 .data-table--cost td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
 .cost-note {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: #fff3e0;
+  border: 1px solid #ffe0b2;
   border-radius: var(--radius);
   padding: 18px 20px;
-  color: var(--red-dark);
+  color: var(--top3-red);
   font-weight: 600;
   margin-top: 20px;
 }
@@ -1121,24 +1136,32 @@ img, canvas { max-width: 100%; }
 }
 
 /* ---------- 14. 창업 문의 ---------- */
+/* 시그니처 레드 배경 위에 화이트 폼 카드를 얹어 가독성과 임팩트를 동시에 확보 */
+.section--inquiry {
+  background: #d32f2f;
+}
+.section--inquiry .eyebrow { color: #ffe0b2; }
+.section--inquiry .section__head h2 { color: #fff; }
+.section--inquiry .section__sub { color: rgba(255, 255, 255, 0.88); }
 .inquiry-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  background: var(--bg-raised);
-  border: 1px solid var(--border);
+  background: #fff;
+  border: none;
   border-radius: var(--radius);
   padding: 32px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 .field { display: grid; gap: 8px; }
 .field--full { grid-column: 1 / -1; }
 .field label, .field__legend {
   font-size: 0.86rem;
-  color: var(--text-soft);
+  color: #222;
 }
 .field__desc {
   font-size: 0.78rem;
-  color: var(--text-faint);
+  color: #777;
   margin: -4px 0 0;
 }
 .field input[type="text"],
@@ -1146,10 +1169,10 @@ img, canvas { max-width: 100%; }
 .field input[type="email"],
 .field select {
   background: #fff;
-  border: 1px solid var(--border);
+  border: 1px solid #ddd;
   border-radius: 8px;
   padding: 12px 14px;
-  color: var(--text);
+  color: #222;
   font-size: 0.96rem;
 }
 .field input:focus-visible,
@@ -1158,28 +1181,48 @@ img, canvas { max-width: 100%; }
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  color: var(--text-soft);
+  color: #333;
   font-size: 0.9rem;
 }
 .checkbox-grid label, .radio-row label { display: flex; align-items: center; gap: 6px; }
 .form-status { grid-column: 1 / -1; min-height: 1.4em; color: var(--gold-ink); margin: 0; }
 .form-status.is-error { color: var(--red); }
+.section--inquiry .inquiry-form {
+  max-width: var(--container);
+  margin: 0 auto;
+}
 @media (max-width: 700px) {
   .inquiry-form { grid-template-columns: 1fr; padding: 22px; }
+  .section--inquiry .inquiry-form { margin: 0 16px; }
+}
+
+/* 창업 문의하기 버튼: 매트 블랙 + 호버 시 밝아지며 살짝 확대 */
+.section--inquiry .btn--primary {
+  background: #1a1a1a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.section--inquiry .btn--primary:hover {
+  background: #2e2e2e;
+  transform: translateY(-2px) scale(1.02);
 }
 
 /* ---------- Footer ---------- */
+/* 가장 묵직한 다크 차콜 배경의 전체 폭 푸터 */
 .footer {
+  background: #0f0f0f;
+  color: #888;
+  padding: 64px 0 140px;
+  overflow-x: hidden;
+}
+.footer__inner {
   max-width: var(--container);
   margin: 0 auto;
-  padding: 64px 24px 140px;
-  border-top: 1px solid var(--border);
-  color: var(--text-faint);
+  padding: 0 24px;
 }
 .footer__brand {
   font-family: "Noto Serif KR", serif;
   font-size: 1.3rem;
-  color: var(--gold-ink);
+  color: var(--top3-red);
   margin-bottom: 18px;
 }
 .footer__info {
@@ -1190,9 +1233,9 @@ img, canvas { max-width: 100%; }
   font-size: 0.88rem;
 }
 .footer__info div { display: flex; gap: 6px; }
-.footer__info dt { color: var(--text-soft); }
+.footer__info dt { color: #aaa; }
 .footer__links { display: flex; gap: 18px; margin-bottom: 16px; font-size: 0.86rem; }
-.footer__links a:hover { color: var(--text-soft); }
+.footer__links a:hover { color: #fff; }
 .footer__copy { font-size: 0.8rem; margin: 0; }
 
 /* ---------- 플로팅 CTA ---------- */
