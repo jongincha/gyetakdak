@@ -29,6 +29,7 @@
   --light-beige: #f5f3ee;
   --deep-green: #064e3b;
   --deep-red: #b91c1c;
+  --pumpkin: #d84315;
   --terracotta: #dc2626;
   --light-gold: #e9cf8f;
 
@@ -151,7 +152,7 @@ img, canvas { max-width: 100%; }
 .section--brand   { background: var(--deep-green); border-top-color: rgba(255,255,255,0.12); }
 .section--menu    { background: var(--light-beige); }
 .section--revenue { background: var(--vanilla); }
-.section--success { background: var(--deep-red); border-top-color: rgba(255,255,255,0.14); }
+.section--success { background: var(--pumpkin); border-top-color: rgba(255,255,255,0.14); }
 .section--reviews { background: var(--light-beige); }
 .section--tourist { background: var(--deep-green); border-top-color: rgba(255,255,255,0.12); }
 .section--operation { background: var(--vanilla); }
@@ -203,6 +204,10 @@ img, canvas { max-width: 100%; }
   color: rgba(253, 251, 247, 0.7);
   border-left-color: var(--light-gold);
 }
+/* 성공사례 섹션은 배경이 주황(pumpkin)이라 골드 텍스트와 색이 겹쳐
+   대비가 떨어집니다. 이 섹션에서만 골드 대신 흰색으로 보정합니다. */
+.section--success .eyebrow,
+.section--success .info-card h3 { color: #fff; }
 /* 다크 섹션 안에서도 자체 배경(흰색 카드/알약형 칩)을 가진 컴포넌트는
    일반 라이트 모드와 같은 어두운 텍스트를 유지해야 합니다. 섹션
    전체에 준 밝은 텍스트 색이 그대로 상속되면 흰 배경 위에 흰 글씨가
