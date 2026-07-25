@@ -857,7 +857,11 @@ img, canvas { max-width: 100%; }
   position: relative;
   width: 100%;
   max-width: 82rem;
-  height: clamp(24rem, 44vw, 46rem);
+  /* clamp() 최소/최대값은 24rem/38rem으로, 카드 CSS의 fan-card와 동일한
+     기준 뷰포트(375~1440px)에서 부드럽게 늘어나도록 함 */
+  height: clamp(24rem, 19.1rem + 21vw, 38rem);
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
 .fan-card {
@@ -866,33 +870,36 @@ img, canvas { max-width: 100%; }
   margin: auto;
   display: flex;
   flex-direction: column;
-  width: clamp(7rem, 15vw, 12.5rem);
-  aspect-ratio: 5 / 8;
+  /* clamp() 최소/최대값은 11rem/19rem으로, 375~1440px 사이에서 부드럽게
+     커짐 (특정 브레이크포인트에서 갑자기 튀지 않도록) */
+  width: clamp(11rem, 8.2rem + 12vw, 19rem);
+  aspect-ratio: 13 / 20;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 10px;
+  border-radius: 1.25rem;
+  padding: 12px;
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(46, 32, 19, 0.25);
+  box-shadow: 0 20px 25px -5px rgba(46, 32, 19, 0.28), 0 8px 10px -6px rgba(46, 32, 19, 0.22);
   opacity: 0;
   cursor: default;
+  transform-origin: center bottom;
 }
 
-.fan-card .ph { flex: 1; padding: 8px; font-size: 0.6rem; border-radius: 8px; }
+.fan-card .ph { flex: 1; padding: 10px; font-size: 0.75rem; border-radius: 10px; }
 .fan-card__source {
   color: var(--gold-ink);
-  font-size: 0.62rem;
+  font-size: 0.78rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  margin: 8px 0 2px;
+  margin: 10px 0 3px;
 }
 .fan-card__text {
   color: var(--text-soft);
   margin: 0;
-  font-size: 0.66rem;
-  line-height: 1.35;
+  font-size: 0.82rem;
+  line-height: 1.4;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
