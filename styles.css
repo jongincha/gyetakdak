@@ -139,6 +139,47 @@ img, canvas { max-width: 100%; }
   padding: 0 24px;
 }
 
+/* SNS 후기 타이틀 옆에 미니 후기 캐러셀을 나란히 배치 */
+.section--reviews .reviews-top {
+  max-width: var(--container);
+  margin: 0 auto 48px;
+  padding: 0 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.section--reviews .reviews-top .section__head {
+  max-width: 40ch;
+  margin: 0;
+  padding: 0;
+}
+.mini-fan-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.mini-fan-section__head {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.mini-fan-section__head h3 {
+  font-family: 'GmarketSans', Pretendard, sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0 0 4px;
+  color: var(--text);
+}
+.mini-fan-section__head p {
+  font-family: 'GmarketSans', Pretendard, sans-serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  margin: 0;
+}
+
 .section__head {
   max-width: 68ch;
   margin: 0 0 48px;
@@ -317,12 +358,6 @@ img, canvas { max-width: 100%; }
   height: 32px;
   width: auto;
   object-fit: contain;
-}
-.topbar__logo-text {
-  font-family: "Gamja Flower", "Noto Serif KR", serif;
-  font-weight: 700;
-  font-size: 1.3rem;
-  letter-spacing: 0.02em;
 }
 .topbar__nav { display: flex; gap: 22px; }
 .topbar__nav a { font-size: 0.92rem; color: var(--text-soft); }
@@ -891,6 +926,20 @@ img, canvas { max-width: 100%; }
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* SNS 후기 타이틀 옆의 미니 캐러셀. 아래 메인 캐러셀과 같은 비율(약 55%)로
+   축소한 clamp() 값을 써서 화면 크기에 따라 함께 자연스럽게 커지고
+   작아지도록 함. script.js에서 이 값과 동일한 배율 기준으로 카드
+   간격을 계산합니다. */
+.fan-layout--mini {
+  max-width: 26rem;
+  height: clamp(13rem, 10.5rem + 11.5vw, 21rem);
+}
+.fan-layout--mini .fan-card {
+  width: clamp(6rem, 4.5rem + 6.6vw, 10.5rem);
+  border-radius: 0.9rem;
+  box-shadow: 0 12px 18px -4px rgba(46, 32, 19, 0.26), 0 5px 8px -4px rgba(46, 32, 19, 0.2);
 }
 
 .fan-nav {
