@@ -967,7 +967,7 @@ function renderDailyRevenueChart(canvasId, dailyWon, top3Indexes, reduceMotion) 
   if (!el) return;
 
   const values = dailyWon.map((won) => Math.round(won / 1000)); // 천원 단위
-  const colors = dailyWon.map((_, i) => (top3Indexes.includes(i) ? '#d32f2f' : '#d8c39a'));
+  const colors = dailyWon.map((_, i) => (top3Indexes.includes(i) ? '#dc2626' : '#e5e2dc'));
 
   new Chart(el, {
     type: 'bar',
