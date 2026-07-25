@@ -651,17 +651,23 @@ function initReviewFanCarousel(retriesLeft = 10) {
   if (nextBtn) nextBtn.addEventListener('click', () => cycle('right'));
 
   // 카드 클릭 시 해당 카드를 가운데로 정렬 (드래그/스와이프 직후의 클릭은 무시)
+  // 옆 카드를 클릭하면 가운데로 정렬하고(링크로 이동하지 않음), 이미
+  // 가운데에 있는 카드를 다시 클릭하면 카드 자체의 링크(href)로 이동합니다.
   container.addEventListener('click', (e) => {
     if (cardDragMoved) {
       cardDragMoved = false;
+      e.preventDefault();
       return;
     }
-    if (isAnimating) return;
     const cardEl = e.target.closest('.fan-card');
     if (!cardEl) return;
     const cardIndex = cardElements.indexOf(cardEl);
-    if (cardIndex === -1 || cardIndex === centerIndex) return;
+    if (cardIndex === -1) return;
 
+    if (cardIndex === centerIndex) return; // 이미 가운데: 기본 링크 이동을 막지 않음
+
+    e.preventDefault();
+    if (isAnimating) return;
     const visibleMap = getVisibleMap(centerIndex);
     const slot = visibleMap.get(cardIndex);
     if (slot === undefined) return;
