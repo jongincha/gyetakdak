@@ -21,6 +21,15 @@
   --text-soft: #6b5636;
   --text-faint: #9c8563;
 
+  /* 섹션별 컬러 리듬(라이트/다크 교차)을 위한 팔레트 */
+  --vanilla: #fdfbf7;
+  --light-beige: #f4efea;
+  --deep-green: #1c2826;
+  --deep-charcoal: #2b2625;
+  --deep-red: #8b0000;
+  --terracotta: #a52a2a;
+  --light-gold: #e9cf8f;
+
   --radius: 14px;
   --container: 1180px;
 
@@ -111,7 +120,7 @@ img, canvas { max-width: 100%; }
 .section {
   max-width: var(--container);
   margin: 0 auto;
-  padding: 96px 24px;
+  padding: 100px 24px;
 }
 .section--brand,
 .section--revenue,
@@ -126,14 +135,72 @@ img, canvas { max-width: 100%; }
 .section--marketing,
 .section--map {
   max-width: none;
-  padding: 96px 0;
+  padding: 100px 0;
   border-top: 1px solid var(--border);
   overflow-x: hidden;
 }
 .section--inquiry {
   max-width: none;
-  padding: 96px 0;
+  padding: 100px 0;
   overflow-x: hidden;
+}
+
+/* ---------- 섹션별 컬러 리듬 (라이트 ↔ 다크 교차) ---------- */
+.section--brand   { background: var(--deep-green); border-top-color: rgba(255,255,255,0.12); }
+.section--menu    { background: var(--light-beige); }
+.section--revenue { background: var(--vanilla); }
+.section--success { background: var(--deep-red); border-top-color: rgba(255,255,255,0.14); }
+.section--reviews { background: var(--light-beige); }
+.section--tourist { background: var(--deep-green); border-top-color: rgba(255,255,255,0.12); }
+.section--operation { background: var(--vanilla); }
+.section--cases   { background: var(--deep-charcoal); border-top-color: rgba(255,255,255,0.12); }
+.section--marketing { background: var(--light-beige); }
+.section--map     { background: var(--vanilla); }
+.section--process { background: var(--light-beige); }
+.section--cost    { background: var(--vanilla); }
+.section--inquiry { background: var(--deep-red); }
+.intro { background: var(--vanilla); }
+
+/* 어두운 배경 섹션의 공통 텍스트 색상 재정의: 흰색/밝은 골드로 가독성 확보 */
+.section--brand,
+.section--success,
+.section--tourist,
+.section--cases {
+  color: var(--vanilla);
+}
+.section--brand .eyebrow,
+.section--success .eyebrow,
+.section--tourist .eyebrow,
+.section--cases .eyebrow { color: var(--light-gold); }
+.section--brand .section__head h2,
+.section--success .section__head h2,
+.section--tourist .section__head h2,
+.section--cases .section__head h2 { color: #fff; }
+.section--brand .section__sub,
+.section--success .section__sub,
+.section--tourist .section__sub,
+.section--cases .section__sub { color: rgba(253, 251, 247, 0.82); }
+.section--brand .info-card,
+.section--success .info-card,
+.section--tourist .info-card,
+.section--cases .info-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+.section--brand .info-card h3,
+.section--success .info-card h3,
+.section--tourist .info-card h3,
+.section--cases .info-card h3 { color: var(--light-gold); }
+.section--brand .info-card p,
+.section--success .info-card p,
+.section--tourist .info-card p,
+.section--cases .info-card p { color: rgba(253, 251, 247, 0.85); }
+.section--brand .brand-points strong { color: var(--light-gold); }
+.section--brand .brand-points span { color: rgba(253, 251, 247, 0.85); }
+.section--tourist .chart-note,
+.section--cases .hint {
+  color: rgba(253, 251, 247, 0.7);
+  border-left-color: var(--light-gold);
 }
 .section--reviews .section__head,
 .section--marketing .section__head,
@@ -299,11 +366,15 @@ img, canvas { max-width: 100%; }
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 .btn--primary {
-  background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+  background: linear-gradient(135deg, var(--terracotta) 0%, var(--deep-red) 100%);
   color: #fff;
   box-shadow: 0 8px 24px var(--red-glow);
 }
-.btn--primary:hover { transform: translateY(-2px); }
+.btn--primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 30px var(--red-glow);
+  filter: brightness(1.08);
+}
 .btn--ghost {
   background: transparent;
   border-color: rgba(46, 32, 19, 0.3);
@@ -1127,8 +1198,8 @@ img, canvas { max-width: 100%; }
 .steps__label { display: block; font-weight: 600; }
 
 /* ---------- 13. 개설 비용 ---------- */
-/* 크림 화이트 배경 + 버건디 헤더로 가맹비용 표를 더 선명하게 강조 */
-.section--cost { background: #f9f8f3; }
+/* 배경색은 위쪽 섹션별 컬러 리듬 규칙(.section--cost)에서 지정. 버건디
+   헤더로 가맹비용 표를 더 선명하게 강조 */
 .data-table--cost thead th {
   background: #2b0c0c;
   color: #fff;
@@ -1153,10 +1224,8 @@ img, canvas { max-width: 100%; }
 }
 
 /* ---------- 14. 창업 문의 ---------- */
-/* 시그니처 레드 배경 위에 화이트 폼 카드를 얹어 가독성과 임팩트를 동시에 확보 */
-.section--inquiry {
-  background: #d32f2f;
-}
+/* 배경색(딥 레드)은 위쪽 섹션별 컬러 리듬 규칙(.section--inquiry)에서 지정.
+   화이트 폼 카드를 얹어 가독성과 임팩트를 동시에 확보 */
 .section--inquiry .eyebrow { color: #ffe0b2; }
 .section--inquiry .section__head h2 { color: #fff; }
 .section--inquiry .section__sub { color: rgba(255, 255, 255, 0.88); }
@@ -1186,14 +1255,21 @@ img, canvas { max-width: 100%; }
 .field input[type="email"],
 .field select {
   background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 12px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 12px;
+  padding: 12px 16px;
   color: #222;
   font-size: 0.96rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
+.field input:hover,
+.field select:hover { border-color: var(--terracotta); }
 .field input:focus-visible,
-.field select:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.field select:focus-visible {
+  outline: none;
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(165, 42, 42, 0.15);
+}
 .radio-row, .checkbox-grid {
   display: flex;
   flex-wrap: wrap;
