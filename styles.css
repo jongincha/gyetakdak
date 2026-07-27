@@ -242,28 +242,106 @@ img, canvas { max-width: 100%; }
   padding: 0;
 }
 .mini-fan-section {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+/* SNS 후기 타이틀 옆의 리뷰 통계 요약 카드. 네이버 리뷰 통계 위젯(태그별
+   언급 수)과 구글 평점 위젯(4.8점) 데이터를 하나의 카드에 담음 */
+.review-summary-card {
+  width: min(420px, 100%);
+  background: linear-gradient(160deg, #0d211a, #133327);
+  border-radius: 1.25rem;
+  padding: 28px 28px 22px;
+  box-shadow: 0 20px 40px rgba(6, 78, 59, 0.35);
+  color: #fff;
+}
+.review-summary-card__title {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  flex: 0 0 auto;
-}
-.mini-fan-section__head {
-  text-align: center;
-  margin-bottom: 10px;
-}
-.mini-fan-section__head h3 {
+  gap: 2px;
   font-family: 'GmarketSans', Pretendard, sans-serif;
   font-weight: 700;
-  font-size: 1.05rem;
-  margin: 0 0 4px;
-  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 14px;
 }
-.mini-fan-section__head p {
-  font-family: 'GmarketSans', Pretendard, sans-serif;
-  font-weight: 400;
-  font-size: 0.8rem;
-  color: var(--text-soft);
+.review-summary-card__brand { font-size: 1.35rem; color: #fff; }
+.review-summary-card__tagline {
+  font-size: 1.35rem;
+  background: linear-gradient(90deg, #a7f3d0, #34d399);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.review-summary-card__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 22px;
+}
+.review-summary-card__divider { color: rgba(255, 255, 255, 0.3); }
+.review-summary-card__body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.review-summary-card__rating { flex: 0 0 auto; }
+.review-summary-card__score {
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1;
+  margin: 0 0 10px;
+  font-variant-numeric: tabular-nums;
+}
+.review-summary-card__stars {
+  color: var(--gold);
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+.review-summary-card__meta {
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.55);
   margin: 0;
+}
+.review-summary-card__tags {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 180px;
+}
+.review-summary-card__tags li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.86rem;
+}
+.review-summary-card__tag-icon { font-size: 1rem; }
+.review-summary-card__tag-label { flex: 1; color: rgba(255, 255, 255, 0.85); white-space: nowrap; }
+.review-summary-card__tag-count {
+  font-weight: 700;
+  color: #6ee7b7;
+  font-variant-numeric: tabular-nums;
+}
+.review-summary-card__participants {
+  margin: 20px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: right;
+}
+@media (max-width: 480px) {
+  .review-summary-card { padding: 22px 20px 20px; }
+  .review-summary-card__score { font-size: 2.6rem; }
+  .review-summary-card__body { flex-direction: column; }
 }
 
 .section__head {
@@ -860,7 +938,7 @@ img, canvas { max-width: 100%; }
   padding: 6px 4px 10px;
   border: 1px solid var(--border);
   font-size: 0.7rem;
-  color: var(--text-faint);
+  color: var(--text-soft);
   font-family: 'Bitgoeul', 'Noto Sans KR', sans-serif;
   font-variant-numeric: tabular-nums;
   text-align: center;
@@ -890,7 +968,7 @@ img, canvas { max-width: 100%; }
 .calendar-grid td.is-top3 .day-num { color: var(--top3-red); }
 .calendar-unit {
   font-size: 0.76rem;
-  color: var(--text-faint);
+  color: var(--text-soft);
   margin: 8px 2px 0;
 }
 @media (max-width: 420px) {
@@ -906,7 +984,7 @@ img, canvas { max-width: 100%; }
   padding: 20px;
 }
 .revenue-chart__note {
-  color: var(--text-faint);
+  color: var(--text-soft);
   font-size: 0.82rem;
   margin: 12px 0 0;
 }
@@ -1017,37 +1095,6 @@ img, canvas { max-width: 100%; }
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-/* SNS 후기 타이틀 옆의 미니 후기 사진 2장. 부채꼴 캐러셀은 카드가
-   2장뿐이면 배치가 한쪽으로 치우쳐 어색해서, 사진이 크고 또렷하게
-   보이도록 단순한 나란히 배치로 구성함. */
-.mini-review-photos {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-}
-.mini-review-photos__item {
-  width: clamp(9rem, 12vw, 13.5rem);
-  aspect-ratio: 3 / 4;
-  border-radius: 1rem;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 16px 28px rgba(46, 32, 19, 0.24);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.mini-review-photos__item:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 22px 36px rgba(46, 32, 19, 0.3);
-}
-.mini-review-photos__item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-@media (max-width: 480px) {
-  .mini-review-photos__item { width: clamp(7.5rem, 34vw, 10rem); }
 }
 
 .fan-nav {

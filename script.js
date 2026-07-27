@@ -969,6 +969,18 @@ function renderDailyRevenueChart(canvasId, dailyWon, top3Indexes, reduceMotion) 
   const values = dailyWon.map((won) => Math.round(won / 1000)); // 천원 단위
   const colors = dailyWon.map((_, i) => (top3Indexes.includes(i) ? '#dc2626' : '#e5e2dc'));
 
+  // 일반 막대는 왼쪽부터 순서대로 살짝 시차를 두고 자라나고, 매출 상위 3일(빨간 막대)은
+  // 나머지 막대가 다 자란 뒤 마지막으로 강조되며 올라오도록 지연 시간을 계산합니다.
+  const STAGGER_MS = 14;
+  const barDelay = (context) => {
+    if (context.type !== 'data') return 0;
+    const idx = context.dataIndex;
+    if (top3Indexes.includes(idx)) {
+      return values.length * STAGGER_MS + 300;
+    }
+    return idx * STAGGER_MS;
+  };
+
   new Chart(el, {
     type: 'bar',
     data: {
@@ -982,7 +994,7 @@ function renderDailyRevenueChart(canvasId, dailyWon, top3Indexes, reduceMotion) 
         },
       ],
     },
-    options: chartBaseOptions(reduceMotion),
+    options: chartBaseOptions(reduceMotion, { delay: barDelay }),
   });
 }
 
@@ -1007,16 +1019,17 @@ function renderTouristChart(reduceMotion) {
   });
 }
 
-function chartBaseOptions(reduceMotion) {
+function chartBaseOptions(reduceMotion, animationOverrides = {}) {
   return {
     responsive: true,
-    animation: reduceMotion ? false : { duration: 1500, easing: 'easeOutQuart' },
+    maintainAspectRatio: true,
+    animation: reduceMotion ? false : { duration: 900, easing: 'easeOutQuart', ...animationOverrides },
     plugins: {
       legend: { labels: { color: '#6b5636' } },
     },
     scales: {
-      x: { ticks: { color: '#9c8563' }, grid: { display: false } },
-      y: { ticks: { color: '#9c8563' }, grid: { color: 'rgba(46, 32, 19, 0.08)' } },
+      x: { ticks: { color: '#6b5636' }, grid: { display: false } },
+      y: { ticks: { color: '#6b5636' }, grid: { color: 'rgba(46, 32, 19, 0.08)' } },
     },
   };
 }
