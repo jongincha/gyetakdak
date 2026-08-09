@@ -567,6 +567,30 @@ img, canvas { max-width: 100%; }
   object-fit: cover;
   object-position: center;
 }
+
+/* 유튜브 쇼츠(세로 9:16) 배경 영상을 가로로 넓은 히어로 영역에 꽉 차게
+   확대·크롭. 컨트롤바/제목/유튜브 로고가 뜰 여지가 없도록 iframe 자체를
+   래퍼보다 항상 크게 만든 뒤 overflow:hidden으로 잘라내는 방식이라
+   letterbox(검은 여백)가 생기지 않습니다. 비율 계산은 100vh/100vw 기준
+   "object-fit: cover"를 순수 CSS로 재현한 공식(9:16 버전)입니다. */
+.hero__yt-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero__yt-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 59vh;
+  height: 105vh;
+  min-width: 105vw;
+  min-height: 187vw;
+  transform: translate(-50%, -50%);
+  border: 0;
+  pointer-events: none;
+}
 .hero__ph--1 { background: repeating-linear-gradient(135deg, #e7d6ad 0 14px, #ddc596 14px 28px); }
 .hero__ph--2 { background: repeating-linear-gradient(135deg, #e7d6ad 0 14px, #ddc596 14px 28px); }
 .hero__ph--3 { background: repeating-linear-gradient(135deg, #e2d3ae 0 14px, #d6c294 14px 28px); }
