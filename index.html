@@ -864,11 +864,26 @@
   <!-- 전화·카카오톡 상담 버튼은 우선 숨김 처리 (필요 시 floating-cta__btn--hidden 클래스만 제거) -->
   <a href="tel:0200000000" class="floating-cta__btn floating-cta__btn--hidden" aria-label="전화상담"><span>☎</span></a>
   <a href="https://pf.kakao.com/" target="_blank" rel="noopener" class="floating-cta__btn floating-cta__btn--hidden" aria-label="카카오톡 상담"><span>💬</span></a>
-  <button type="button" class="back-to-top" id="backToTop" aria-label="맨 위로">
-    <span class="back-to-top__arrow" aria-hidden="true">︿</span>
+  <!-- 레버를 당기면(체크박스 토글) 맨 위로 부드럽게 스크롤되고, 스크롤이
+       끝나면 스스로 원위치로 돌아오는 순간동작 레버 스위치입니다.
+       (동작 로직은 script.js의 initBackToTop 참고) -->
+  <div class="back-to-top" id="backToTop" aria-label="맨 위로">
     <span class="back-to-top__label">누르면<br />올라가요</span>
-    <span class="back-to-top__icon"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GRKOQ4ZRwNdvzYKeuX2HsDjucM/hf_20260725_095415_e90328f3-7156-4dd8-aa3a-363dd3458ee2.png" alt="" loading="lazy" /></span>
-  </button>
+    <label class="toggle-container">
+      <input class="toggle-input" type="checkbox" id="backToTopSwitch" aria-label="맨 위로 스크롤" />
+      <div class="toggle-handle-wrapper">
+        <div class="toggle-handle">
+          <div class="toggle-handle-knob"></div>
+          <div class="toggle-handle-bar-wrapper">
+            <div class="toggle-handle-bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="toggle-base">
+        <div class="toggle-base-inside"></div>
+      </div>
+    </label>
+  </div>
   <a href="#inquiry" class="floating-cta__btn floating-cta__btn--primary" aria-label="창업문의">
     <svg class="floating-cta__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
       <rect x="4" y="2" width="16" height="20" rx="2" fill="#fff" />

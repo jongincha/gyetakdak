@@ -835,17 +835,41 @@ function initScrollSpy() {
   sections.forEach((s) => observer.observe(s));
 }
 
-// ---------- 맨 위로 버튼 ----------
+// ---------- 맨 위로 버튼 (레버 스위치) ----------
+// 레버(체크박스)를 당기면 맨 위로 부드럽게 스크롤되고, 스크롤이 끝나면
+// (또는 1.5초가 지나도 안 끝나면 안전장치로) 체크를 풀어서 손잡이가
+// 저절로 원위치로 돌아옵니다 — 켜고 끄는 토글이 아니라 "당기면 동작하고
+// 스스로 복귀하는" 순간동작 레버로 동작합니다.
 function initBackToTop() {
   const btn = document.getElementById('backToTop');
-  if (!btn) return;
+  const toggle = document.getElementById('backToTopSwitch');
+  if (!btn || !toggle) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const onScroll = () => btn.classList.toggle('is-visible', window.scrollY > window.innerHeight);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  let rafId = null;
+  function waitForTopThenReset() {
+    if (rafId) cancelAnimationFrame(rafId);
+    const start = performance.now();
+    const check = () => {
+      if (window.scrollY <= 0 || performance.now() - start > 1500) {
+        toggle.checked = false;
+        rafId = null;
+        return;
+      }
+      rafId = requestAnimationFrame(check);
+    };
+    rafId = requestAnimationFrame(check);
+  }
+
+  toggle.addEventListener('change', () => {
+    if (!toggle.checked) return;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    waitForTopThenReset();
   });
 }
 
