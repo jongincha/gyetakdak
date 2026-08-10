@@ -1350,31 +1350,92 @@ img, canvas { max-width: 100%; }
 .map-embed { }
 
 /* ---------- 12. 창업 절차 ---------- */
-.steps {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
 }
-.steps li {
-  flex: 1 1 140px;
-  background: var(--bg-raised);
+@media (max-width: 860px) {
+  .process-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .process-grid { grid-template-columns: 1fr; gap: 18px; }
+}
+.process-card {
+  position: relative;
+  background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px 16px;
+  border-radius: 1.25rem;
+  padding: 40px 22px 26px;
   text-align: center;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(46, 32, 19, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.steps__num {
+.process-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(46, 32, 19, 0.16);
+}
+/* 좌상단 접힌 리본 모양 번호 배지 */
+.process-card__num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 6px 0 0 10px;
+  background: linear-gradient(135deg, var(--red), var(--red-dark));
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+.process-card__icon {
+  width: 56px;
+  height: 56px;
+  margin: 6px auto 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px; height: 40px;
-  margin: 0 auto 12px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--red), var(--red-dark));
-  color: #fff;
-  font-weight: 700;
+  background: rgba(184, 137, 46, 0.12);
+  color: var(--gold-ink);
 }
-.steps__label { display: block; font-weight: 600; }
+.process-card__icon svg { width: 26px; height: 26px; }
+.process-card__title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.process-card__desc {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+  margin: 0;
+}
+.process-tagline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 46ch;
+  margin: 0 auto 40px;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  text-align: center;
+}
+.process-tagline__line {
+  flex: 1 1 32px;
+  height: 1px;
+  background: var(--border);
+}
 
 /* ---------- 13. 개설 비용 ---------- */
 /* 배경색은 위쪽 섹션별 컬러 리듬 규칙(.section--cost)에서 지정. 버건디
