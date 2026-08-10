@@ -203,10 +203,14 @@ function initGallerySliders() {
 
 // ---------- 자체 공장 사진 슬라이드 갤러리 ----------
 // 메인 사진 + 하단 썸네일, 4초 자동 재생, 마우스 드래그/터치 스와이프로 전환.
+// 공장 갤러리(브랜드 섹션)와 매장/인테리어 갤러리가 같은 .factory-gallery
+// 마크업 구조를 공유하므로, 페이지에 있는 모든 인스턴스를 각각 독립적으로
+// 초기화합니다.
 function initFactoryGallery() {
-  const root = document.querySelector('.factory-gallery');
-  if (!root) return;
+  document.querySelectorAll('.factory-gallery').forEach(setupFactoryGallery);
+}
 
+function setupFactoryGallery(root) {
   const slides = Array.from(root.querySelectorAll('.factory-gallery__slide'));
   const thumbs = Array.from(root.querySelectorAll('.factory-gallery__thumb'));
   const stage = root.querySelector('.factory-gallery__stage');
