@@ -927,8 +927,10 @@ function initCharts(retriesLeft = 10) {
   ];
   const aprilTop3 = [3, 10, 17]; // 4/4, 4/11, 4/18 (0-indexed)
 
-  // 스크롤로 화면에 들어올 때 막대가 아래에서 위로 자라나는 효과가 보이도록,
-  // 차트는 페이지 로드 시 바로 그리지 않고 각 캔버스가 실제로 보일 때 생성합니다.
+  // 스크롤로 화면에 들어올 때마다 막대가 아래에서 위로 자라나는 효과가 반복
+  // 재생되도록, 캔버스가 뷰포트에 새로 들어올 때마다 기존 차트를 지우고
+  // 다시 그립니다(한 번 보고 지나가면 끝나는 게 아니라 스크롤해서 다시
+  // 보일 때마다 매번 애니메이션이 재생됩니다).
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const chartJobs = [
@@ -947,10 +949,7 @@ function initCharts(retriesLeft = 10) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         const job = chartJobs.find((j) => j.id === entry.target.id);
-        if (job) {
-          job.render();
-          observer.unobserve(entry.target);
-        }
+        if (job) job.render();
       });
     },
     { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
@@ -960,6 +959,15 @@ function initCharts(retriesLeft = 10) {
     const el = document.getElementById(job.id);
     if (el) observer.observe(el);
   });
+}
+
+// 캔버스 id별 현재 Chart 인스턴스를 저장해뒀다가, 같은 캔버스에 다시 그릴 때
+// 먼저 destroy() 해서 "Canvas is already in use" 오류 없이 애니메이션을
+// 처음부터 재생시킵니다.
+const chartInstances = {};
+function createOrReplaceChart(canvasId, el, config) {
+  if (chartInstances[canvasId]) chartInstances[canvasId].destroy();
+  chartInstances[canvasId] = new Chart(el, config);
 }
 
 function renderDailyRevenueChart(canvasId, dailyWon, top3Indexes, reduceMotion) {
@@ -981,7 +989,7 @@ function renderDailyRevenueChart(canvasId, dailyWon, top3Indexes, reduceMotion) 
     return idx * STAGGER_MS;
   };
 
-  new Chart(el, {
+  createOrReplaceChart(canvasId, el, {
     type: 'bar',
     data: {
       labels: dailyWon.map((_, i) => i + 1),
@@ -1002,7 +1010,7 @@ function renderTouristChart(reduceMotion) {
   const touristEl = document.getElementById('touristChart');
   if (!touristEl) return;
 
-  new Chart(touristEl, {
+  createOrReplaceChart('touristChart', touristEl, {
     type: 'bar',
     data: {
       labels: ['2022', '2023', '2024', '2025', '2026(예상)'],
