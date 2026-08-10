@@ -243,19 +243,55 @@ img, canvas { max-width: 100%; }
   padding: 0;
 }
 .mini-fan-section {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   max-width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-/* SNS 후기 타이틀 옆의 리뷰 통계 요약 카드. 네이버 리뷰 통계 위젯(태그별
-   언급 수)과 구글 평점 위젯(4.8점) 데이터를 하나의 카드에 담음 */
+/* SNS 후기 타이틀 옆의 리뷰 통계 요약 카드 2장(네이버/구글). 네이버 리뷰
+   통계 위젯(태그별 언급 수)과 구글 평점 위젯 데이터를 같은 형식의 카드에 담음 */
 .review-summary-card {
-  width: min(420px, 100%);
+  width: min(360px, 100%);
   background: linear-gradient(160deg, #0d211a, #133327);
   border-radius: 1.25rem;
   padding: 28px 28px 22px;
   box-shadow: 0 20px 40px rgba(6, 78, 59, 0.35);
   color: #fff;
+}
+
+/* 네이버 카드: 아래로 살짝 내려서 밑에 펼쳐진 부채꼴 후기 카드들과 겹치게
+   배치 (겹치는 영역은 .fan-section의 z-index가 더 높아 후기 카드가 위로
+   보임). transform은 문서 흐름(레이아웃 높이)에 영향을 주지 않으므로
+   타이틀과의 간격은 그대로 유지됩니다. 두 카드가 세로로 쌓이는 좁은 화면
+   에서는 밑에 있는 구글 카드와 겹치지 않도록 이 효과를 끕니다. */
+.review-summary-card--naver {
+  position: relative;
+  z-index: 1;
+  transform: translateY(150px);
+}
+@media (max-width: 900px) {
+  .review-summary-card--naver { transform: none; }
+}
+
+/* 구글 카드: 네이버 카드와 같은 줄(같은 Y 위치)의 오른쪽에 배치하고,
+   위아래로 살짝 떠다니는 애니메이션을 적용 */
+.review-summary-card--google {
+  animation: reviewCardFloat 4.2s ease-in-out infinite;
+}
+.review-summary-card--google .review-summary-card__tagline {
+  background: linear-gradient(90deg, #93c5fd, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+@keyframes reviewCardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .review-summary-card--google { animation: none; }
 }
 .review-summary-card__title {
   display: flex;
@@ -1090,6 +1126,8 @@ img, canvas { max-width: 100%; }
 /* script.js의 initReviewFanCarousel()이 GSAP으로 카드를 부채꼴로 배치하고,
    호버 시 카드가 좌우로 밀리며 반응하는 인터랙션을 담당합니다. */
 .fan-section {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
