@@ -232,27 +232,29 @@ img, canvas { max-width: 100%; }
   padding: 0 24px;
 }
 
-/* SNS 후기 타이틀 옆에 미니 후기 캐러셀을 나란히 배치 */
+/* SNS 후기 타이틀을 위쪽 전체 폭에 두고, 그 바로 아래 줄 오른쪽에 리뷰
+   요약 카드 2장을 나란히 배치. (이전에는 타이틀과 카드가 한 줄에서
+   space-between으로 나뉘어 있어 타이틀 쪽에 빈 공간이 크게 남고, 좁은
+   desktop 폭에서는 카드 2장이 들어갈 자리가 부족해 구글 카드만 다음 줄로
+   떨어지는 문제가 있었음. 세로로 쌓아 카드 줄에 항상 컨테이너 전체 폭을
+   내어주는 구조로 바꿔 두 문제를 함께 해결) */
 .section--reviews .reviews-top {
   max-width: var(--container);
-  margin: 0 auto 48px;
+  margin: 0 auto 40px;
   padding: 0 24px;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
 }
 .section--reviews .reviews-top .section__head {
-  max-width: 40ch;
+  max-width: 60ch;
   margin: 0;
   padding: 0;
 }
 .mini-fan-section {
-  flex: 1 1 auto;
-  max-width: 100%;
   display: flex;
   align-items: flex-start;
+  justify-content: flex-end;
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -263,22 +265,25 @@ img, canvas { max-width: 100%; }
   width: min(360px, 100%);
   background: linear-gradient(160deg, #0d211a, #133327);
   border-radius: 1.25rem;
-  padding: 28px 28px 22px;
+  padding: 28px 28px 32px;
   box-shadow: 0 20px 40px rgba(6, 78, 59, 0.35);
   color: #fff;
 }
 
 /* 네이버 카드: 아래로 살짝 내려서 밑에 펼쳐진 부채꼴 후기 카드들과 겹치게
    배치 (겹치는 영역은 .fan-section의 z-index가 더 높아 후기 카드가 위로
-   보임). transform은 문서 흐름(레이아웃 높이)에 영향을 주지 않으므로
-   타이틀과의 간격은 그대로 유지됩니다. 두 카드가 세로로 쌓이는 좁은 화면
-   에서는 밑에 있는 구글 카드와 겹치지 않도록 이 효과를 끕니다. */
+   보임). 겹치는 높이가 카드 하단 여백(참여자 텍스트 아래 빈 padding)
+   범위 안에 들어오도록 값을 잡아, 실제 텍스트 위로는 겹치지 않습니다.
+   transform은 문서 흐름(레이아웃 높이)에 영향을 주지 않으므로 타이틀과의
+   간격은 그대로 유지됩니다. 두 카드가 세로로 쌓이는 좁은 화면(카드 2장이
+   한 줄에 들어가지 못하는 지점=약 800px 이하)에서는 밑에 있는 구글
+   카드와 겹치지 않도록 이 효과를 끕니다. */
 .review-summary-card--naver {
   position: relative;
   z-index: 1;
-  transform: translateY(150px);
+  transform: translateY(130px);
 }
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   .review-summary-card--naver { transform: none; }
 }
 
@@ -286,12 +291,30 @@ img, canvas { max-width: 100%; }
    위아래로 살짝 떠다니는 애니메이션을 적용 */
 .review-summary-card--google {
   animation: reviewCardFloat 4.2s ease-in-out infinite;
+  background: linear-gradient(160deg, #10192b, #1b2a4a);
+  box-shadow: 0 20px 40px rgba(15, 30, 60, 0.35);
 }
 .review-summary-card--google .review-summary-card__tagline {
   background: linear-gradient(90deg, #93c5fd, #3b82f6);
   -webkit-background-clip: text;
   background-clip: text;
 }
+/* 구글의 4색 브랜드 컬러 점 4개로 "네이버를 재탕한 카드"가 아니라 구글
+   고유의 느낌이 나도록 작은 포인트를 줌 */
+.review-summary-card__google-dots {
+  display: inline-flex;
+  gap: 3px;
+}
+.review-summary-card__google-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.review-summary-card__google-dots i:nth-child(1) { background: #4285f4; }
+.review-summary-card__google-dots i:nth-child(2) { background: #ea4335; }
+.review-summary-card__google-dots i:nth-child(3) { background: #fbbc05; }
+.review-summary-card__google-dots i:nth-child(4) { background: #34a853; }
 @keyframes reviewCardFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
