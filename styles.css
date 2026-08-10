@@ -687,6 +687,25 @@ img, canvas { max-width: 100%; }
   height: 100%;
   object-fit: contain;
 }
+/* 유튜브 iframe을 박스보다 살짝 크게(overscan) 깔고 overflow:hidden으로
+   잘라내어 컨트롤바가 뜨더라도 절대 보이지 않고, object-fit:cover와
+   동일하게 여백 없이 꽉 차 보이도록 만듭니다. */
+.intro__video-frame .intro__yt-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.intro__video-frame .intro__yt-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 102%;
+  height: 102%;
+  transform: translate(-50%, -50%);
+  border: 0;
+  pointer-events: none;
+}
 .intro__copy {
   font-size: 1.05rem;
   color: var(--text-soft);

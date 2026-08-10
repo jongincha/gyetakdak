@@ -86,18 +86,25 @@
 <section class="intro reveal">
   <div class="intro__video">
     <div class="intro__video-frame">
-      <video
-        class="intro__video-el"
-        autoplay
-        muted
-        loop
-        playsinline
-      >
-        <source
-          src="https://res.cloudinary.com/hb5bdcuw/video/upload/v1784884722/525423442342_dfcueb.mp4"
-          type="video/mp4"
-        />
-      </video>
+      <!-- 유튜브 일부공개 영상(brKv0o2V4J0)을 컨트롤/제목/관련영상/로고 없이
+           HTML5 비디오처럼 자동재생. 박스 크기에 꽉 차도록 .intro__yt-frame
+           에서 살짝 확대(overscan)해 테두리 여백이 생기지 않게 처리합니다.
+           이전에 쓰던 자체 호스팅 mp4로 되돌리려면 아래 <video> 블록으로
+           .intro__yt-wrap을 교체하면 됩니다:
+           <video class="intro__video-el" autoplay muted loop playsinline>
+             <source src="https://res.cloudinary.com/hb5bdcuw/video/upload/v1784884722/525423442342_dfcueb.mp4" type="video/mp4" />
+           </video>
+      -->
+      <div class="intro__yt-wrap" aria-hidden="true">
+        <iframe
+          class="intro__yt-frame"
+          src="https://www.youtube.com/embed/brKv0o2V4J0?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=brKv0o2V4J0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;rel=0&amp;iv_load_policy=3&amp;disablekb=1&amp;fs=0&amp;playsinline=1"
+          title="계탉닭 소개 영상"
+          allow="autoplay"
+          tabindex="-1"
+          frameborder="0"
+        ></iframe>
+      </div>
     </div>
   </div>
   <p class="intro__copy stagger-group">
