@@ -438,9 +438,12 @@
       <h2>SNS 후기</h2>
     </div>
 
-    <!-- 타이틀 옆의 리뷰 통계 요약 카드 (네이버/구글 실제 리뷰 데이터 기반) -->
+    <!-- 타이틀 옆의 리뷰 통계 요약 카드 2장 (네이버 / 구글). 네이버 카드는
+         아래로 살짝 내려서 밑에 펼쳐진 부채꼴 후기 카드들과 겹치게 배치하고
+         (겹치는 영역에서는 부채꼴 카드가 z-index로 위에 옴), 구글 카드는
+         같은 줄 오른쪽에서 위아래로 살짝 떠다니는 애니메이션을 적용했습니다. -->
     <div class="mini-fan-section">
-      <div class="review-summary-card">
+      <div class="review-summary-card review-summary-card--naver">
         <div class="review-summary-card__title">
           <span class="review-summary-card__brand">계탉닭</span>
           <span class="review-summary-card__tagline">리얼 방문자 후기</span>
@@ -462,6 +465,31 @@
           </ul>
         </div>
         <p class="review-summary-card__participants">2,461회 · 2,396명 참여</p>
+      </div>
+
+      <!-- TODO: 아래 구글 리뷰 카드의 평점/태그/참여자 수치는 실제 값이 없어
+           임시 플레이스홀더입니다. 구글 비즈니스 프로필의 실제 평점·리뷰
+           수·인기 키워드로 교체해주세요. -->
+      <div class="review-summary-card review-summary-card--google">
+        <div class="review-summary-card__title">
+          <span class="review-summary-card__brand">계탉닭</span>
+          <span class="review-summary-card__tagline">구글 리뷰</span>
+        </div>
+        <div class="review-summary-card__label">
+          <span>고객후기</span><span class="review-summary-card__divider">|</span><span>평점</span>
+        </div>
+        <div class="review-summary-card__body">
+          <div class="review-summary-card__rating">
+            <p class="review-summary-card__score">0.0</p>
+            <div class="review-summary-card__stars" aria-label="평점 정보 입력 필요">★★★★★</div>
+            <p class="review-summary-card__meta">리뷰 수 입력 필요</p>
+          </div>
+          <ul class="review-summary-card__tags">
+            <li><span class="review-summary-card__tag-icon" aria-hidden="true">😊</span><span class="review-summary-card__tag-label">맛있어요</span><span class="review-summary-card__tag-count">-</span></li>
+            <li><span class="review-summary-card__tag-icon" aria-hidden="true">🌿</span><span class="review-summary-card__tag-label">친절해요</span><span class="review-summary-card__tag-count">-</span></li>
+          </ul>
+        </div>
+        <p class="review-summary-card__participants">구글 리뷰 실제 수치 입력 필요</p>
       </div>
     </div>
   </div>
