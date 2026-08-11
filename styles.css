@@ -1369,14 +1369,27 @@ img, canvas { max-width: 100%; }
 @media (max-width: 540px) {
   .process-grid { grid-template-columns: 1fr; gap: 18px; }
 }
+/* 전통 인장(도장) + 증서풍 모서리 장식 카드. 모서리 브래킷은 실제
+   border 대신 8겹의 linear-gradient 배경으로 그려서 마크업 추가 없이
+   4개 모서리에 "ㄴ"자 장식을 냅니다. */
 .process-card {
   position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 1.25rem;
-  padding: 40px 22px 26px;
+  padding: 36px 20px 28px;
   text-align: center;
-  overflow: hidden;
+  border-radius: 10px;
+  background-color: var(--bg-card);
+  background-image:
+    linear-gradient(to right, var(--gold) 2px, transparent 2px),
+    linear-gradient(to bottom, var(--gold) 2px, transparent 2px),
+    linear-gradient(to left, var(--gold) 2px, transparent 2px),
+    linear-gradient(to bottom, var(--gold) 2px, transparent 2px),
+    linear-gradient(to left, var(--gold) 2px, transparent 2px),
+    linear-gradient(to top, var(--gold) 2px, transparent 2px),
+    linear-gradient(to right, var(--gold) 2px, transparent 2px),
+    linear-gradient(to top, var(--gold) 2px, transparent 2px);
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+  background-position: top left, top left, top right, top right, bottom right, bottom right, bottom left, bottom left;
   box-shadow: 0 10px 24px rgba(46, 32, 19, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -1384,40 +1397,37 @@ img, canvas { max-width: 100%; }
   transform: translateY(-4px);
   box-shadow: 0 16px 32px rgba(46, 32, 19, 0.16);
 }
-/* 좌상단 접힌 리본 모양 번호 배지 */
-.process-card__num {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 46px;
-  height: 46px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 6px 0 0 10px;
-  background: linear-gradient(135deg, var(--red), var(--red-dark));
-  color: #fff;
-  font-weight: 800;
-  font-size: 0.95rem;
-  clip-path: polygon(0 0, 100% 0, 0 100%);
-}
-.process-card__icon {
-  width: 56px;
-  height: 56px;
-  margin: 6px auto 18px;
+/* 상단 붉은 인장(스탬프) */
+.process-card__stamp {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: rgba(184, 137, 46, 0.12);
-  color: var(--gold-ink);
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 12px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--red), var(--red-dark));
+  color: #fff;
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  box-shadow: 0 3px 8px rgba(220, 38, 38, 0.3);
 }
-.process-card__icon svg { width: 26px; height: 26px; }
-.process-card__title {
-  font-size: 1.1rem;
+.process-card__num {
+  display: block;
+  font-size: 1.9rem;
   font-weight: 800;
   color: var(--text);
-  margin: 0 0 8px;
+  line-height: 1;
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.process-card__title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 10px;
 }
 .process-card__desc {
   font-size: 0.84rem;
