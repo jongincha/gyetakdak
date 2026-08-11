@@ -1555,9 +1555,10 @@ img, canvas { max-width: 100%; }
   padding: 0 24px;
 }
 .footer__brand {
-  font-family: "Noto Serif KR", serif;
-  font-size: 1.3rem;
-  color: var(--top3-red);
+  display: block;
+  height: 40px;
+  width: auto;
+  object-fit: contain;
   margin-bottom: 18px;
 }
 .footer__info {
