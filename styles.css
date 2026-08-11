@@ -1397,22 +1397,33 @@ img, canvas { max-width: 100%; }
   transform: translateY(-4px);
   box-shadow: 0 16px 32px rgba(46, 32, 19, 0.16);
 }
-/* 상단 붉은 인장(스탬프) */
-.process-card__stamp {
+/* 단계별 내용에 맞는 이모지를 부드러운 색상 원 배지에 담아 표시.
+   9장이 브랜드 팔레트(레드/골드/그린/펌킨) 4가지 톤을 순서대로 돌며
+   너무 단조롭지 않게 색이 섞이도록 함 */
+.process-card__emoji {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  margin: 0 auto 12px;
-  border-radius: 6px;
-  background: linear-gradient(135deg, var(--red), var(--red-dark));
-  color: #fff;
-  font-size: 0.5rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  box-shadow: 0 3px 8px rgba(220, 38, 38, 0.3);
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  font-size: 1.9rem;
+  line-height: 1;
+  background: rgba(220, 38, 38, 0.1);
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.18);
+}
+.process-card:nth-child(4n+2) .process-card__emoji {
+  background: rgba(184, 137, 46, 0.14);
+  box-shadow: 0 4px 14px rgba(184, 137, 46, 0.2);
+}
+.process-card:nth-child(4n+3) .process-card__emoji {
+  background: rgba(6, 78, 59, 0.1);
+  box-shadow: 0 4px 14px rgba(6, 78, 59, 0.16);
+}
+.process-card:nth-child(4n) .process-card__emoji {
+  background: rgba(216, 67, 21, 0.12);
+  box-shadow: 0 4px 14px rgba(216, 67, 21, 0.2);
 }
 .process-card__num {
   display: block;
