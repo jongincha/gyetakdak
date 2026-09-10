@@ -82,31 +82,12 @@
   <div class="hero__dots" role="tablist" aria-label="메인 슬라이드"></div>
 </section>
 
-<!-- ================= 홍보영상 + 소개 ================= -->
+<!-- ================= 소개 ================= -->
+<!-- TODO: CCTV 느낌의 유튜브 영상을 삭제하고 텍스트만 남긴 상태입니다.
+     다른 홍보 영상으로 교체하고 싶으면, 이 자리에 유튜브 embed(과거 코드는
+     git 히스토리의 "인트로 유튜브 영상 하단 검은 여백 제거" 커밋 참고) 또는
+     assets/videos/intro-bg.mp4 같은 자체 호스팅 mp4를 다시 넣으면 됩니다. -->
 <section class="intro reveal">
-  <div class="intro__video">
-    <div class="intro__video-frame">
-      <!-- 유튜브 일부공개 영상(brKv0o2V4J0)을 컨트롤/제목/관련영상/로고 없이
-           HTML5 비디오처럼 자동재생. 박스 크기에 꽉 차도록 .intro__yt-frame
-           에서 살짝 확대(overscan)해 테두리 여백이 생기지 않게 처리합니다.
-           이전에 쓰던 자체 호스팅 mp4로 되돌리려면 아래 <video> 블록으로
-           .intro__yt-wrap을 교체하면 됩니다:
-           <video class="intro__video-el" autoplay muted loop playsinline>
-             <source src="./assets/videos/intro-bg.mp4" type="video/mp4" />
-           </video>
-      -->
-      <div class="intro__yt-wrap" aria-hidden="true">
-        <iframe
-          class="intro__yt-frame"
-          src="https://www.youtube.com/embed/brKv0o2V4J0?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=brKv0o2V4J0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;rel=0&amp;iv_load_policy=3&amp;disablekb=1&amp;fs=0&amp;playsinline=1"
-          title="계탉닭 소개 영상"
-          allow="autoplay"
-          tabindex="-1"
-          frameborder="0"
-        ></iframe>
-      </div>
-    </div>
-  </div>
   <p class="intro__copy stagger-group">
     <span class="stagger-line">한방의 깊이, 약고추장의 매력, 그리고 새로운 한입.</span>
     <span class="stagger-line">닭갈비를 더욱 깊게 만들고 먹는 방식까지 새롭게 바꾼</span>
