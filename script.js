@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initReviewFanCarousel,
     initVideoModal,
     initPhotoModal,
+    initPromoModal,
     initBackgroundVideoMotion,
     initScrollSpy,
     initBackToTop,
@@ -808,6 +809,44 @@ function initPhotoModal() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
   });
+}
+
+// ---------- 이벤트 팝업 ----------
+// "오늘 하루 보지 않기"를 체크하고 닫으면 24시간 동안 자동으로 다시 뜨지
+// 않도록 localStorage에 만료 시각을 저장해둡니다.
+function initPromoModal() {
+  const modal = document.getElementById('promoModal');
+  const hideCheckbox = document.getElementById('promoModalHideToday');
+  if (!modal || !hideCheckbox) return;
+
+  const STORAGE_KEY = 'hidePromoModalUntil';
+
+  function closeModal() {
+    if (hideCheckbox.checked) {
+      const expiry = Date.now() + 24 * 60 * 60 * 1000;
+      localStorage.setItem(STORAGE_KEY, String(expiry));
+    }
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function openModal() {
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  modal.querySelectorAll('[data-promo-close]').forEach((el) => {
+    el.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  const hideUntil = Number(localStorage.getItem(STORAGE_KEY));
+  if (!hideUntil || Date.now() >= hideUntil) openModal();
 }
 
 // ---------- 스크롤에 따른 상단 네비 활성 표시 ----------
