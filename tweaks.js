@@ -70,7 +70,7 @@
   const COLOR_CONTROLS = [
     { key: '--bg', label: '전체 배경' },
     { key: '--light-beige', label: '라이트 섹션 배경' },
-    { key: '--deep-green', label: '다크 그린 섹션' },
+    { key: '--deep-brown', label: '다크 브라운 섹션' },
     { key: '--pumpkin', label: '성공사례 섹션(주황)' },
     { key: '--red', label: '레드 포인트' },
     { key: '--gold', label: '골드 포인트' },
