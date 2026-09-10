@@ -946,37 +946,13 @@
 
 <!-- ================= 이벤트 팝업 ================= -->
 <!-- TODO: 이벤트가 끝나면 이 블록을 통째로 주석 처리하거나 삭제하세요.
-     포스터 원본 사진(신정환님 조리 모습, 매장 전경)을 그대로 넣고 싶으면
-     assets/images/promo-event.jpg 로 업로드한 뒤 .promo-modal__hero 배경으로
-     교체하면 됩니다. 지금은 사진 없이 로고+문구+아이콘으로 구성했습니다. -->
+     assets/images/promo-event.jpg 자리에 실제 포스터 이미지 파일을 업로드해야
+     아래 사진이 정상적으로 보입니다 (파일이 없으면 깨진 이미지로 표시됩니다). -->
 <div class="promo-modal" id="promoModal" aria-hidden="true">
   <div class="promo-modal__backdrop" data-promo-close></div>
-  <div class="promo-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="promoModalTitle">
+  <div class="promo-modal__dialog" role="dialog" aria-modal="true" aria-label="20호점까지, 신정환이 간다! 이벤트 안내">
     <button type="button" class="promo-modal__close" data-promo-close aria-label="닫기">&times;</button>
-    <div class="promo-modal__hero">
-      <img class="promo-modal__logo" src="./assets/images/logo.png" alt="계탉닭" />
-      <p class="promo-modal__eyebrow">SPECIAL EVENT</p>
-      <h2 class="promo-modal__title" id="promoModalTitle">20호점까지,<br /><span class="promo-modal__highlight">신정환이 간다!</span></h2>
-      <p class="promo-modal__speech">“20호점까지 함께 하겠습니다!”</p>
-    </div>
-    <div class="promo-modal__body">
-      <div class="promo-modal__benefit">
-        <span class="promo-modal__num">01</span>
-        <span class="promo-modal__icon" aria-hidden="true">🧑‍🍳</span>
-        <p>계약 20호점까지, 오픈 시 <strong>신정환님이 매장에 일일 알바로 투입!</strong></p>
-      </div>
-      <div class="promo-modal__benefit">
-        <span class="promo-modal__num">02</span>
-        <span class="promo-modal__icon" aria-hidden="true">🎥</span>
-        <p><strong>영상 촬영 및 업로드</strong> (계탉닭 공식 계정)</p>
-      </div>
-      <div class="promo-modal__benefit">
-        <span class="promo-modal__num">03</span>
-        <span class="promo-modal__icon" aria-hidden="true">📣</span>
-        <p>해당 영상 ➔ <strong>점포 홍보용으로 무제한 활용 가능</strong></p>
-      </div>
-    </div>
-    <p class="promo-modal__tagline">신정환과 함께, <u>20호점</u>의 주인공이 되세요!</p>
+    <img class="promo-modal__poster" src="./assets/images/promo-event.jpg" alt="20호점까지, 신정환이 간다! 계약 20호점까지 오픈 시 신정환님이 매장에 일일 알바로 투입되어 영상을 촬영하고, 그 영상을 점포 홍보용으로 무제한 활용할 수 있습니다. 신정환과 함께, 20호점의 주인공이 되세요!" />
     <div class="promo-modal__footer">
       <label class="promo-modal__hide-label"><input type="checkbox" id="promoModalHideToday" /> 오늘 하루 보지 않기</label>
       <button type="button" class="promo-modal__footer-close" data-promo-close>닫기</button>
