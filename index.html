@@ -11,7 +11,7 @@
 <!-- TODO: og:image 에 실제 대표 이미지 URL 추가 -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Gamja+Flower&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Gamja+Flower&family=Noto+Sans+KR:wght@400;700&family=Do+Hyeon&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 <link rel="stylesheet" href="styles.css" />
 </head>
@@ -960,6 +960,37 @@
       <img id="photoModalImg" src="" alt="" />
     </div>
     <p class="photo-modal__caption" id="photoModalCaption"></p>
+  </div>
+</div>
+
+<!-- ================= 이벤트 팝업 ================= -->
+<!-- TODO: 이벤트가 끝나면 이 블록을 통째로 주석 처리하거나 삭제하세요. -->
+<div class="promo-modal" id="promoModal" aria-hidden="true">
+  <div class="promo-modal__backdrop" data-promo-close></div>
+  <div class="promo-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="promoModalTitle">
+    <button type="button" class="promo-modal__close" data-promo-close aria-label="닫기">&times;</button>
+    <div class="promo-modal__header">
+      <span class="promo-modal__badge">SPECIAL EVENT</span>
+      <h2 class="promo-modal__title" id="promoModalTitle">20호점까지,<br /><span class="promo-modal__highlight">신정환이 간다!</span></h2>
+    </div>
+    <div class="promo-modal__body">
+      <div class="promo-modal__benefit">
+        <span class="promo-modal__num">1</span>
+        <p>계약 20호점까지, 오픈 시 <strong>신정환님이 매장에 일일 알바로 투입!</strong></p>
+      </div>
+      <div class="promo-modal__benefit">
+        <span class="promo-modal__num">2</span>
+        <p><strong>영상 촬영 및 업로드</strong> (계탉닭 공식 계정)</p>
+      </div>
+      <div class="promo-modal__benefit">
+        <span class="promo-modal__num">3</span>
+        <p>해당 영상 ➔ <strong>점포 홍보용으로 무제한 활용 가능</strong></p>
+      </div>
+    </div>
+    <div class="promo-modal__footer">
+      <label class="promo-modal__hide-label"><input type="checkbox" id="promoModalHideToday" /> 오늘 하루 보지 않기</label>
+      <button type="button" class="promo-modal__footer-close" data-promo-close>닫기</button>
+    </div>
   </div>
 </div>
 
