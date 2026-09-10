@@ -1118,13 +1118,20 @@ function initInquiryForm() {
   const form = document.getElementById('inquiryForm');
   const status = document.getElementById('formStatus');
   const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+  const consentCheckbox = document.getElementById('f-privacy-consent');
   if (!form || !status) return;
+
+  if (consentCheckbox && submitBtn) {
+    submitBtn.disabled = !consentCheckbox.checked;
+    consentCheckbox.addEventListener('change', () => {
+      submitBtn.disabled = !consentCheckbox.checked;
+    });
+  }
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const consent = (form.querySelector('input[name="privacyConsent"]:checked') || {}).value;
-    if (consent !== 'yes') {
+    if (!consentCheckbox || !consentCheckbox.checked) {
       status.classList.add('is-error');
       status.textContent = '개인정보 수집·이용에 동의하셔야 문의를 접수할 수 있습니다.';
       return;
@@ -1144,6 +1151,7 @@ function initInquiryForm() {
       email: document.getElementById('f-email').value,
       location: document.getElementById('f-region').value,
       storeExist: (form.querySelector('input[name="hasStore"]:checked') || {}).value || '',
+      fbExperience: (form.querySelector('input[name="fbExperience"]:checked') || {}).value || '',
       budget: document.getElementById('f-budget').value,
       channel: sources.join(', '),
     };
@@ -1176,7 +1184,7 @@ function initInquiryForm() {
         status.textContent = '전송에 실패했습니다. 네트워크 상태를 확인하고 다시 시도해 주세요.';
       })
       .finally(() => {
-        submitBtn.disabled = false;
+        submitBtn.disabled = !(consentCheckbox && consentCheckbox.checked);
       });
   });
 }

@@ -254,8 +254,7 @@
 <section class="section section--revenue" id="revenue">
   <div class="section__head stagger-group">
     <p class="eyebrow">REVENUE</p>
-    <h2>매출로 확인하는 본점의 운영 반응</h2>
-    <p class="section__sub">계탉닭 본점은 오픈 초기임에도 3, 4월 간 1억 원 이상의 매출을 기록하며 브랜드 반응과 운영 가능성을 실제 데이터로 보여주고 있습니다.</p>
+    <h2>매출로 확인하는 계탉닭!</h2>
   </div>
 
   <!-- 3월 -->
@@ -551,7 +550,8 @@
   </div>
 </section>
 
-<!-- ================= 7. 외국인 관광객 전략 ================= -->
+<!-- ================= 7. 외국인 관광객 전략 (임시 비공개) =================
+     요청에 따라 잠시 숨겨둡니다. 다시 노출하려면 아래 주석을 풀면 됩니다.
 <section class="section section--tourist">
   <div class="section__head stagger-group">
     <p class="eyebrow">GLOBAL STRATEGY</p>
@@ -592,6 +592,7 @@
     </div>
   </div>
 </section>
+-->
 
 <!-- ================= 8. Operation System ================= -->
 <section class="section section--operation">
@@ -614,7 +615,9 @@
   </div>
 </section>
 
-<!-- ================= 9. 성공사례 ================= -->
+<!-- ================= 9. 성공사례 (임시 비공개) =================
+     요청에 따라 잠시 숨겨둡니다. 다시 노출하려면 아래 주석을 풀면 됩니다.
+     (data-video-id는 실제 점주 인터뷰 유튜브 ID로 교체 필요)
 <section class="section section--cases">
   <div class="section__head stagger-group">
     <p class="eyebrow">SUCCESS STORY</p>
@@ -644,13 +647,13 @@
     </article>
   </div>
 
-  <!-- TODO: data-video-id 를 실제 점주 인터뷰 유튜브 ID로 교체 -->
   <button type="button" class="interview-card reveal" data-video-trigger data-video-id="INTERVIEW_VIDEO_ID">
     <div class="ph ph--wide"><span>점주 인터뷰 유튜브 썸네일</span></div>
     <span class="interview-card__label">▶ 점주 인터뷰 보러가기</span>
   </button>
   <p class="hint">※ 위 성공사례 수치는 예시입니다. 실제 매장 데이터와 점주 동의 하에 교체해 주세요.</p>
 </section>
+-->
 
 <!-- ================= 10. 마케팅 시스템 ================= -->
 <section class="section section--marketing">
@@ -679,7 +682,6 @@
     <h2>전국 매장</h2>
   </div>
   <div class="map-embed reveal">
-    <!-- TODO: 카카오맵/네이버지도 API 키 발급 후 아래 자리에 지도 SDK 삽입 -->
     <div class="ph ph--wide">
       <span>매장 지도 — 가맹점 확보 후 공개 예정<br />(카카오맵 또는 네이버 지도 API 연동 자리)</span>
     </div>
@@ -769,18 +771,17 @@
 <section class="section section--cost">
   <div class="section__head stagger-group">
     <p class="eyebrow">FRANCHISE FEE</p>
-    <h2>가맹 관련 자료</h2>
+    <h2>가맹비용안내</h2>
     <p class="section__sub">가맹 검토 자료를 통해 창업 조건과 비용 구조를 보다 현실적으로 확인할 수 있습니다. (본 비용은 브랜드 가입을 위한 기본 항목입니다)</p>
   </div>
 
   <div class="table-wrap reveal">
+    <p class="table-note-vat">※VAT별도</p>
     <table class="data-table data-table--cost">
       <thead><tr><th>구분</th><th>내용</th><th>금액</th></tr></thead>
       <tbody>
-        <tr><td>가맹비</td><td>계탉닭 브랜드 가맹비</td><td>3,300,000원</td></tr>
-        <tr><td>교육비</td><td>개점 전 최초 교육비</td><td>7,700,000원</td></tr>
-        <tr><td>보증금</td><td>계약 이행 보증금 (VAT 별도)</td><td>5,000,000원</td></tr>
-        <tr><td>로열티</td><td>매출 대비 월 정산</td><td>5%</td></tr>
+        <tr><td>가맹비</td><td>계탉닭 브랜드 가맹비</td><td>7,000,000원</td></tr>
+        <tr><td>교육비</td><td>개점 전 최초 교육비</td><td>3,000,000원</td></tr>
       </tbody>
     </table>
   </div>
@@ -804,20 +805,20 @@
   -->
   <form class="inquiry-form reveal" id="inquiryForm">
     <div class="field">
-      <label for="f-name">고객명</label>
+      <label for="f-name">고객명 <span class="field__required" aria-hidden="true">*</span></label>
       <input id="f-name" name="name" type="text" required />
     </div>
     <div class="field">
-      <label for="f-phone">연락처</label>
+      <label for="f-phone">연락처 <span class="field__required" aria-hidden="true">*</span></label>
       <input id="f-phone" name="phone" type="tel" required placeholder="010-0000-0000" />
     </div>
     <div class="field">
-      <label for="f-email">이메일</label>
+      <label for="f-email">이메일 <span class="field__required" aria-hidden="true">*</span></label>
       <input id="f-email" name="email" type="email" required />
     </div>
     <div class="field">
-      <label for="f-region">창업지역</label>
-      <input id="f-region" name="region" type="text" placeholder="예: 서울 강남구" />
+      <label for="f-region">창업지역 <span class="field__required" aria-hidden="true">*</span></label>
+      <input id="f-region" name="region" type="text" required placeholder="예: 서울 강남구" />
     </div>
     <div class="field">
       <span class="field__legend">점포 보유 여부</span>
@@ -828,13 +829,20 @@
       </div>
     </div>
     <div class="field">
+      <span class="field__legend">요식업 창업 경험 여부</span>
+      <div class="radio-row">
+        <label><input type="radio" name="fbExperience" value="예" /> 예</label>
+        <label><input type="radio" name="fbExperience" value="아니오" checked /> 아니오</label>
+      </div>
+    </div>
+    <div class="field">
       <label for="f-budget">예상 창업비용</label>
       <select id="f-budget" name="budget" required>
         <option value="">선택해주세요</option>
-        <option value="5천만원 이하">5천만원 이하</option>
-        <option value="5천만원 ~ 1억원">5천만원 ~ 1억원</option>
-        <option value="1억원 ~ 1.5억원">1억원 ~ 1.5억원</option>
-        <option value="1.5억원 이상">1.5억원 이상</option>
+        <option value="1억 미만">1억 미만</option>
+        <option value="1억~2억">1억~2억</option>
+        <option value="2억~3억">2억~3억</option>
+        <option value="3억 이상">3억 이상</option>
       </select>
     </div>
     <div class="field field--full">
@@ -857,11 +865,10 @@
       <span class="field__legend">개인정보 수집·이용 동의 (필수)</span>
       <p class="field__desc">문의 접수 및 상담을 위해 이름, 연락처, 이메일 등을 수집하며, 상담 목적 외에는 사용하지 않습니다.</p>
       <div class="radio-row">
-        <label><input type="radio" name="privacyConsent" value="yes" /> 예</label>
-        <label><input type="radio" name="privacyConsent" value="no" /> 아니오</label>
+        <label><input type="checkbox" id="f-privacy-consent" name="privacyConsent" value="yes" required /> 예, 동의합니다</label>
       </div>
     </div>
-    <button type="submit" class="btn btn--primary btn--block">창업 문의하기</button>
+    <button type="submit" class="btn btn--primary btn--block" id="inquirySubmitBtn" disabled>창업 문의하기</button>
     <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
   </form>
 </section>

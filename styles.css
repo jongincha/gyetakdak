@@ -3,9 +3,8 @@
    ========================================================================== */
 
 :root {
-  /* "포레스트 그린 & 딥 버건디/레드" 팔레트 — 물빠진 베이지/카키 톤을
-     걷어내고 또렷한 레드/그린 대비로 F&B 브랜드의 식욕·신선함·신뢰감을
-     동시에 표현 */
+  /* "딥 브라운 & 딥 버건디/레드" 팔레트 — 계탉닭 BI의 연갈색·진갈색 톤을
+     기준으로, 또렷한 레드 대비를 더해 F&B 브랜드의 식욕·신뢰감을 표현 */
   --bg: #fafaf9;
   --bg-raised: #ffffff;
   --bg-card: #ffffff;
@@ -27,7 +26,7 @@
   /* 섹션별 컬러 리듬(라이트/다크 교차)을 위한 팔레트 */
   --vanilla: #fafaf9;
   --light-beige: #f5f3ee;
-  --deep-green: #064e3b;
+  --deep-brown: #3d2712;
   --deep-red: #b91c1c;
   --pumpkin: #d84315;
   --terracotta: #dc2626;
@@ -46,18 +45,6 @@
 @font-face {
   font-family: 'Bitgoeul';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/Bitgoeul_Bold.woff') format('woff');
-  font-weight: 400 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* 배민 을지로체(BMEULJIRO) — 배달의민족(우아한형제들) 배포 무료 폰트, noonnu.cc
-   미러 CDN. 획마다 힘찬 시작과 붓의 날카로운 끝처리가 특징인 간판 캘리그라피
-   서체로, 섹션 타이틀에 역동적인 느낌을 주는 데 사용합니다.
-   로드 실패 시 'Noto Sans KR' → sans-serif 순으로 자동 대체됩니다. */
-@font-face {
-  font-family: 'BMEULJIRO';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BMEULJIRO.woff') format('woff');
   font-weight: 400 900;
   font-style: normal;
   font-display: swap;
@@ -151,13 +138,13 @@ img, canvas { max-width: 100%; }
 }
 
 /* ---------- 섹션별 컬러 리듬 (라이트 ↔ 다크 교차) ---------- */
-.section--brand   { background: var(--deep-green); border-top-color: rgba(255,255,255,0.12); }
+.section--brand   { background: var(--deep-brown); border-top-color: rgba(255,255,255,0.12); }
 .section--menu    { background: var(--light-beige); }
-.section--store   { background: var(--deep-green); border-top-color: rgba(255,255,255,0.12); }
+.section--store   { background: var(--deep-brown); border-top-color: rgba(255,255,255,0.12); }
 .section--revenue { background: var(--vanilla); }
 .section--success { background: var(--pumpkin); border-top-color: rgba(255,255,255,0.14); }
 .section--reviews { background: var(--light-beige); }
-.section--tourist { background: var(--deep-green); border-top-color: rgba(255,255,255,0.12); }
+.section--tourist { background: var(--deep-brown); border-top-color: rgba(255,255,255,0.12); }
 .section--operation { background: var(--vanilla); }
 .section--cases   { background: var(--deep-red); border-top-color: rgba(255,255,255,0.14); }
 .section--marketing { background: var(--light-beige); }
@@ -417,7 +404,7 @@ img, canvas { max-width: 100%; }
 .section__head h2 {
   font-size: clamp(1.6rem, 3vw, 2.3rem);
   margin: 6px 0 10px;
-  font-family: 'BMEULJIRO', 'Noto Sans KR', sans-serif;
+  font-family: 'Do Hyeon', 'Noto Sans KR', sans-serif;
   font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--text);
@@ -1066,6 +1053,13 @@ img, canvas { max-width: 100%; }
 }
 
 .table-wrap { overflow-x: auto; margin-bottom: 32px; }
+.table-note-vat {
+  margin: 0 0 8px;
+  text-align: right;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gold-ink);
+}
 .data-table {
   width: 100%;
   border-collapse: collapse;
@@ -1472,6 +1466,14 @@ img, canvas { max-width: 100%; }
   font-size: 0.78rem;
   color: #777;
   margin: -4px 0 0;
+}
+.field__required {
+  color: var(--red);
+  font-weight: 700;
+}
+.btn--block:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 .field input[type="text"],
 .field input[type="tel"],
