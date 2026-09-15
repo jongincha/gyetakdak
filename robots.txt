@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.xn--989aw0jgr3a.com/sitemap.xml
+Sitemap: https://xn--989aw0jgr3a.com/sitemap.xml
