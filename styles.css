@@ -409,10 +409,13 @@ img, canvas { max-width: 100%; }
   letter-spacing: -0.01em;
   color: var(--text);
 }
-/* 매출/SNS 후기 타이틀만 붉은색으로 강조 */
-.section--revenue .section__head h2,
+/* SNS 후기 타이틀은 붉은색으로 강조 */
 .section--reviews .section__head h2 {
   color: var(--red);
+}
+/* 매출 타이틀은 가독성 높은 다크 차콜로 정리 */
+.section--revenue .section__head h2 {
+  color: #222222;
 }
 .section__sub {
   color: var(--text-soft);
