@@ -926,6 +926,16 @@ img, canvas { max-width: 100%; }
 }
 
 /* ---------- 4. 수익성 ---------- */
+.revenue-highlight {
+  display: inline-block;
+  margin: 6px 0 0;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(220, 38, 38, 0.08);
+  color: var(--red-dark);
+  font-weight: 700;
+  font-size: 1.02rem;
+}
 .month-block + .month-block {
   margin-top: 56px;
   padding-top: 48px;
@@ -967,6 +977,7 @@ img, canvas { max-width: 100%; }
 }
 
 .revenue-layout {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
@@ -975,6 +986,41 @@ img, canvas { max-width: 100%; }
 }
 @media (max-width: 900px) {
   .revenue-layout { grid-template-columns: 1fr; }
+}
+
+/* 매출 카드 위에 얹는 "테이블 12개 매장 기준" 인증 스탬프 배지 */
+.revenue-stamp {
+  position: absolute;
+  top: -14px;
+  right: 16px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 3px solid var(--red);
+  outline: 1px solid var(--red);
+  outline-offset: 3px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--red);
+  font-weight: 800;
+  font-size: 0.74rem;
+  line-height: 1.3;
+  text-align: center;
+  transform: rotate(-10deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+  pointer-events: none;
+}
+@media (max-width: 480px) {
+  .revenue-stamp {
+    width: 72px;
+    height: 72px;
+    font-size: 0.58rem;
+    top: -46px;
+    right: 4px;
+  }
 }
 
 .calendar-wrap { overflow-x: auto; }
