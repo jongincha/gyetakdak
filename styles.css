@@ -931,10 +931,14 @@ img, canvas { max-width: 100%; }
   margin: 6px 0 0;
   padding: 8px 18px;
   border-radius: 999px;
-  background: rgba(220, 38, 38, 0.08);
-  color: var(--red-dark);
-  font-weight: 700;
+  background: #f5f5f7;
+  color: #222222;
+  font-weight: 600;
   font-size: 1.02rem;
+}
+.revenue-highlight__accent {
+  color: #9e1c1a;
+  font-weight: 800;
 }
 .month-block + .month-block {
   margin-top: 56px;
