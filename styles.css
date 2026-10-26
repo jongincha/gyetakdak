@@ -361,6 +361,11 @@ img, canvas { max-width: 100%; }
   color: rgba(255, 255, 255, 0.55);
   margin: 0;
 }
+.review-summary-card__source {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 4px 0 0;
+}
 .review-summary-card__tags {
   list-style: none;
   margin: 4px 0 0;
