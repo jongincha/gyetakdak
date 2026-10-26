@@ -2049,3 +2049,44 @@ img, canvas { max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   .promo-modal, .promo-modal__dialog { transition: none; }
 }
+
+/* ---------- 개인정보처리방침 등 약관 페이지 ---------- */
+.legal-page {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 120px 24px 100px;
+}
+.legal-page__inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.legal-page__inner > .eyebrow { color: var(--gold-ink); }
+.legal-page__inner h1 {
+  font-family: 'Do Hyeon', 'Noto Sans KR', sans-serif;
+  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+  margin: 6px 0 10px;
+}
+.legal-page__updated {
+  color: var(--text-faint);
+  font-size: 0.86rem;
+  margin: 0 0 32px;
+}
+.legal-page__inner h2 {
+  font-size: 1.15rem;
+  margin: 36px 0 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.legal-page__inner h2:first-of-type { border-top: none; padding-top: 0; }
+.legal-page__inner p { color: var(--text-soft); margin: 0 0 10px; }
+.legal-page__inner ul {
+  list-style: disc;
+  padding-left: 1.3em;
+  margin: 0 0 10px;
+  color: var(--text-soft);
+}
+.legal-page__inner li { margin-bottom: 4px; }
+.legal-page__back {
+  display: inline-block;
+  margin-top: 40px;
+}
