@@ -9,7 +9,7 @@
 assets/
   images/
     logo.png            헤더 로고
-    factory-01.jpg ~ factory-08.jpg   자체 공장 갤러리 (8장)
+    factory-01.jpg ~ factory-06.jpg   자체 공장 갤러리 (6장)
     menu-01.jpg ~ menu-14.png          대표/사이드 메뉴 사진 (14장, menu-10만 .png)
     review-01.jpg ~ review-15.jpg      SNS 고객 후기 사진 (15장)
     store-01.jpg ~ store-07.jpg        매장 소개/인테리어 갤러리 (7장)
@@ -27,7 +27,7 @@ assets/
 |---|---|
 | `logo.png` | 상단 네비게이션 바 로고 |
 
-## 2) 자체 공장 갤러리 — `images/factory-01.jpg` ~ `factory-08.jpg`
+## 2) 자체 공장 갤러리 — `images/factory-01.jpg` ~ `factory-06.jpg`
 
 브랜드 섹션의 공장 사진 슬라이더에 순서대로 노출됩니다. 표시 순서만 맞으면
 원본 파일의 촬영 순서/번호는 상관없습니다.
@@ -40,8 +40,6 @@ assets/
 | `factory-04.jpg` | 자체 공장 제조 현장 (4번째) |
 | `factory-05.jpg` | 자체 공장 제조 현장 (5번째) |
 | `factory-06.jpg` | 자체 공장 제조 현장 (6번째) |
-| `factory-07.jpg` | 자체 공장 제조 현장 (7번째) |
-| `factory-08.jpg` | 자체 공장 제조 현장 (8번째) |
 
 ## 3) 메뉴 사진 — `images/menu-01.jpg` ~ `menu-14.png`
 
