@@ -797,19 +797,19 @@
   <p class="cost-fineprint reveal">※ 평수 및 상권, 매장 구조에 따라 비용은 변동될 수 있습니다.</p>
 </section>
 
-<!-- ================= 14. 창업 문의 ================= -->
-<section class="section section--inquiry" id="inquiry">
+<!-- ================= 14. 창업 문의 (임시 비공개) =================
+     하단 고정 가맹문의 띠(.sticky-inquiry)로 대체되어 잠시 숨겨둡니다.
+     다시 노출하려면 아래 주석을 풀면 됩니다.
+     TODO(백엔드 필요): 이 폼은 현재 프론트엔드만 구현되어 있습니다.
+     실제 서비스에서는 action 엔드포인트(예: /api/inquiry)를 만들어
+     DB 저장 + 관리자 알림 이메일 발송을 연결해야 submit이 동작합니다.
+<section class="section section--inquiry" id="inquiry-legacy">
   <div class="section__head stagger-group">
     <p class="eyebrow">START YOUR BUSINESS</p>
     <h2>지금, 계탉닭과 함께 시작하세요</h2>
     <p class="section__sub">상담 신청 후 담당자가 1~2일 내로 연락드립니다</p>
   </div>
 
-  <!--
-    TODO(백엔드 필요): 이 폼은 현재 프론트엔드만 구현되어 있습니다.
-    실제 서비스에서는 action 엔드포인트(예: /api/inquiry)를 만들어
-    DB 저장 + 관리자 알림 이메일 발송을 연결해야 submit이 동작합니다.
-  -->
   <form class="inquiry-form reveal" id="inquiryForm">
     <div class="field">
       <label for="f-name">고객명 <span class="field__required" aria-hidden="true">*</span></label>
@@ -879,9 +879,10 @@
     <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
   </form>
 </section>
+-->
 
 <!-- ================= Footer ================= -->
-<footer class="footer">
+<footer class="footer" id="inquiry">
   <div class="footer__inner">
     <img class="footer__brand" src="./assets/images/logo02.png" alt="계탉닭" loading="lazy" />
     <dl class="footer__info">
@@ -926,16 +927,43 @@
       </div>
     </label>
   </div>
-  <a href="#inquiry" class="floating-cta__btn floating-cta__btn--primary" aria-label="창업문의">
-    <svg class="floating-cta__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="4" y="2" width="16" height="20" rx="2" fill="#fff" />
-      <rect x="7" y="6.2" width="10" height="1.6" rx="0.8" fill="#7248B9" />
-      <rect x="7" y="10.2" width="10" height="1.6" rx="0.8" fill="#7248B9" />
-      <rect x="7" y="14.2" width="6" height="1.6" rx="0.8" fill="#7248B9" />
-      <circle cx="15.5" cy="15" r="2.7" fill="#7248B9" />
-      <path d="M14.2 15l0.9 0.9 1.7-1.9" stroke="#fff" stroke-width="0.9" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
-  </a>
+  <!-- 기존 "창업문의" 원형 버튼은 하단 고정 가맹문의 띠(.sticky-inquiry)가
+       그 역할을 대신하게 되어 제거했습니다. -->
+</div>
+
+<!-- ================= 하단 고정 가맹문의 띠 ================= -->
+<div class="sticky-inquiry" id="stickyInquiry">
+  <div class="sticky-inquiry__inner">
+    <div class="sticky-inquiry__call">
+      <p class="sticky-inquiry__call-label">빠른 창업 문의 <span>(주말 상담 예약 가능)</span></p>
+      <a class="sticky-inquiry__call-number" href="tel:0260525863">
+        <span class="sticky-inquiry__call-icon" aria-hidden="true">☎</span>
+        02-6052-5863
+      </a>
+    </div>
+    <form class="sticky-inquiry__form" id="stickyInquiryForm">
+      <input class="sticky-inquiry__input" type="text" name="name" placeholder="성함" required aria-label="성함" />
+      <input class="sticky-inquiry__input" type="tel" name="phone" placeholder="연락처" required aria-label="연락처" />
+      <input class="sticky-inquiry__input" type="text" name="region" placeholder="희망지역" aria-label="희망지역" />
+      <select class="sticky-inquiry__select" name="channel" required aria-label="유입경로">
+        <option value="">유입경로</option>
+        <option value="매장이용">매장이용</option>
+        <option value="인터넷 검색">인터넷 검색</option>
+        <option value="주변인 추천">주변인 추천</option>
+        <option value="온라인 배너광고">온라인 배너광고</option>
+        <option value="인스타그램 광고">인스타그램 광고</option>
+        <option value="유튜브 광고">유튜브 광고</option>
+        <option value="당근마켓 광고">당근마켓 광고</option>
+        <option value="기타">기타</option>
+      </select>
+      <label class="sticky-inquiry__consent">
+        <input type="checkbox" id="stickyPrivacyConsent" required />
+        약관 동의 <a href="./privacy.html" target="_blank" rel="noopener">[자세히보기]</a>
+      </label>
+      <button type="submit" class="btn btn--primary sticky-inquiry__submit" id="stickyInquirySubmitBtn" disabled>문의하기</button>
+    </form>
+  </div>
+  <p class="sticky-inquiry__status form-status" id="stickyFormStatus" role="status" aria-live="polite"></p>
 </div>
 
 <!-- ================= 유튜브 재생 모달 ================= -->

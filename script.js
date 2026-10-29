@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initCharts,
     initCountUp,
     initInquiryForm,
+    initStickyInquiryForm,
+    initStickyInquirySpacing,
   ].forEach((fn) => {
     try {
       fn();
@@ -1187,4 +1189,96 @@ function initInquiryForm() {
         submitBtn.disabled = !(consentCheckbox && consentCheckbox.checked);
       });
   });
+}
+
+// ---------- 하단 고정 가맹문의 띠 ----------
+// 중간 상세 문의 폼을 대체한 축약형 폼입니다. 같은 구글 시트(Apps Script
+// 엔드포인트)로 전송하되, 이 띠에서는 수집하지 않는 항목(이메일/점포
+// 보유여부/요식업 경험/예상 창업비용)은 빈 문자열로 보내 시트의 열 구성이
+// 깨지지 않도록 합니다.
+function initStickyInquiryForm() {
+  const form = document.getElementById('stickyInquiryForm');
+  const status = document.getElementById('stickyFormStatus');
+  const submitBtn = document.getElementById('stickyInquirySubmitBtn');
+  const consentCheckbox = document.getElementById('stickyPrivacyConsent');
+  if (!form || !status || !submitBtn || !consentCheckbox) return;
+
+  submitBtn.disabled = !consentCheckbox.checked;
+  consentCheckbox.addEventListener('change', () => {
+    submitBtn.disabled = !consentCheckbox.checked;
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (!consentCheckbox.checked) {
+      status.classList.add('is-error');
+      status.textContent = '약관에 동의하셔야 문의를 접수할 수 있습니다.';
+      return;
+    }
+    status.classList.remove('is-error');
+
+    const formData = {
+      name: form.name.value,
+      phone: form.phone.value,
+      email: '',
+      location: form.region.value,
+      storeExist: '',
+      fbExperience: '',
+      budget: '',
+      channel: form.channel.value,
+    };
+
+    submitBtn.disabled = true;
+    status.textContent = '전송 중…';
+
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result === 'success') {
+          status.classList.remove('is-error');
+          status.textContent = '창업 문의가 접수되었습니다. 담당자가 1~2일 내로 연락드리겠습니다.';
+          form.reset();
+        } else {
+          status.classList.add('is-error');
+          status.textContent = '접수 중 오류가 발생했습니다' + (data.error ? `: ${data.error}` : '. 잠시 후 다시 시도해 주세요.');
+        }
+      })
+      .catch((error) => {
+        console.error('Sticky inquiry submit error:', error);
+        status.classList.add('is-error');
+        status.textContent = '전송에 실패했습니다. 네트워크 상태를 확인하고 다시 시도해 주세요.';
+      })
+      .finally(() => {
+        submitBtn.disabled = !consentCheckbox.checked;
+      });
+  });
+}
+
+// 하단 고정 띠가 본문(특히 Footer)을 가리지 않도록, 띠의 실제 높이를
+// 측정해 --sticky-inquiry-height CSS 변수와 Footer의 padding-bottom에
+// 반영합니다. 상태 메시지 표시 등으로 띠 높이가 바뀌어도 ResizeObserver가
+// 자동으로 다시 계산해 줍니다.
+function initStickyInquirySpacing() {
+  const bar = document.getElementById('stickyInquiry');
+  const footer = document.getElementById('inquiry');
+  if (!bar) return;
+
+  const applyHeight = () => {
+    const height = bar.offsetHeight;
+    document.documentElement.style.setProperty('--sticky-inquiry-height', `${height}px`);
+    if (footer) footer.style.paddingBottom = `${height + 24}px`;
+  };
+
+  applyHeight();
+
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(applyHeight).observe(bar);
+  } else {
+    window.addEventListener('resize', applyHeight);
+  }
 }
